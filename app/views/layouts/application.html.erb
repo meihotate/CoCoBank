@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="ht-100">
   <head>
     <title>CoCoBank</title>
     <%= csrf_meta_tags %>
@@ -9,7 +9,43 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="ht-100">
+        <header>
+            <nav class="navbar navbar-default navbar-fixed-top">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <!-- <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarEexample2">
+                          <span class="sr-only">Toggle navigation</span>
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
+                        </button> -->
+                        <!-- <a class="navbar-brand" href="#"> -->
+                          <%= link_to root_path do %>
+                            <img alt="Brand" src="/assets/LOGO.png" style="height: 60px;">
+                          <% end %>
+                        <!-- </a> -->
+                    </div>
+                    <div class="collapse navbar-collapse" id="navbarEexample2">
+                        <ul class="mar-15 red">
+                          <li><%= flash[:notice] %></li>
+                          <!-- <li><a href="#">メニューＡ</a></li> -->
+                          <!-- <li class="active"><a href="#">メニューＢ</a></li> -->
+                          <!-- <li><a href="#">メニューＣ</a></li> -->
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+          <div class="bgimage ht-100 pdb-20">
+            <div class ="container-fluid pdt-60 ht-100">
+              <div class="row ht-100">
+                  <%= yield %>
+              </div>
+            </div>
+          </div>
+        <footer class="navbar-fixed-bottom bgc-fff texralign-c">
+            <div><small>&copy;copyright CoCoBank.com</small></div>
+        </footer>
   </body>
 </html>

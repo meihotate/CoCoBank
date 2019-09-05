@@ -1,0 +1,62 @@
+<div class="col-md-2 ht-100 rgba-w-7 z-index bdr-10">
+	<div class="sidebar">
+		<% if admin_signed_in? %>
+			<div>
+				<p>マイページ</p>
+			</div>
+			<div>
+				<p>ユーザー一覧</p>
+			</div>
+			<div>
+				<p>カウンセラー一覧</p>
+			</div>
+			<div>
+				<%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+			</div>
+		<% else %>
+				<% if user_signed_in? %>
+						<div>
+							<p>トップページ</p>
+						</div>
+						<div>
+							<p>マイページ</p>
+						</div>
+						<div>
+							<p>ユーザー一覧</p>
+						</div>
+						<div>
+							<p>カウンセラー一覧</p>
+						</div>
+						<div>
+							<p>性格診断</p>
+						</div>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<div>
+							<%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+						</div>
+				<% else %>
+						<div>
+							<p>トップページ</p>
+						</div>
+						<div>
+							<div>
+								<%= link_to "新規会員登録", new_user_registration_path %>
+							</div>
+							<div>
+								<%= link_to "ログイン", new_user_session_path %>
+								<p><small>カウンセラー申請の方もこちらから</small></p>
+							</div>
+						</div>
+				<% end %>
+		<% end %>
+	</div>
+</div>
