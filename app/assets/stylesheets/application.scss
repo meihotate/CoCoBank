@@ -59,6 +59,11 @@
  body {
   word-break: break-all;
  }
+ .row-eq-height {
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  flex-wrap: wrap;
+}
 
  /*チャット画面*/
  /*以下、①背景色など*/
@@ -159,6 +164,9 @@
  .wid-20 {
   width: 20%;
  }
+ .wid-40 {
+  width: 40%;
+ }
  .wd-100 {
   width: 100%;
  }
@@ -195,6 +203,9 @@
  .mt-16 {
   margin-top: 16px;
  }
+ .mt-65 {
+  margin-top: 65px;
+ }
 
  /*height関連*/
  .ht-100 {
@@ -218,6 +229,9 @@
  /*border関連*/
  .bdr-10 {
  	border-radius: 10px;
+ }
+ .bdr-50 {
+  border-radius: 50%;
  }
  .bdr-b {
   border: groove 1px #4bd164;

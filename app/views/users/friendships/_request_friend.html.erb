@@ -1,4 +1,8 @@
 <%= form_for current_user.active_friendships.build, url: users_from_user_path do |f| %>
   <div><%= hidden_field_tag :to_user_id, @user.id %></div>
-  <%= f.submit "申請", class: "btn btn-primary" %>
+  	<% if @user.approved == 0 %>
+  		<%= f.submit "友達申請", class: "btn btn-primary" %>
+  	<% else %>
+  		<%= f.submit "チャット申請", class: "btn btn-primary" %>
+  	<% end %>
 <% end %>
