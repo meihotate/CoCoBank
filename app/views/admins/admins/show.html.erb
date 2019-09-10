@@ -4,9 +4,11 @@
 				    <% @users.each do |user| %>
 				    	<%= form_for user, url: admins_admin_approve_path(user) do |f| %>
 						      <tr>
+						      	<td><%= user.name %>
 						        <td><%= user.email %>
+						        	<!-- 許可 -->
 						        <td><%= f.check_box :approved, {} , 2, 1 %>
-						        <td><%= f.submit "更新", class:"btn btn-default" %>
+						        <td><%= f.submit "許可", class:"btn btn-default" %>
 						      </tr>
 						<% end %>
 				    <% end %>

@@ -5,7 +5,6 @@ class Admins::AdminsController < ApplicationController
 
 	def appro
 		@user = User.find(params[:user_id])
-
 	      if @user.update(user_params)
 	        # 保存後にUserMailerを使ってwelcomeメールを送信
 	        UserMailer.with(user: @user).welcome_email.deliver_later
@@ -13,7 +12,6 @@ class Admins::AdminsController < ApplicationController
 	      else
 	        redirect_to root_path
 	      end
-
 	end
 
 	def show

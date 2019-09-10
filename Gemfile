@@ -40,6 +40,9 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry-byebug'
+  # Rspecの導入
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
 end
 
 group :development do
@@ -72,3 +75,12 @@ gem 'jquery-rails'
 # refile
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
+
+# enum
+gem 'enum_help'
+
+# バリデーションエラーのメッセージの日本語化
+gem 'rails-i18n'
+
+
+

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="ht-100">
+<html>
   <head>
     <title>CoCoBank</title>
     <%= csrf_meta_tags %>
@@ -9,7 +9,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class="ht-100">
+  <body>
         <header>
             <nav class="navbar navbar-default navbar-fixed-top">
                 <div class="container-fluid">
@@ -37,14 +37,12 @@
                 </div>
             </nav>
         </header>
-          <div class="bgimage ht-100 pdb-20">
-            <div class ="container-fluid pdt-60 ht-100">
-              <div class="row ht-100">
+          <div class="bgimage">
+            <div class ="container-fluid pdt-60">
                   <%= yield %>
-              </div>
             </div>
           </div>
-        <footer class="navbar-fixed-bottom bgc-fff texralign-c">
+        <footer class="bgc-fff texralign-c">
             <div><small>&copy;copyright CoCoBank.com</small></div>
         </footer>
   </body>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_05_051944) do
+ActiveRecord::Schema.define(version: 2019_09_08_061606) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 2019_09_05_051944) do
   create_table "chatmessages", force: :cascade do |t|
     t.text "message", null: false
     t.integer "chatmember_id", null: false
-    t.integer "user_id", null: false
+    t.integer "chatroom_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -94,7 +94,7 @@ ActiveRecord::Schema.define(version: 2019_09_05_051944) do
     t.string "name"
     t.integer "sex"
     t.integer "location"
-    t.integer "degree"
+    t.integer "degree", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "approved", default: 0, null: false
