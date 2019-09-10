@@ -1,0 +1,122 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+ @import "bootstrap-sprockets";
+ @import "bootstrap";
+
+ /*CSS全般の設定*/
+ * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+ }
+ .clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
+ }
+ .bgimage {
+  background-image: url(/assets/forest.jpg);
+  background-size: cover; /* 縦横比を維持したまま背景の表示領域を覆うように表示 */
+  /*background-position: center 40%;*/
+ }
+ .z-index {
+ 	z-index: 100;
+ }
+ .z-index50 {
+  z-index: 50;
+ }
+ ul {
+  list-style: none;
+ }
+ li {
+  list-style: none;
+ }
+
+ /*background-color*/
+ .bgc-fff {
+ 	background-color: #fff;
+ }
+ .bgc-green {
+  background-color: #4bd164;
+ }
+
+ /*透明度*/
+ .rgba-w-7 {
+  background: rgba(255, 255, 255, 0.7);
+ }
+ .rgba-w-5 {
+  background: rgba(255, 255, 255, 0.5);
+ }
+
+ /*width関連*/
+ .wid-20 {
+  width: 20%;
+ }
+
+ /*side-bar関連*/
+ .sidebar {
+ 	margin-top: 20px;
+    display: block;
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
+
+ /*Padding関連*/
+ .pd-5 {
+  padding: 5px;
+ }
+ .pdt-60 {
+ 	padding-top: 60px;
+ }
+ .pdb-20 {
+ 	padding-bottom: 20px;
+ }
+
+ /*margin関連*/
+ p .ma-0 {
+  margin-bottom: 0 !important;
+ }
+ .mar-15 {
+ 	margin: 15px;
+ }
+ .mt-16 {
+  margin-top: 16px;
+ }
+
+ /*height関連*/
+ .ht-100 {
+ 	height: 100%;
+ }
+
+ /*textの配置*/
+ .texralign-c {
+ 	text-align: center;
+ }
+
+ /*font-size*/
+ .fs-18 {
+  font-size: 18px;
+ }
+
+ /*border関連*/
+ .bdr-10 {
+ 	border-radius: 10px;
+ }
+
+ /*color関連*/
+ .red {
+ 	color: red;
+ }

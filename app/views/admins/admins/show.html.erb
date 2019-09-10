@@ -1,0 +1,14 @@
+	<%= render 'layouts/sidebar' %>
+	<div class="col-md-10 ht-100 pdb-20">
+				<table>
+				    <% @users.each do |user| %>
+				    	<%= form_for user, url: admins_admin_approve_path(user) do |f| %>
+						      <tr>
+						        <td><%= user.email %>
+						        <td><%= f.check_box :approved, {} , 2, 1 %>
+						        <td><%= f.submit "更新", class:"btn btn-default" %>
+						      </tr>
+						<% end %>
+				    <% end %>
+			    </table>
+	</div>
