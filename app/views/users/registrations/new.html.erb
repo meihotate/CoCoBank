@@ -19,12 +19,12 @@
 
           <div class="field">
             <%= f.label "性別" %><br />
-            <%= f.select :sex, [["非公開", "0"], ["男性", "1"], ["女性", "2"], ["LGBT", "3"]], class:"form-control" %>
+            <%= f.select :sex, User.sexes_i18n.keys.map{|k| [I18n.t("enums.user.sex.#{k}"), k]}, class:"form-control" %>
           </div>
 
           <div class="field">
             <%= f.label "居住地域" %><br />
-            <%= f.select :location, User::LOCATION_ARRAY.map{ |o| [o, User::LOCATION_ARRAY.index(o)] }, class:"form-control" %>
+            <%= f.select :location, User.locations_i18n.keys.map{|k| [I18n.t("enums.user.location.#{k}"), k]}, class:"form-control" %>
           </div>
 
           <div class="field">

@@ -3,7 +3,7 @@
 	<div class="col-md-10 pdb-20">
 		<div class="opac0 mt-16">
 			<div class=" fs-18 bdr-10 bgc-green pd-5 wid-20 ma-0 texralign-c">
-				<li>ユーザー一覧</li>
+				<li>カウンセラー一覧</li>
 			</div>
 			<div class="mt-16 wd-100">
 				<table class="table table-hover" style="width: 100%;">
@@ -19,7 +19,7 @@
 						</tr>
 					</thead>
 						<tbody class="overflow">
-							<% @users.where(approved: 0).each do |user| %>
+							<% @users.where(approved: 2).each do |user| %>
 								<tr>
 									<td style="width: 15%;">プロフィール画像</td>
 									<td style="width: 18%;"><%= user.name %></td>

@@ -1,7 +1,115 @@
-<%= render 'layouts/sidebar' %>
-<div class="col-md-6 ht-100 pdb-20">
-
-</div>
-<div class="col-md-4 ht-100 pdb-20">
-
+<div class="rgba-w-7 z-index bdr-10 row row-eq-height">
+		<%= render 'layouts/sidebar' %>
+		<div class="col-md-6 pdb-20">
+			<div class="fs-18 bdr-10 bgc-green pd-5 wid-20 ma-0 texralign-c mt-16">
+					<li>マイページ</li>
+			</div>
+			<div class="row">
+				<div class="col-sm-4 mt-16">
+					<%= attachment_image_tag @user.profile_image, :profile_image, class: "profile-thumb margin_icon bd-1sg bs ml-7 pa", fallback: "/assets/no_image.jpg", size: "200x200" %>
+				</div>
+				<div class="col-sm-8 mt-16">
+					<div>
+						<p class="irb wid-20">ユーザー名</p>
+						<p class="irb wid-20"><%= @user.name %></p>
+					</div>
+					<div>
+						<p class="irb wid-20">性別</p>
+						<p class="irb wid-20"><%= @user.sex_i18n %></p>
+					</div>
+					<div>
+						<p class="irb wid-20">居住地域</p>
+						<p class="irb wid-20"><%= @user.location_i18n %></p>
+					</div>
+					<div>
+						<p class="irb wid-20">学年</p>
+						<p class="irb wid-20"><%= @user.degree_i18n %></p>
+					</div>
+					<div>
+						<p class="irb mt-16">プロフィール画像を変更する</p>
+					</div>
+					<div>
+						<% if @user.profile_image %>
+							<div class="form-inline">
+								<%= form_for @profile_image, url: users_profile_image_path do |f| %>
+									<%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
+									<%= f.hidden_field :user_id, :value => @user.id %>
+									<%= f.submit "更新する"%>
+								<% end %>
+							</div>
+						<% else %>
+							<div class="form-inline">
+								<%= form_for @profile_image, url: users_profile_images_path do |f| %>
+									<%= f.attachment_field :profile_image, placeholder: "プロフィール画像", class:"form_control" %>
+									<%= f.hidden_field :user_id, :value => @user.id %>
+									<%= f.submit "登録する", class:"irb" %>
+								<% end %>
+							</div>
+						<% end %>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4 pdb-20 mt-16">
+			<div>
+				<li>友達</li>
+				<div class="bdr-b">
+					<table class="table table-hover" style="width: 100%;">
+						<thead style="width: 100%;">
+							<tr>
+								<th style="width: 20%;">ユーザー名</th>
+								<th style="width: 20%;"></th>
+								<th style="width: 20%;"></th>
+							</tr>
+						</thead>
+							<% @users.each do |user| %>
+								<% if (user.requested?(current_user) && (user.active_friendships.find_by(to_user_id: current_user.id).friendstatus == 1)) || (current_user.requested?(user) && (user.passive_friendships.find_by(from_user_id: current_user.id).friendstatus == 1)) %>
+										<tr>
+											<td style="width: 15%; padding-top: 12px;">
+												<div><%= user.name %></div>
+											</td>
+											<td style="width: 15%; padding-top: 12px;">
+												<div>新着メッセージ</div>
+											</td>
+											<td style="width: 15%;">
+												<%= link_to users_chatroom_path(id: current_user.chatroom_number(current_user, user), other_user_id: user.id) do %>
+													<button class="btn btn-default btn-sm">チャットを開始する</button>
+												<% end %>
+											</td>
+										</tr>
+								<% end %>
+							<% end %>
+					</table>
+				</div>
+			</div>
+			<div>
+				<li>申請待ちユーザー</li>
+				<div class="bdr-b">
+					<table class="table table-hover" style="width: 100%;">
+						<thead style="width: 100%;">
+							<tr>
+								<th style="width: 20%;">ユーザー名</th>
+								<th style="width: 20%;"></th>
+								<th style="width: 20%;"></th>
+							</tr>
+						</thead>
+							<% @users.each do |user| %>
+								<% if user.requested?(current_user) && user.active_friendships.find_by(to_user_id: current_user.id).friendstatus == 0 %>
+										<tr>
+											<td style="width: 15%;">
+												<%= user.name %>
+											</td>
+											<td style="width: 15%;">
+												<%= render '/users/friendships/approve_friend', user: user %>
+											</td>
+											<td style="width: 15%;">
+												<%= render '/users/friendships/reject_friend', user: user %>
+											</td>
+										</tr>
+								<% end %>
+							<% end %>
+					</table>
+				</div>
+			</div>
+		</div>
 </div>

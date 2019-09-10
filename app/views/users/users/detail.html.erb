@@ -1,0 +1,14 @@
+<div class="rgba-w-7 z-index bdr-10 row row-eq-height">
+	<%= render 'layouts/sidebar' %>
+	<div class="col-md-10 pdb-20">
+		<%= @user.name %>
+		<div id="follow_form">
+	  		<% if current_user.requested?(@user) %>
+	  			<%= current_user.active_friendships.find_by(to_user_id: @user.id).friendstatus %>
+	    		<%#= render 'reject_friend' %>
+	  		<% else %>
+	    		<%= render '/users/friendships/request_friend' %>
+	  		<% end %>
+	  	</div>
+	</div>
+</div>
