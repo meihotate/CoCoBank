@@ -24,6 +24,12 @@ class Admins::AdminsController < ApplicationController
 	def update
 	end
 
+	def index
+	end
+
+	def counselor_index
+	end
+
 	private
     def user_params
         params.require(:user).permit(:approved)

@@ -45,8 +45,8 @@
 			  				<div>申請中</div>
 			  			<% elsif @user.active_friendships.find_by(to_user_id: current_user.id).friendstatus == 1 %>
 			  				<div>承認済</div>
-			  			<% else %>
-			  				<div>友達申請中</div>
+			  			<% elsif @user.active_friendships.find_by(to_user_id: current_user.id).friendstatus == 2 %>
+			  				<div>拒否済</div>
 			  			<% end %>
 		  		<% else %>
 		    		<%= render '/users/friendships/request_friend' %>

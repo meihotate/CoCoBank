@@ -15,8 +15,9 @@ Rails.application.routes.draw do
   #Admin側
   namespace :admins do
   	patch "users/:user_id/approve" => "admins#appro", as: "admin_approve"
+    get "counselor_index" => "users#counselor_index", as: "admin_counselor"
 
-  	resources :admins, only:[:show, :edit, :update]
+  	resources :admins, only:[:index, :show, :edit, :update]
 
   end
 
