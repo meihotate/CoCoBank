@@ -6,8 +6,10 @@ class Users::UsersController < ApplicationController
 	def show
 		@user = current_user
 		@users = User.where.not(id: current_user.id)
+		@friends1 = Friendship.where(friendstatus: 1, to_user_id: @user.id)
+		@friends2 = Friendship.where(friendstatus: 1, from_user_id: @user.id)
+
 		if @user.profile_image
-			# binding.pry
 			@profile_image = ProfileImage.find_by(user_id: @user.id)
 		else
 			@profile_image = ProfileImage.new

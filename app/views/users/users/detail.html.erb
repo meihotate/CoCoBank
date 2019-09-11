@@ -1,14 +1,56 @@
-<div class="rgba-w-7 z-index bdr-10 row row-eq-height">
+<div class="rgba-w-7 z-index bdr-10 row">
 	<%= render 'layouts/sidebar' %>
-	<div class="col-md-10 pdb-20">
-		<%= @user.name %>
-		<div id="follow_form">
-	  		<% if current_user.requested?(@user) %>
-	  			<%= current_user.active_friendships.find_by(to_user_id: @user.id).friendstatus %>
-	    		<%#= render 'reject_friend' %>
-	  		<% else %>
-	    		<%= render '/users/friendships/request_friend' %>
-	  		<% end %>
-	  	</div>
+	<div class="col-md-6 pdb-20">
+		<div class="fs-18 bdr-10 bgc-green pd-5 wid-40 ma-0 texralign-c mt-16">
+			<li><%= "#{@user.name}さん紹介ページ" %></li>
+		</div>
+		<div class="row">
+				<div class="col-sm-4 mt-16">
+					<%= attachment_image_tag @user.profile_image, :profile_image, class: "profile-thumb margin_icon bd-1sg bs ml-7 pa", fallback: "/assets/no_image.jpg", size: "200x200" %>
+				</div>
+				<div class="col-sm-8 mt-16">
+					<div>
+						<p class="irb wid-20">ユーザー名</p>
+						<p class="irb"><%= @user.name %></p>
+					</div>
+					<div>
+						<p class="irb wid-20">性別</p>
+						<p class="irb"><%= @user.sex_i18n %></p>
+					</div>
+					<div>
+						<p class="irb wid-20">居住地域</p>
+						<p class="irb"><%= @user.location_i18n %></p>
+					</div>
+						<% if @user.approved == 0 %>
+							<div>
+								<p class="irb wid-20">学年</p>
+								<p class="irb"><%= @user.degree_i18n %></p>
+							</div>
+						<% end %>
+				</div>
+		</div>
+	</div>
+	<div class="col-md-4">
+			<div id="follow_form" class="mt-65">
+		  		<% if current_user.requested?(@user) %>
+			  			<% if current_user.active_friendships.find_by(to_user_id: @user.id).friendstatus == 0 %>
+			  				<div>申請中</div>
+			  			<% elsif current_user.active_friendships.find_by(to_user_id: @user.id).friendstatus == 1 %>
+			  				<div>承認済</div>
+			  			<% else %>
+			  				<div>友達申請中</div>
+			  			<% end %>
+		  		<% elsif @user.requested?(current_user) %>
+			  			<% if @user.active_friendships.find_by(to_user_id: current_user.id).friendstatus == 0 %>
+			  				<div>申請中</div>
+			  			<% elsif @user.active_friendships.find_by(to_user_id: current_user.id).friendstatus == 1 %>
+			  				<div>承認済</div>
+			  			<% else %>
+			  				<div>友達申請中</div>
+			  			<% end %>
+		  		<% else %>
+		    		<%= render '/users/friendships/request_friend' %>
+		  		<% end %>
+		  	</div>
 	</div>
 </div>
