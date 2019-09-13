@@ -1,0 +1,2 @@
+module Users::WatsonResultsHelper
+end

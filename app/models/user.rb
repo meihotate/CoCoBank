@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :trackable
 
   has_one :profile_image, dependent: :destroy
+  has_one :watson_req, dependent: :destroy
   has_many :chatmembers, dependent: :destroy
 
   # フォロー関係

@@ -1,0 +1,19 @@
+<div class="rgba-w-7 z-index bdr-10 row">
+		<%= render 'layouts/sidebar' %>
+	<div class="col-md-6 pdb-20">
+		<%= form_for @watsonreq, url: users_watson_reqs_path do |f| %>
+			<%= f.text_field :text1, autofocus: true, autocomplete: "ここに記入してください", class:"form-control" %>
+			<%= f.text_field :text2, autofocus: true, autocomplete: "ここに記入してください", class:"form-control" %>
+			<%= f.text_field :text3, autofocus: true, autocomplete: "ここに記入してください", class:"form-control" %>
+			<%= f.text_field :text4, autofocus: true, autocomplete: "ここに記入してください", class:"form-control" %>
+			<%= f.text_field :text5, autofocus: true, autocomplete: "ここに記入してください", class:"form-control" %>
+			<%= f.text_field :text6, autofocus: true, autocomplete: "ここに記入してください", class:"form-control" %>
+			<%= f.text_field :text7, autofocus: true, autocomplete: "ここに記入してください", class:"form-control" %>
+			<%= f.text_field :text8, autofocus: true, autocomplete: "ここに記入してください", class:"form-control" %>
+			<%= f.text_field :text9, autofocus: true, autocomplete: "ここに記入してください", class:"form-control" %>
+			<%= f.text_field :text10, autofocus: true, autocomplete: "ここに記入してください", class:"form-control" %>
+			<%= f.hidden_field :user_id, :value => current_user.id %>
+			<%= f.submit "性格診断する" %>
+		<% end %>
+	</div>
+</div>

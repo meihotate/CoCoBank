@@ -1,0 +1,48 @@
+class ChangeColumnToWatsonReq < ActiveRecord::Migration[5.2]
+  def change
+  	add_column :watson_reqs, :big5_openness_name, :string
+  	add_column :watson_reqs, :big5_openness, :float
+  	add_column :watson_reqs, :big5_conscientiousness_name, :string
+  	add_column :watson_reqs, :big5_conscientiousness, :float
+  	add_column :watson_reqs, :big5_extraversion_name, :string
+  	add_column :watson_reqs, :big5_extraversion, :float
+  	add_column :watson_reqs, :big5_agreeableness_name, :string
+  	add_column :watson_reqs, :big5_agreeableness, :float
+  	add_column :watson_reqs, :big5_neuroticism_name, :string
+  	add_column :watson_reqs, :big5_neuroticism, :float
+  	add_column :watson_reqs, :need_challenge_name, :string
+  	add_column :watson_reqs, :need_challenge, :float
+  	add_column :watson_reqs, :need_closeness_name, :string
+  	add_column :watson_reqs, :need_closeness, :float
+  	add_column :watson_reqs, :need_curiosity_name, :string
+  	add_column :watson_reqs, :need_curiosity, :float
+  	add_column :watson_reqs, :need_excitement_name, :string
+  	add_column :watson_reqs, :need_excitement, :float
+  	add_column :watson_reqs, :need_harmony_name, :string
+  	add_column :watson_reqs, :need_harmony, :float
+  	add_column :watson_reqs, :need_ideal_name, :string
+  	add_column :watson_reqs, :need_ideal, :float
+  	add_column :watson_reqs, :need_liberty_name, :string
+  	add_column :watson_reqs, :need_liberty, :float
+  	add_column :watson_reqs, :need_love_name, :string
+  	add_column :watson_reqs, :need_love, :float
+  	add_column :watson_reqs, :need_practicality_name, :string
+  	add_column :watson_reqs, :need_practicality, :float
+  	add_column :watson_reqs, :need_self_expression_name, :string
+  	add_column :watson_reqs, :need_self_expression, :float
+  	add_column :watson_reqs, :need_stability_name, :string
+  	add_column :watson_reqs, :need_stability, :float
+  	add_column :watson_reqs, :need_structure_name, :string
+  	add_column :watson_reqs, :need_structure, :float
+  	add_column :watson_reqs, :value_conservation_name, :string
+  	add_column :watson_reqs, :value_conservation, :float
+  	add_column :watson_reqs, :value_openness_to_change_name, :string
+  	add_column :watson_reqs, :value_openness_to_change, :float
+  	add_column :watson_reqs, :value_hedonism_name, :string
+  	add_column :watson_reqs, :value_hedonism, :float
+  	add_column :watson_reqs, :value_self_enhancement_name, :string
+  	add_column :watson_reqs, :value_self_enhancement, :float
+  	add_column :watson_reqs, :value_self_transcendence_name, :string
+  	add_column :watson_reqs, :value_self_transcendence, :float
+  end
+end
