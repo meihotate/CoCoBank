@@ -5,8 +5,10 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" >
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= Gon::Base.render_data %>
+    <%= javascript_include_tag 'application' %>
   </head>
 
   <body>
@@ -42,8 +44,10 @@
                   <%= yield %>
             </div>
           </div>
+        <div>
         <footer class="bgc-fff texralign-c">
             <div><small>&copy;copyright CoCoBank.com</small></div>
         </footer>
+        </div>
   </body>
 </html>

@@ -1,5 +1,5 @@
 <div class="rgba-w-7 z-index bdr-10 row row-eq-height">
-		<%= render 'layouts/sidebar' %>
+	<%= render 'layouts/sidebar' %>
 	<div class="col-md-10 pdb-20">
 		<% if @watsonreq.errors.any? %>
 		  <div id="error_explanation" class="alert alert-danger">
@@ -15,7 +15,7 @@
 			<li>性格診断ページ</li>
 		</div>
 		<div class="mt-16">
-			<%= form_for @watsonreq, url: users_watson_reqs_path do |f| %>
+			<%= form_for @watsonreq, url: users_watson_req_path(id: @user.watson_req.id) do |f| %>
 				<li>Q1: あなたの趣味は？なるべく具体的に書いてください</li>
 					<%= f.text_area :text1, autofocus: true, autocomplete: "ここに記入してください", class:"form-control" %>
 				<li>Q2: あなたがワクワクすることは？なるべく具体的に書いてください</li>

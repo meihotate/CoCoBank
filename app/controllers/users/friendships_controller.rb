@@ -1,29 +1,44 @@
 class Users::FriendshipsController < ApplicationController
 
 	def create
-	    user = User.find(params[:to_user_id])
-	    current_user.request(user)
+	    @user = User.find(params[:to_user_id])
+	    current_user.request(@user)
 	    # user.save
-	    redirect_to users_detail_path(user)
+	    # redirect_to users_detail_path(user)
+	    respond_to do |format|
+	      format.html { redirect_to users_detail_path(@user) }
+	      format.js
+	    end
   	end
 
 	def update
-		user = User.find(params[:from_user_id])
-		current_user.approve_friend(user)
+		@user = User.find(params[:from_user_id])
+		current_user.approve_friend(@user)
+		@table_index = params[:table_index]
 
 		# チャットルームの生成
-		room = Chatroom.create(title: "#{user.name}さんと#{current_user.name}さんのチャットルーム")
+		room = Chatroom.create(title: "#{@user.name}さんと#{current_user.name}さんのチャットルーム")
 		# チャット
 		Chatmember.create(chatroom_id: room.id, user_id: current_user.id)
-		Chatmember.create(chatroom_id: room.id, user_id: user.id)
+		Chatmember.create(chatroom_id: room.id, user_id: @user.id)
 
-		redirect_to users_show_path(current_user)
+		# redirect_to users_show_path(current_user)
+		respond_to do |format|
+	      format.html { redirect_to users_show_path(current_user) }
+	      format.js
+	    end
 	end
 
 	def update_reject
-		user = User.find(params[:from_user_id])
-		current_user.reject_friend(user)
-		redirect_to users_show_path(current_user)
+		@user = User.find(params[:from_user_id])
+		current_user.reject_friend(@user)
+		@table_index = params[:table_index]
+		# binding.pry
+		# redirect_to users_show_path(current_user)
+		respond_to do |format|
+	      format.html { redirect_to users_show_path(current_user) }
+	      format.js
+	    end
 	end
 
 end

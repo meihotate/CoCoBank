@@ -82,5 +82,14 @@ gem 'enum_help'
 # バリデーションエラーのメッセージの日本語化
 gem 'rails-i18n'
 
+# chart.js
+gem 'chart-js-rails'
+
+# gon
+gem 'gon'
+
+# Dotenv
+gem 'dotenv-rails'
+
 
 

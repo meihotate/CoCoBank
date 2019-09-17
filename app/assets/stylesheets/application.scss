@@ -63,7 +63,17 @@
   display: -webkit-flex; /* Safari */
   display: flex;
   flex-wrap: wrap;
-}
+ }
+ .row.row-eq-height .col-md-10 {
+  width:83%;
+ }
+ .row.row-eq-height .col-md-6 {
+  width:49%;
+ }
+ .row.row-eq-height .col-md-4 {
+  width:33%;
+ }
+
 
  /*チャット画面*/
  /*以下、①背景色など*/
@@ -183,6 +193,12 @@
  .pd-5 {
   padding: 5px;
  }
+ .pdl-5 {
+  padding-left: 5px;
+ }
+ .pdl-60 {
+  padding-left: 60px;
+ }
  .pdt-60 {
  	padding-top: 60px;
  }
@@ -203,8 +219,23 @@
  .mt-16 {
   margin-top: 16px;
  }
+ .mt-25 {
+  margin-top: 25px;
+ }
  .mt-65 {
   margin-top: 65px;
+ }
+ .ml-60 {
+  margin-left: 60px;
+ }
+ .ml-40 {
+  margin-left: 40px;
+ }
+ .mr-60 {
+  margin-right: 60px;
+ }
+ .mar-0-auto {
+  margin: 0 auto;
  }
 
  /*height関連*/
@@ -224,6 +255,15 @@
  /*font-size*/
  .fs-18 {
   font-size: 18px;
+ }
+ .fs-17 {
+  font-size: 17px;
+ }
+ .fs-16 {
+  font-size: 16px;
+ }
+ .fs-12 {
+  font-size: 12px;
  }
 
  /*border関連*/
@@ -248,4 +288,18 @@
  }
  .irb {
   display: inline-block;
+ }
+
+ /*font awesome*/
+ .far.fa-smile {
+  color: #1F8CFF;
+ }
+ .far.fa-comments {
+  color: #1F8CFF;
+ }
+ .fas.fa-hand-holding-heart {
+  color: #1F8CFF;
+ }
+ .fas.fa-heartbeat {
+  color: #1F8CFF;
  }

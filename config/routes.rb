@@ -38,14 +38,12 @@ Rails.application.routes.draw do
     post "chatmembers" => "chatmembers#create", as: "chatmembers"
     post "chatmessages" => "chatmessages#create", as: "chatmessages"
     post "relationship" => "relationships#create", as:"following"
-    patch "relationship" => "relationships#update", as:"followed"
+    delete "relationship" => "relationships#destroy", as:"followed"
     post "friendship" => "friendships#create", as:"from_user"
     patch "friendship" => "friendships#update", as:"to_user"
     patch "friendship_reject" => "friendships#update_reject", as:"to_user_reject"
 
-    resources :watson_reqs, only:[:show, :edit, :update, :new, :create] do
-      resource :watson_results, only:[:show, :create, :update]
-    end
+    resources :watson_reqs, only:[:show, :edit, :update, :new, :create, :index]
 
   end
 
