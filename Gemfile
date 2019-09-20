@@ -91,5 +91,8 @@ gem 'gon'
 # Dotenv
 gem 'dotenv-rails'
 
+# Paranoia
+gem 'paranoia'
+
 
 

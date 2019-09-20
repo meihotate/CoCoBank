@@ -1,50 +1,23 @@
-<div class="col-md-2 rgba-w-7 z-index bdr-10">
-	<div class="sidebar">
-		<% if admin_signed_in? %>
-			<div>
-				<%= link_to "マイページ", admins_admin_path(current_admin) %>
-			</div>
-			<div>
-				<%= link_to "ユーザ一覧", admins_admins_path %>
-			</div>
-			<div>
-				<%= link_to "カウンセラー覧", admins_admin_counselor_path %>
-			</div>
-			<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-			<div>
-				<%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
-			</div>
-		<% else %>
-				<% if user_signed_in? %>
+<div class ="container-fluid pdt-60" id="showdestroy">
+	<div class="z-index bdr-10 row row-eq-height">
+		<%#= render 'layouts/sidebar' %>
+		<div class="col-md-2 rgba-w-7 z-index bdr-10">
+			<div class="sidebar">
+				<% if admin_signed_in? %>
+					<div>
+						<%= link_to "マイページ", admins_admin_path(current_admin) %>
+					</div>
+					<div>
+						<%= link_to "ユーザ一覧", admins_admins_path %>
+					</div>
+					<div>
+						<%= link_to "カウンセラー覧", admins_admin_counselor_path %>
+					</div>
+					<div>
+						<%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+					</div>
+				<% else %>
+					<% if user_signed_in? %>
 						<div>
 							<%= link_to "トップページ", root_path %>
 						</div>
@@ -93,11 +66,11 @@
 							<%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
 						</div>
 						<div>
-							<button id="leaveBank", type="button">退会する</button>
+								<button id="backToBank", type="button">退会しない</button>
 						</div>
 						<br>
 						<br>
-				<% else %>
+					<% else %>
 						<div>
 							<p>トップページ</p>
 						</div>
@@ -110,7 +83,19 @@
 								<p><small>カウンセラー申請の方もこちらから</small></p>
 							</div>
 						</div>
+					<% end %>
 				<% end %>
+			</div>
+		</div>
+		<% if user_signed_in? %>
+			<div class="col-md-10 pdb-20 rgba-b-5" style="height:700px">
+					<div class="mt-65">
+						<h3 class="fc-w">本当に退会しますか？？</h3>
+						<%= link_to users_destroy_path(current_user), method: :delete do %>
+							<button type="button" class="btn btn-default">退会する</button>
+						<% end %>
+					</div>
+			</div>
 		<% end %>
 	</div>
 </div>

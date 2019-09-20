@@ -1,6 +1,8 @@
 class Users::ChatroomsController < ApplicationController
   def show
+    nowdate = DateTime.now
   	chatroom = Chatroom.find(params[:id])
+    chatroom.update(accesstime: nowdate)
   	@member = Chatmember.find_by(user_id: current_user.id, chatroom_id: chatroom.id)
   	@other_user = User.find(params[:other_user_id])
   	@message = Chatmessage.new

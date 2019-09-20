@@ -1,38 +1,38 @@
 
 <div class="container">
-  <div class="row">
-    <div class="col-md-6">
+  <div class="rgba-w-7 z-index bdr-10 row row-eq-height">
+    <div class="col-md-12">
         <h2>新規会員登録</h2>
 
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
           <%= render "devise/shared/error_messages", resource: resource %>
 
-          <div class="field">
+          <div class="field mt-16">
             <%= f.label "ユーザー名" %><br />
-            <%= f.text_field :name, autofocus: true, autocomplete: "ユーザー名", class:"form-control" %>
+            <%= f.text_field :name, autofocus: true, autocomplete: "ユーザー名", style:"width:30%" %>
           </div>
 
-          <div class="field">
+          <div class="field mt-16">
             <%= f.label "メールアドレス" %><br />
-            <%= f.email_field :email, autofocus: true, autocomplete: "メールアドレス", class:"form-control" %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "メールアドレス", style:"width:30%" %>
           </div>
 
-          <div class="field">
+          <div class="field mt-16">
             <%= f.label "性別" %><br />
-            <%= f.select :sex, User.sexes_i18n.keys.map{|k| [I18n.t("enums.user.sex.#{k}"), k]}, class:"form-control" %>
+            <%= f.select :sex, User.sexes_i18n.keys.map{|k| [I18n.t("enums.user.sex.#{k}"), k]} %>
           </div>
 
-          <div class="field">
+          <div class="field mt-16">
             <%= f.label "居住地域" %><br />
-            <%= f.select :location, User.locations_i18n.keys.map{|k| [I18n.t("enums.user.location.#{k}"), k]}, class:"form-control" %>
+            <%= f.select :location, User.locations_i18n.keys.map{|k| [I18n.t("enums.user.location.#{k}"), k]} %>
           </div>
 
-          <div class="field">
-            <%= f.label "カウンセラーとして申請しますか？" %><br />
+          <div class="field mt-16">
+            <%= f.label "カウンセラーとして申請しますか？", class:"margin0" %><br />
             <%= f.check_box :approved, {} , 1, 0 %>
           </div>
 
-          <div class="field">
+          <div class="field mt-16">
             <%= f.label :password %>
             <% if @minimum_password_length %>
             <em>(<%= @minimum_password_length %> characters minimum)</em>
@@ -40,15 +40,20 @@
             <%= f.password_field :password, autocomplete: "new-password", class:"form-control" %>
           </div>
 
-          <div class="field">
+          <div class="field mt-16">
             <%= f.label :password_confirmation %><br />
             <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control" %>
           </div>
 
-          <div class="actions">
-            <%= f.submit "Sign up", class:"form-control btn btn-default" %>
+          <div class="actions mt-16">
+            <%= f.submit "新規会員登録", class:"form-control btn btn-default" %>
           </div>
         <% end %>
+        <br>
+        <br>
+        <br>
+        <br>
+        
 
         <%= render "users/shared/links" %>
     </div>

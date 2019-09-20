@@ -1,38 +1,58 @@
 <div class="rgba-w-7 z-index bdr-10 row row-eq-height">
 		<%= render 'layouts/sidebar' %>
 		<div class="col-md-6 pdb-20">
-			<div class="fs-18 bdr-10 bgc-green pd-5 wid-20 ma-0 texralign-c mt-16">
-					<li>マイページ</li>
+			<div class="row">
+				<div class="col-md-3">
+					<div class="fs-18 bdr-10 bgc-green pd-5 ma-0 texralign-c mt-16">
+							<li>マイページ</li>
+					</div>
+				</div>
+				<div class="col-md-9 mt-16">
+					<%= link_to users_editing_path do %>
+							<button type="button" class="btn btn-primary">登録情報を更新する</button>
+					<% end %>
+				</div>
 			</div>
+			<% if @profile_image.errors.any? %>
+			  <div id="error_explanation" class="alert alert-danger">
+			    <ul>
+			      <% @profile_image.errors.full_messages.each do |message| %>
+			        <li><%= message %></li>
+			      <% end %>
+			    </ul>
+			  </div>
+			<% end %>
 			<div class="row">
 				<div class="col-sm-4 mt-16">
-					<div class="pdl-60">
-						<%= attachment_image_tag @user.profile_image, :profile_image, class: "profile-thumb margin_icon bd-1sg bs ml-7 pa bdr-10", fallback: "/assets/no_image.jpg", size: "115x115" %>
+					<div class="pdl-60" id="profile_image_box">
+						<%= attachment_image_tag @user.profile_image, :profile_image, class: "profile-thumb margin_icon bd-1sg bs ml-7 pa bdr-10", id: "profile_image", fallback: "/assets/no_image.jpg", size: "115x115" %>
 					</div>
 					<div class="mt-16">
 						<% if @user.profile_image %>
-							<div class="form-inline">
-								<%= form_for @profile_image, url: users_profile_image_path do |f| %>
-									<%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
-									<%= f.hidden_field :user_id, :value => @user.id %>
-									<%= f.submit "プロフィール画像を更新する"%>
-								<% end %>
+							<div class="form-inline" id="imageform">
+								<%#= form_for @profile_image, url: users_profile_image_path do |f| %>
+									<%#= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
+									<%#= f.hidden_field :user_id, :value => @user.id %>
+									<%#= f.submit "プロフィール画像を更新する"%>
+								<%# end %>
+								<%= render '/users/users/update_image', user: @user, profile_image: @profile_image %>
 							</div>
 						<% else %>
-							<div class="form-inline">
-								<%= form_for @profile_image, url: users_profile_images_path do |f| %>
-									<%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
-									<%= f.hidden_field :user_id, :value => @user.id %>
-									<%= f.submit "プロフィール画像を登録する", class:"irb" %>
-								<% end %>
+							<div class="form-inline" id="imageform">
+								<%#= form_for @profile_image, url: users_profile_images_path do |f| %>
+									<%#= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
+									<%#= f.hidden_field :user_id, :value => @user.id %>
+									<%#= f.submit "プロフィール画像を登録する", class:"irb" %>
+								<%# end %>
+								<%= render '/users/users/create_image', user: @user, profile_image: @profile_image %>
 							</div>
 						<% end %>
 					</div>
 				</div>
-				<div class="col-sm-5 mt-16">
+				<div class="col-sm-8 mt-16">
 					<div>
 						<p class="irb wid-40"><strong>ユーザー名</strong></p>
-						<p class="irb wid-40"><%= @user.name %></p>
+						<p class="irb"><%= @user.name %></p>
 					</div>
 					<div>
 						<p class="irb wid-40"><strong>性別</strong></p>
@@ -47,18 +67,13 @@
 						<p class="irb wid-40"><%= @user.degree_i18n %></p>
 					</div>
 				</div>
-				<div class="col-sm-3 mt-16">
-					<%= link_to users_editing_path do %>
-						<button type="button" class="btn btn-primary">登録情報を更新する</button>
-					<% end %>
-				</div>
 			</div>
 			<div class="mt-25">
 				<div class="fs-18">
 					<li><strong>自己紹介文</strong></li>
 				</div>
-				<div class="rgba-w-7 bdr-10">
-					<% if @user.introduction %>
+				<div class="rgba-w-7 bdr-10 pd-5">
+					<% if (@user.introduction != nil) && (@user.introduction != "") %>
 						<%= @user.introduction %>
 					<% else %>
 						<p class="fs-16">まだ登録されていません</p>
@@ -87,64 +102,16 @@
 				<% end %>
 			</div>
 		</div>
-		<div class="col-md-4 pdb-20 mt-16">
+		<div class="col-md-4 pdb-20 mt-25">
 			<div>
-				<li>友達</li>
-				<div class="bdr-b">
-					<table class="table table-hover" style="width: 100%;" id="friend_table">
-						<thead style="width: 100%;">
-							<tr>
-								<th style="width: 20%;">ユーザー名</th>
-								<th style="width: 20%;"></th>
-								<th style="width: 20%;"></th>
-							</tr>
-						</thead>
-							<% @friends1.each do |friend| %>
-								<%# if (user.requested?(current_user) && (user.active_friendships.find_by(from_user_id: user.id, to_user_id: current_user.id).friendstatus == 1)) || (current_user.requested?(user) && (user.passive_friendships.find_by(from_user_id: current_user.id, to_user_id: user.id).friendstatus == 1)) %>
-									<% if friend.from_user != current_user && friend.from_user.approved != 2 %>
-										<tr>
-											<td style="width: 15%; padding-top: 12px;">
-												<div>
-													<%= friend.from_user.name %>
-													<!-- <input type="hidden" name="t1val" value="<%#= friends1.index(friend) %>"> -->
-												</div>
-											</td>
-											<td style="width: 15%; padding-top: 12px;">
-												<div>新着メッセージ</div>
-											</td>
-											<td style="width: 15%;">
-												<%= link_to users_chatroom_path(id: current_user.chatroom_number(current_user, friend.from_user), other_user_id: friend.from_user.id) do %>
-													<button class="btn btn-default btn-sm">チャットを開始する</button>
-												<% end %>
-											</td>
-										</tr>
-									<% end %>
-							<% end %>
-							<% @friends2.each do |friend| %>
-									<% if friend.to_user != current_user && friend.to_user.approved != 2 %>
-										<tr>
-											<td style="width: 15%; padding-top: 12px;">
-												<div>
-													<%= friend.to_user.name %>
-													<!-- <input type="hidden" name="t1val" value="<%#= friends2.index(friend) %>"> -->
-												</div>
-											</td>
-											<td style="width: 15%; padding-top: 12px;">
-												<div>新着メッセージ</div>
-											</td>
-											<td style="width: 15%;">
-												<%= link_to users_chatroom_path(id: current_user.chatroom_number(current_user, friend.to_user), other_user_id: friend.to_user.id) do %>
-													<button class="btn btn-default btn-sm">チャットを開始する</button>
-												<% end %>
-											</td>
-										</tr>
-									<% end %>
-							<% end %>
-					</table>
-				</div>
+				<% if current_user.approved != 2 %>
+					<%= render 'child_friend', friends1: @friends1, friends2: @friends2 %>
+				<% else %>
+					<%= render 'counseller_friend', friends1: @friends1, friends2: @friends2 %>
+				<% end %>
 			</div>
-			<div>
-				<li>申請待ちユーザー</li>
+			<div class="mt-16">
+				<li><strong>申請待ちユーザー</strong></li>
 				<div class="bdr-b">
 					<table class="table table-hover" style="width: 100%;" id="approve_status_table">
 						<thead style="width: 100%;">

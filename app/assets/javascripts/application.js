@@ -117,3 +117,39 @@ var myChart;
 			// draw_graph().myChart.update();
 		});
 	});
+
+// userの退会
+window.onload = function () {
+	var leaveBank = document.getElementById('leaveBank');
+	var body = document.getElementById('hide');
+	var destroybody = document.getElementById('showdestroy');
+	var backToBank = document.getElementById('backToBank');
+		leaveBank.addEventListener('click', event => {
+			console.log("test");
+			body.style.display="none";
+		  	destroybody.style.display="block";
+		});
+		backToBank.addEventListener('click', event => {
+			console.log("test");
+			body.style.display="block";
+		  	destroybody.style.display="none";
+		});
+};
+// userを退会させる
+window.onload = function () {
+	var nolongerBank = document.getElementById('nolongerBank');
+	var body = document.getElementById('hidedetail');
+	var destroybody = document.getElementById('resigned');
+	var stopResign = document.getElementById('stopResign');
+		nolongerBank.addEventListener('click', event => {
+			console.log("test");
+			body.style.display="none";
+		  	destroybody.style.display="block";
+		  	console.log("aaa");
+		});
+		stopResign.addEventListener('click', event => {
+			console.log("test");
+			body.style.display="block";
+		  	destroybody.style.display="none";
+		});
+};

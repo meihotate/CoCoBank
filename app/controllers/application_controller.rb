@@ -1,8 +1,9 @@
 class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
-
-
+  before_action :set_request_from
+  # before_action :correct_referer
+  rescue_from ActiveRecord::RecordNotFound, with: :back
 
 
   protected
@@ -26,5 +27,27 @@ class ApplicationController < ActionController::Base
 			redirect_to root_path
 		end
   end
+
+  # def correct_referer
+  # 	if request.referer.nil?
+  # 		binding.pry
+  # 		redirect_to root_path
+  # 	end
+  # end
+
+  def set_request_from
+    if session[:request_from]
+    	# binding.pry
+      @request_from = session[:request_from]
+    end
+    # 現在のURLを保存しておく
+    # binding.pry
+    session[:request_from] = request.original_url
+  end
+
+  def back
+  	redirect_to @request_from
+  end
+
 
 end

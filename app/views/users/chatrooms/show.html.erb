@@ -7,9 +7,9 @@
 		<div class="faceicon">
 			<%= attachment_image_tag @other_user.profile_image, :profile_image, class: "profile-thumb margin_icon bd-1sg bs ml-7 pa", fallback: "/assets/no_image.jpg", size: "200x200", id: "chatprofileimage" %>
 		</div>
+		<p class="ml-60 mt-10 fs-18"><strong><%= @other_user.name%>さんとのチャットルーム</strong></p>
 	</div>
-	<p><%= @other_user.name%>さんとのチャットルーム</p>
-		<div class=" line-bc">
+		<div class="line-bc">
 			<% @chatmessages.each do |message| %>
 				<% if message.chatmember.user_id == @other_user.id %>
 						<!--②左コメント始-->
@@ -53,8 +53,8 @@
   					<input type="hidden" name="chatroom_id" value="<%= params[:id] %>">
   					<input type="hidden" name="chatmember_id" value="<%= @member.id %>">
  					<input type="hidden" name="current_user_id" value="<%= current_user.id %>">
-  					<label>メッセージを<%= @other_user.name %>に送信する</label><br>
-  					<input type="text" name="message" data-behavior="room_speaker">
+  					<label>メッセージを<%= @other_user.name %>さんに送信する</label><br>
+  					<input type="text" name="message" data-behavior="room_speaker" class="form-control" style="width:100%;">
 			</form>
 		</div>
 	</div>

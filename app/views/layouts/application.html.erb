@@ -7,6 +7,7 @@
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" >
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%#= stylesheet_link_tag    'application', media: 'all' %>
     <%= Gon::Base.render_data %>
     <%= javascript_include_tag 'application' %>
   </head>
@@ -30,7 +31,7 @@
                     </div>
                     <div class="collapse navbar-collapse" id="navbarEexample2">
                         <ul class="mar-15 red">
-                          <li><%= flash[:notice] %></li>
+                          <li id="flashnotice"><%= flash[:notice] %></li>
                           <!-- <li><a href="#">メニューＡ</a></li> -->
                           <!-- <li class="active"><a href="#">メニューＢ</a></li> -->
                           <!-- <li><a href="#">メニューＣ</a></li> -->
@@ -40,7 +41,8 @@
             </nav>
         </header>
           <div class="bgimage">
-            <div class ="container-fluid pdt-60">
+            <%= render '/users/users/destroy' %>
+            <div class ="container-fluid pdt-60" id="hide">
                   <%= yield %>
             </div>
           </div>

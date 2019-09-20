@@ -1,0 +1,5 @@
+<%= form_for profile_image, url: users_profile_images_path, remote: true do |f| %>
+	<%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
+	<%= f.hidden_field :user_id, :value => user.id %>
+	<%= f.submit "プロフィール画像を登録する", class:"irb" %>
+<% end %>
