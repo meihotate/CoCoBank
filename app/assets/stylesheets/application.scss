@@ -37,6 +37,9 @@
  .z-index {
  	z-index: 100;
  }
+ .z-index200 {
+  z-index: 200;
+ }
  .z-index50 {
   z-index: 50;
  }
@@ -63,7 +66,21 @@
   display: -webkit-flex; /* Safari */
   display: flex;
   flex-wrap: wrap;
-}
+ }
+ .row.row-eq-height .col-md-10 {
+  width:83%;
+ }
+ .row.row-eq-height .col-md-6 {
+  width:49%;
+ }
+ .row.row-eq-height .col-md-4 {
+  width:33%;
+ }
+ input[type=checkbox] {
+  transform: scale(1.4);
+  margin: 0;
+ }
+
 
  /*チャット画面*/
  /*以下、①背景色など*/
@@ -74,6 +91,7 @@
   text-align: right;
   font-size: 14px;
   background: #7da4cd;
+  min-height: 500px;
 }
 /*以下、②左側のコメント*/
 .balloon6 {
@@ -87,6 +105,16 @@
   width: 40px;
 }
 .balloon6 .faceicon img{
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+}
+.balloon7 .faceicon {
+  float: right;
+  margin-left: -50px;
+  width: 40px;
+}
+.balloon7 .faceicon img{
   width: 100%;
   height: auto;
   border-radius: 50%;
@@ -143,6 +171,36 @@
   -webkit-transform: rotate(-35deg);
   transform: rotate(-35deg);
 }
+.hercomment {
+  margin: 10px 0;
+}
+.hercomment p {
+  display: inline-block;
+  position: relative; 
+  margin: 0 50px 0 0;
+  padding: 8px;
+  max-width: 35%;
+  border-radius: 12px;
+  background: #30e852;
+  font-size: 15px;
+}
+.hercomment p:after {
+  content: "";
+  position: absolute;
+  top: 3px; 
+  right: -19px;
+  border: 8px solid transparent;
+  border-left: 18px solid #30e852;
+  -webkit-transform: rotate(-35deg);
+  transform: rotate(-35deg);
+}
+
+/*position absolute*/
+.posi_abu {
+  position: absolute;
+  top: 10px; 
+  right: 25px;
+}
 
  /*background-color*/
  .bgc-fff {
@@ -150,6 +208,9 @@
  }
  .bgc-green {
   background-color: #4bd164;
+ }
+ .bgc-yellow {
+  background-color: yellow;
  }
 
  /*透明度*/
@@ -159,6 +220,10 @@
  .rgba-w-5 {
   background: rgba(255, 255, 255, 0.5);
  }
+ .rgba-b-5 {
+  background: rgba(0, 0, 0, 0.7);
+ }
+
 
  /*width関連*/
  .wid-20 {
@@ -166,6 +231,9 @@
  }
  .wid-40 {
   width: 40%;
+ }
+ .wid-60 {
+  width: 60%;
  }
  .wd-100 {
   width: 100%;
@@ -182,6 +250,15 @@
  /*Padding関連*/
  .pd-5 {
   padding: 5px;
+ }
+ .pdl-5 {
+  padding-left: 5px;
+ }
+ .pdl-20 {
+  padding-left: 20px;
+ }
+ .pdl-60 {
+  padding-left: 60px;
  }
  .pdt-60 {
  	padding-top: 60px;
@@ -200,11 +277,38 @@
  .mar-15 {
  	margin: 15px;
  }
+ .mt-10 {
+  margin-top: 10px;
+ }
  .mt-16 {
   margin-top: 16px;
  }
+ .mt-25 {
+  margin-top: 25px;
+ }
  .mt-65 {
   margin-top: 65px;
+ }
+ .mt-80 {
+  margin-top: 80px;
+ }
+ .ml-60 {
+  margin-left: 60px;
+ }
+ .ml-40 {
+  margin-left: 40px;
+ }
+ .ml-20 {
+  margin-left: 20px;
+ }
+ .mr-60 {
+  margin-right: 60px;
+ }
+ .mar-0-auto {
+  margin: 0 auto;
+ }
+ .margin0 {
+  margin: 0;
  }
 
  /*height関連*/
@@ -225,6 +329,20 @@
  .fs-18 {
   font-size: 18px;
  }
+ .fs-17 {
+  font-size: 17px;
+ }
+ .fs-16 {
+  font-size: 16px;
+ }
+ .fs-12 {
+  font-size: 12px;
+ }
+
+ /*font-color*/
+ .fc-w {
+  color: #fff;
+ }
 
  /*border関連*/
  .bdr-10 {
@@ -235,6 +353,9 @@
  }
  .bdr-b {
   border: groove 1px #4bd164;
+ }
+ .bdr-r {
+  border-right: groove 2px #4bd164;
  }
 
  /*color関連*/
@@ -248,4 +369,45 @@
  }
  .irb {
   display: inline-block;
+ }
+
+ /*font awesome*/
+ .far.fa-smile {
+  color: #1F8CFF;
+ }
+ .far.fa-comments {
+  color: #1F8CFF;
+ }
+ .fas.fa-hand-holding-heart {
+  color: #1F8CFF;
+ }
+ .fas.fa-heartbeat {
+  color: #1F8CFF;
+ }
+
+ /*その他*/
+ #leaveBank {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  appearance: none;
+ }
+
+ #backToBank {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  appearance: none;
+ }
+
+ /*destroy viewの非表示*/
+ #showdestroy {
+  display: none;
+ }
+ #resigned {
+  display: none;
  }

@@ -1,0 +1,44 @@
+<div class="rgba-w-7 z-index bdr-10 row row-eq-height">
+		<%= render 'layouts/sidebar' %>
+	<div class="col-md-10 pdb-20">
+		<% if @watsonreq.errors.any? %>
+		  <div id="error_explanation" class="alert alert-danger">
+		    <ul>
+		      <% @watsonreq.errors.full_messages.each do |message| %>
+		        <li><%= message %></li>
+		      <% end %>
+		    </ul>
+		  </div>
+		<% end %>
+
+		<div class="fs-16 bdr-10 bgc-green pd-5 wid-40 ma-0 texralign-c mt-16">
+			<li>性格診断ページ</li>
+		</div>
+		<div class="mt-16">
+			<%= form_for @watsonreq, url: users_watson_reqs_path do |f| %>
+				<li>Q1: あなたの趣味は？なるべく具体的に書いてください</li>
+					<%= f.text_area :text1, autofocus: true, autocomplete: "ここに記入してください", class:"form-control" %>
+				<li>Q2: あなたがワクワクすることは？なるべく具体的に書いてください</li>
+					<%= f.text_area :text2, autofocus: true, autocomplete: "ここに記入してください", class:"form-control" %>
+				<li>Q3: 最近悲しかった出来事は？なるべく具体的に書いてください</li>
+					<%= f.text_area :text3, autofocus: true, autocomplete: "ここに記入してください", class:"form-control" %>
+				<li>Q4: 最近楽しかった出来事は？なるべく具体的に書いてください</li>
+					<%= f.text_area :text4, autofocus: true, autocomplete: "ここに記入してください", class:"form-control" %>
+				<li>Q5: あなたの家族について、なるべく具体的に書いてください</li>
+					<%= f.text_area :text5, autofocus: true, autocomplete: "ここに記入してください", class:"form-control" %>
+				<li>Q6: あなたの好きなものについて、なるべく具体的に書いてください</li>
+					<%= f.text_area :text6, autofocus: true, autocomplete: "ここに記入してください", class:"form-control" %>
+				<li>Q7: あなたの嫌いなものについて、なるべく具体的に書いてください</li>
+					<%= f.text_area :text7, autofocus: true, autocomplete: "ここに記入してください", class:"form-control" %>
+				<li>Q8: 最近観た映画や読んだ本の感想を、なるべく具体的に書いてください</li>
+					<%= f.text_area :text8, autofocus: true, autocomplete: "ここに記入してください", class:"form-control" %>
+				<li>Q9: あなたの友達について、なるべく具体的に書いてください</li>
+					<%= f.text_area :text9, autofocus: true, autocomplete: "ここに記入してください", class:"form-control" %>
+				<li>Q10: 将来の夢・希望について、なるべく具体的に書いてください</li>
+					<%= f.text_area :text10, autofocus: true, autocomplete: "ここに記入してください", class:"form-control" %>
+				<%= f.hidden_field :user_id, :value => current_user.id %>
+				<%= f.submit "性格診断する", class:"btn btn-default mt-16" %>
+			<% end %>
+		</div>
+	</div>
+</div>

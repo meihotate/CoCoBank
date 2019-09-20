@@ -1,0 +1,15 @@
+var imageBox = document.getElementById('profile_image_box');
+var image = document.getElementById('profile_image');
+// imageBox.removeChild(image);
+
+// var newImage = document.createElement('image');
+var imageSrc = '<%= @image_src %>'
+console.log(imageSrc);
+image.src = imageSrc;
+// imageBox.appendChild(newImage);
+
+if (imageSrc === '<%= @oldimage_src %>') {
+	$('#flashnotice').html("プロフィール画像を選択してください。");
+}else{
+	$('#flashnotice').html("プロフィール画像を変更しました。");
+};

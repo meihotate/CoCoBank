@@ -1,16 +1,68 @@
+<div class="rgba-w-7 z-index bdr-10 row row-eq-height">
 	<%= render 'layouts/sidebar' %>
-	<div class="col-md-10 ht-100 pdb-20">
-				<table>
-				    <% @users.each do |user| %>
-				    	<%= form_for user, url: admins_admin_approve_path(user) do |f| %>
-						      <tr>
-						      	<td><%= user.name %>
-						        <td><%= user.email %>
-						        	<!-- 許可 -->
-						        <td><%= f.check_box :approved, {} , 2, 1 %>
-						        <td><%= f.submit "許可", class:"btn btn-default" %>
-						      </tr>
-						<% end %>
-				    <% end %>
-			    </table>
+	<div class="col-md-10 pdb-20 ht-100">
+				<div class="row">
+					<%= form_for @admin, url: admins_admin_path(@admin), remote: true do |f| %>
+						<div class="col-md-3">
+								<div class="fs-18 bdr-10 bgc-green pd-5 ma-0 texralign-c mt-16">
+										<li>マイページ</li>
+								</div>
+								<div class="mt-16">
+									<p class="irb"><strong>管理者名</strong></p>
+									<p class="irb pdl-20" id="adminNameForm">
+										<%= f.text_field :name, autofocus: true, autocomplete: "ここに記入してください", class:"form-control", id:"adminName" %>
+									</p>
+								</div>
+								<div class="mt-16">
+									<p class="irb"><strong>E-mail</strong></p>
+									<p class="irb pdl-20" id="adminEmailForm">
+										<%= f.text_field :email, autofocus: true, autocomplete: "ここに記入してください", class:"form-control", id:"adminEmail" %>
+									</p>
+								</div>
+						</div>
+						<div class="col-md-9 mt-16">
+								<%= f.submit "登録情報を更新する", class:"btn btn-default" %>
+						</div>
+					<% end %>
+				</div>
+				<div class="mt-25">
+					<div class="fs-18 bdr-10 bgc-green pd-5 ma-0 texralign-c mt-16 wid-40">
+						<li>承認待ちカウンセラー</li>
+					</div>
+						<div class="mt-16 wd-100">
+						<table class="table table-hover" style="width: 100%;">
+							<thead>
+								<tr>
+									<th>ユーザー名</th>
+									<th>メールアドレス</th>
+									<th>性別</th>
+									<th>居住地域</th>
+									<th></th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+							    <% @users.each do |user| %>
+									      <tr>
+									      	<td><%= user.name %></td>
+									        <td><%= user.email %></td>
+									        <td><%= user.sex_i18n %></td>
+									        <td><%= user.location_i18n %></td>
+									        <td>
+									        	<%= link_to admins_admin_approve_path(user), method: :patch do %>
+													<button class="btn btn-default">承認する</button>
+												<% end %>
+									        </td>
+									        <td>
+									        	<%= link_to admins_admin_reject_path(user), method: :patch do %>
+													<button class="btn btn-default">否認する</button>
+												<% end %>
+									        </td>
+									      </tr>
+							    <% end %>
+							</tbody>
+					    </table>
+						</div>
+				</div>
 	</div>
+</div>

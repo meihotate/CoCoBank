@@ -1,56 +1,113 @@
-<div class="rgba-w-7 z-index bdr-10 row">
+<div class="rgba-w-7 z-index bdr-10 row row-eq-height">
 	<%= render 'layouts/sidebar' %>
-	<div class="col-md-6 pdb-20">
-		<div class="fs-18 bdr-10 bgc-green pd-5 wid-40 ma-0 texralign-c mt-16">
+	<div class="col-md-6 pdb-20 bdr-r">
+		<div class="fs-18 bdr-10 bgc-green pd-5 wid-60 ma-0 texralign-c mt-16">
 			<li><%= "#{@user.name}さん紹介ページ" %></li>
 		</div>
 		<div class="row">
 				<div class="col-sm-4 mt-16">
-					<%= attachment_image_tag @user.profile_image, :profile_image, class: "profile-thumb margin_icon bd-1sg bs ml-7 pa", fallback: "/assets/no_image.jpg", size: "200x200" %>
+					<div class="pdl-60">
+						<%= attachment_image_tag @user.profile_image, :profile_image, class: "profile-thumb margin_icon bd-1sg bs ml-7 pa bdr-10", fallback: "/assets/no_image.jpg", size: "115x115" %>
+					</div>
 				</div>
 				<div class="col-sm-8 mt-16">
 					<div>
-						<p class="irb wid-20">ユーザー名</p>
+						<p class="irb wid-20"><strong>ユーザー名</strong></p>
 						<p class="irb"><%= @user.name %></p>
 					</div>
 					<div>
-						<p class="irb wid-20">性別</p>
+						<p class="irb wid-20"><strong>性別</strong></p>
 						<p class="irb"><%= @user.sex_i18n %></p>
 					</div>
 					<div>
-						<p class="irb wid-20">居住地域</p>
+						<p class="irb wid-20"><strong>居住地域</strong></p>
 						<p class="irb"><%= @user.location_i18n %></p>
 					</div>
 						<% if @user.approved == 0 %>
 							<div>
-								<p class="irb wid-20">学年</p>
+								<p class="irb wid-20"><strong>学年</strong></p>
 								<p class="irb"><%= @user.degree_i18n %></p>
 							</div>
 						<% end %>
 				</div>
 		</div>
-	</div>
-	<div class="col-md-4">
-			<div id="follow_form" class="mt-65">
-		  		<% if current_user.requested?(@user) %>
-			  			<% if current_user.active_friendships.find_by(to_user_id: @user.id).friendstatus == 0 %>
-			  				<div>申請中</div>
-			  			<% elsif current_user.active_friendships.find_by(to_user_id: @user.id).friendstatus == 1 %>
-			  				<div>承認済</div>
-			  			<% else %>
-			  				<div>友達申請中</div>
-			  			<% end %>
-		  		<% elsif @user.requested?(current_user) %>
-			  			<% if @user.active_friendships.find_by(to_user_id: current_user.id).friendstatus == 0 %>
-			  				<div>申請中</div>
-			  			<% elsif @user.active_friendships.find_by(to_user_id: current_user.id).friendstatus == 1 %>
-			  				<div>承認済</div>
-			  			<% else %>
-			  				<div>友達申請中</div>
-			  			<% end %>
-		  		<% else %>
-		    		<%= render '/users/friendships/request_friend' %>
+		<div class="row">
+			<div class="col-sm-3 mt-16">
+				<% if current_user.approved != 2 %>
+					<div id="friend_form" class="mt-16">
+						  		<% if current_user.requested?(@user) %>
+							  			<% if current_user.active_friendships.find_by(to_user_id: @user.id).friendstatus == 0 %>
+							  				<button type="button" class="btn btn-primary">申請中</button>
+							  			<% elsif current_user.active_friendships.find_by(to_user_id: @user.id).friendstatus == 1 %>
+							  				<%= link_to users_chatroom_path(id: current_user.chatroom_number(current_user, @user), other_user_id: @user.id) do %>
+												<button type="button" class="btn btn-primary">チャットを開始する</button>
+											<% end %>
+							  			<% else %>
+							  				<button type="button" class="btn btn-primary">友達申請中</button>
+							  			<% end %>
+						  		<% elsif @user.requested?(current_user) %>
+							  			<% if @user.active_friendships.find_by(to_user_id: current_user.id).friendstatus == 0 %>
+							  				<button type="button" class="btn btn-primary">申請中</button>
+							  			<% elsif @user.active_friendships.find_by(to_user_id: current_user.id).friendstatus == 1 %>
+							  				<%= link_to users_chatroom_path(id: current_user.chatroom_number(current_user, @user), other_user_id: @user.id) do %>
+												<button type="button" class="btn btn-primary">チャットを開始する</button>
+											<% end %>
+							  			<% elsif @user.active_friendships.find_by(to_user_id: current_user.id).friendstatus == 2 %>
+							  				<button type="button" class="btn btn-primary">拒否済</button>
+							  			<% end %>
+						  		<% else %>
+						    		<%= render '/users/friendships/request_friend' %>
+						  		<% end %>
+					 </div>
+				 <% end %>
+			</div>
+			<div class="col-sm-9 mt-16">
+				<% if current_user.approved != 2 %>
+					<div id="follow_form" class="mt-16">
+				  		<% if current_user != @user && @user.approved == 2 %>
+						  <div id="follow_form">
+							  <% if current_user.following?(@user) %>
+							    	<%= render '/users/relationships/unfollow' %>
+							  <% else %>
+							    	<%= render '/users/relationships/follow' %>
+							  <% end %>
+						  </div>
+						<% end %>
+			  		</div>
 		  		<% end %>
+			</div>
+		</div>
+		<div class="fs-18 mt-16">
+			<li><strong>自己紹介文</strong></li>
+		</div>
+		<div class="rgba-w-7 bdr-10 pd-5">
+					<% if (@user.introduction != nil) && (@user.introduction != "") %>
+						<%= @user.introduction %>
+					<% else %>
+						<p class="fs-16">まだ登録されていません</p>
+					<% end %>
+		</div>
+		<div class="mt-16">
+			<% if current_user.approved == 2 %>
+				<% if @user.watson_req %>
+					<button id="result_big5">５大個性</button>
+					<button id="result_need">12欲求</button>
+					<button id="result_value">５大価値観</button>
+					<div class="rgba-w-7 z-index bdr-10">
+						<canvas id="myChart" style=width:500; height:500;></canvas>
+						<script>draw_graph();</script>
+					</div>
+				<% end %>
+			<% end %>
+		</div>
+	</div>
+	<div class="col-md-4 mt-16">
+		  	<div>
+		  		<% if current_user.approved != 2 %>
+					<%= render 'child_friend', friends1: @friends1, friends2: @friends2 %>
+				<% else %>
+					<%= render 'counseller_friend', friends1: @friends1, friends2: @friends2 %>
+				<% end %>
 		  	</div>
 	</div>
 </div>

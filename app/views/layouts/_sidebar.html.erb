@@ -2,34 +2,83 @@
 	<div class="sidebar">
 		<% if admin_signed_in? %>
 			<div>
-				<p>マイページ</p>
+				<%= link_to "マイページ", admins_admin_path(current_admin) %>
 			</div>
 			<div>
-				<p>ユーザー一覧</p>
+				<%= link_to "ユーザ一覧", admins_admins_path %>
 			</div>
 			<div>
-				<p>カウンセラー一覧</p>
+				<%= link_to "カウンセラー覧", admins_admin_counselor_path %>
 			</div>
+			<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
 			<div>
 				<%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
 			</div>
 		<% else %>
 				<% if user_signed_in? %>
 						<div>
-							<p>トップページ</p>
+							<%= link_to "トップページ", root_path %>
 						</div>
 						<div>
-							<p>マイページ</p>
+							<%= link_to "マイページ", users_show_path(current_user) %>
 						</div>
 						<div>
-							<p>ユーザー一覧</p>
+							<%= link_to "ユーザ一覧", users_users_path %>
 						</div>
 						<div>
-							<p>カウンセラー一覧</p>
+							<%= link_to "カウンセラー覧", users_counselor_path %>
 						</div>
 						<div>
-							<p>性格診断</p>
+							<% if current_user.watson_req %>
+								<%= link_to "性格診断", edit_users_watson_req_path(id: current_user.watson_req.id) %>
+							<% else %>
+								<%= link_to "性格診断", new_users_watson_req_path %>
+							<% end %>
 						</div>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
 						<br>
 						<br>
 						<br>
@@ -43,6 +92,11 @@
 						<div>
 							<%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
 						</div>
+						<div>
+							<button id="leaveBank", type="button">退会する</button>
+						</div>
+						<br>
+						<br>
 				<% else %>
 						<div>
 							<p>トップページ</p>

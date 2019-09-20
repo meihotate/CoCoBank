@@ -1,4 +1,17 @@
 ja:
+  activerecord:
+    attributes:
+      watson_req:
+        text1: 「あなたの趣味」
+        text2: 「あなたがワクワクすること」
+        text3: 「最近悲しかった出来事」
+        text4: 「最近楽しかった出来事」
+        text5: 「あなたの家族について」
+        text6: 「あなたの友達について」
+        text7: 「あなたの好きなものについて」
+        text8: 「あなたの嫌いなものについて」
+        text9: 「最近観た映画や読んだ本の感想」
+        text10: 「将来の夢や希望について」
   enums:
     user:
       sex:

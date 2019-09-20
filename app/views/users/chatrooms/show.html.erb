@@ -2,7 +2,14 @@
 	<%= render 'layouts/sidebar' %>
 	<div class="col-md-1"></div>
 	<div class="col-md-8 pdb-20 row">
-		<div class=" line-bc">
+	<input type="hidden" name="chatuser_id" value="<%= current_user.id %>">
+	<div class="balloon6">
+		<div class="faceicon">
+			<%= attachment_image_tag @other_user.profile_image, :profile_image, class: "profile-thumb margin_icon bd-1sg bs ml-7 pa", fallback: "/assets/no_image.jpg", size: "200x200", id: "chatprofileimage" %>
+		</div>
+		<p class="ml-60 mt-10 fs-18"><strong><%= @other_user.name%>さんとのチャットルーム</strong></p>
+	</div>
+		<div class="line-bc">
 			<% @chatmessages.each do |message| %>
 				<% if message.chatmember.user_id == @other_user.id %>
 						<!--②左コメント始-->
@@ -27,19 +34,28 @@
 						<!--/③右コメント終-->
 				<% end %>
 			<% end %>
+			<div id="chatmessages">
+			</div>
 		</div>
 
 		<div class="form-inline">
-			<%= form_for @message, url: users_chatmessages_path do |f| %>
-					<%= f.text_field :message, autofocus: true, autocomplete: "ここにメッセージを入力してください", class:"form-control", style:"width:80%;" %>
-					<%= f.hidden_field :chatroom_id, :value => params[:id] %>
-					<%= f.hidden_field :chatmember_id, :value => @member.id %>
-					<%= hidden_field_tag :other_user_id, @other_user.id %>
-					<%= f.submit "送信", class:"btn btn-default btn-lg new" %>
-						<%= link_to users_chatroom_path(id: current_user.chatroom_number(current_user, @other_user), other_user_id: @other_user.id) do %>
-							<button class="btn btn-default irb">更新</button>
-						<% end %>
-			<% end %>
+			<%#= form_for @message, url: users_chatmessages_path do |f| %>
+					<%#= f.text_field :message, autofocus: true, autocomplete: "ここにメッセージを入力してください", class:"form-control", style:"width:80%;" %>
+					<%#= f.hidden_field :chatroom_id, :value => params[:id] %>
+					<%#= f.hidden_field :chatmember_id, :value => @member.id %>
+					<%#= hidden_field_tag :other_user_id, @other_user.id %>
+					<%#= f.submit "送信", class:"btn btn-default btn-lg new", data: { behavior: "room_speaker" } %>
+						<%#= link_to users_chatroom_path(id: current_user.chatroom_number(current_user, @other_user), other_user_id: @other_user.id) do %>
+							<!-- <button class="btn btn-default irb">更新</button> -->
+						<%# end %>
+			<%# end %>
+			<form onSubmit="return false;" class="message_form">
+  					<input type="hidden" name="chatroom_id" value="<%= params[:id] %>">
+  					<input type="hidden" name="chatmember_id" value="<%= @member.id %>">
+ 					<input type="hidden" name="current_user_id" value="<%= current_user.id %>">
+  					<label>メッセージを<%= @other_user.name %>さんに送信する</label><br>
+  					<input type="text" name="message" data-behavior="room_speaker" class="form-control" style="width:100%;">
+			</form>
 		</div>
 	</div>
 	<div class="col-md-1"></div>

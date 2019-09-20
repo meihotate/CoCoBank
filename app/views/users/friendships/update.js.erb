@@ -1,0 +1,4 @@
+var tableindex = <%= @table_index %>
+
+$('#request_user' + tableindex).remove();
+$('#friend_table').append('<tr><td><%= @user.name%></td><td><div>新着メッセージ</div></td><td><%= link_to users_chatroom_path(id: current_user.chatroom_number(current_user, @user), other_user_id: @user.id) do %><button class="btn btn-default btn-sm">チャットを開始する</button><% end %></td></tr>');

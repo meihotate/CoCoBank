@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_08_061606) do
+ActiveRecord::Schema.define(version: 2019_09_18_023102) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 2019_09_08_061606) do
     t.string "title", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "accesstime", default: "2019-09-17 09:27:18", null: false
   end
 
   create_table "friendships", force: :cascade do |t|
@@ -98,9 +99,123 @@ ActiveRecord::Schema.define(version: 2019_09_08_061606) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "approved", default: 0, null: false
+    t.text "introduction"
+    t.datetime "deleted_at"
     t.index ["approved"], name: "index_users_on_approved"
+    t.index ["deleted_at"], name: "index_users_on_deleted_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "watson_reqs", force: :cascade do |t|
+    t.integer "user_id"
+    t.text "text1", default: "", null: false
+    t.text "text2", default: "", null: false
+    t.text "text3", default: "", null: false
+    t.text "text4", default: "", null: false
+    t.text "text5", default: "", null: false
+    t.text "text6", default: "", null: false
+    t.text "text7", default: "", null: false
+    t.text "text8", default: "", null: false
+    t.text "text9", default: "", null: false
+    t.text "text10", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "big5_openness_name"
+    t.float "big5_openness"
+    t.string "big5_conscientiousness_name"
+    t.float "big5_conscientiousness"
+    t.string "big5_extraversion_name"
+    t.float "big5_extraversion"
+    t.string "big5_agreeableness_name"
+    t.float "big5_agreeableness"
+    t.string "big5_neuroticism_name"
+    t.float "big5_neuroticism"
+    t.string "need_challenge_name"
+    t.float "need_challenge"
+    t.string "need_closeness_name"
+    t.float "need_closeness"
+    t.string "need_curiosity_name"
+    t.float "need_curiosity"
+    t.string "need_excitement_name"
+    t.float "need_excitement"
+    t.string "need_harmony_name"
+    t.float "need_harmony"
+    t.string "need_ideal_name"
+    t.float "need_ideal"
+    t.string "need_liberty_name"
+    t.float "need_liberty"
+    t.string "need_love_name"
+    t.float "need_love"
+    t.string "need_practicality_name"
+    t.float "need_practicality"
+    t.string "need_self_expression_name"
+    t.float "need_self_expression"
+    t.string "need_stability_name"
+    t.float "need_stability"
+    t.string "need_structure_name"
+    t.float "need_structure"
+    t.string "value_conservation_name"
+    t.float "value_conservation"
+    t.string "value_openness_to_change_name"
+    t.float "value_openness_to_change"
+    t.string "value_hedonism_name"
+    t.float "value_hedonism"
+    t.string "value_self_enhancement_name"
+    t.float "value_self_enhancement"
+    t.string "value_self_transcendence_name"
+    t.float "value_self_transcendence"
+  end
+
+  create_table "watson_results", force: :cascade do |t|
+    t.integer "watson_req_id", null: false
+    t.text "result", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "big5_openness_name"
+    t.float "big5_openness"
+    t.string "big5_conscientiousness_name"
+    t.float "big5_conscientiousness"
+    t.string "big5_extraversion_name"
+    t.float "big5_extraversion"
+    t.string "big5_agreeableness_name"
+    t.float "big5_agreeableness"
+    t.string "big5_neuroticism_name"
+    t.float "big5_neuroticism"
+    t.string "need_challenge_name"
+    t.float "need_challenge"
+    t.string "need_closeness_name"
+    t.float "need_closeness"
+    t.string "need_curiosity_name"
+    t.float "need_curiosity"
+    t.string "need_excitement_name"
+    t.float "need_excitement"
+    t.string "need_harmony_name"
+    t.float "need_harmony"
+    t.string "need_ideal_name"
+    t.float "need_ideal"
+    t.string "need_liberty_name"
+    t.float "need_liberty"
+    t.string "need_love_name"
+    t.float "need_love"
+    t.string "need_practicality_name"
+    t.float "need_practicality"
+    t.string "need_self_expression_name"
+    t.float "need_self_expression"
+    t.string "need_stability_name"
+    t.float "need_stability"
+    t.string "need_structure_name"
+    t.float "need_structure"
+    t.string "value_conservation_name"
+    t.float "value_conservation"
+    t.string "value_openness_to_change_name"
+    t.float "value_openness_to_change"
+    t.string "value_hedonism_name"
+    t.float "value_hedonism"
+    t.string "value_self_enhancement_name"
+    t.float "value_self_enhancement"
+    t.string "value_self_transcendence_name"
+    t.float "value_self_transcendence"
   end
 
 end

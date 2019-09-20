@@ -15,16 +15,21 @@ Rails.application.routes.draw do
   #Admin側
   namespace :admins do
   	patch "users/:user_id/approve" => "admins#appro", as: "admin_approve"
+    patch "users/:user_id/reject" => "admins#reject", as: "admin_reject"
+    get "counselor_index" => "admins#counselor_index", as: "admin_counselor"
+    get "users/:user_id/detail" => "admins#detail", as: "admin_user_detail"
+    get "chatroom/:id/:user_id/:other_user_id" => "chatrooms#show", as: "adminschatroom"
+    delete "/:user_id/destroy" => "admins#destroy", as: "destroy"
 
-  	resources :admins, only:[:show, :edit, :update]
+  	resources :admins, only:[:index, :show, :edit, :update]
 
   end
 
   #User側
   namespace :users do
-    get "quit" => "users#quit", as: "quit"
-    patch "quit" => "users#clear", as: "clear"
-    get "/:user_id/show" => "users#show", as: "show"
+    get "/:user_id/quit" => "users#quit", as: "quit"
+    delete "/:user_id/destroy" => "users#destroy", as: "destroy"
+    get "/:id/show" => "users#show", as: "show"
     get "editing" => "users#edit", as: "editing"
     patch "updating" => "users#update", as: "update"
     get "index" => "users#index", as: "users"
@@ -37,10 +42,13 @@ Rails.application.routes.draw do
     post "chatmembers" => "chatmembers#create", as: "chatmembers"
     post "chatmessages" => "chatmessages#create", as: "chatmessages"
     post "relationship" => "relationships#create", as:"following"
-    patch "relationship" => "relationships#update", as:"followed"
+    delete "relationship" => "relationships#destroy", as:"followed"
     post "friendship" => "friendships#create", as:"from_user"
     patch "friendship" => "friendships#update", as:"to_user"
     patch "friendship_reject" => "friendships#update_reject", as:"to_user_reject"
+
+    resources :watson_reqs, only:[:show, :edit, :update, :new, :create, :index]
+
   end
 
 end

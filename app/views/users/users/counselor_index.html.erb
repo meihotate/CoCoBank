@@ -1,37 +1,92 @@
 <div class="rgba-w-7 z-index bdr-10 row row-eq-height">
 	<%= render 'layouts/sidebar' %>
 	<div class="col-md-10 pdb-20">
-		<div class="opac0 mt-16">
-			<div class=" fs-18 bdr-10 bgc-green pd-5 wid-20 ma-0 texralign-c">
+		<% if current_user.approved != 2 %>
+			<div class="opac0 mt-16">
+						<div class=" fs-16 bdr-10 bgc-green pd-5 wid-20 ma-0 texralign-c">
+							<li>お気に入りカウンセラー一覧</li>
+						</div>
+						<div class="mt-16 wd-100">
+							<table class="table table-hover" style="width: 100%;">
+								<thead style="width: 100%;">
+									<tr>
+										<th style="width: 7%;"></th>
+										<th style="width: 14.5%;">ユーザー名</th>
+										<th style="width: 10.5%;">性別</th>
+										<th style="width: 11%;">居住地域</th>
+										<th style="width: 23%;">最終ログイン日時</th>
+										<th style="width: 11%;"></th>
+										<th style="width: 11%;"></th>
+									</tr>
+								</thead>
+									<tbody style="width: 1150px;">
+										<% @users.where(approved: 2).each do |user| %>
+											<% if current_user.following?(user) %>
+												<tr>
+													<td style="width: 7%;">
+														<%= attachment_image_tag user.profile_image, :profile_image, class: "profile-thumb margin_icon bd-1sg bs ml-7 pa bdr-50", fallback: "/assets/no_image.jpg", size: "40x40" %>
+													</td>
+													<td style="width: 15%;"><%= user.name %></td>
+													<td style="width: 11%;"><%= user.sex_i18n %></td>
+													<td style="width: 11%;"><%= user.location_i18n %></td>
+													<td style="width: 23%;"><%= user.current_sign_in_at %></td>
+													<td style="width: 11%;">
+														<%= link_to users_detail_path(user) do %>
+															<button class="btn btn-default">詳細ページへ</button>
+														<% end %>
+													</td>
+													<td style="width: 11%;">
+														<% if Friendship.find_by(friendstatus: 1, to_user_id: user.id, from_user_id: current_user.id) != nil %>
+																<%= link_to users_chatroom_path(id: current_user.chatroom_number(current_user, user), other_user_id: user.id) do %>
+																	<button class="btn btn-default btn-sm">チャットを開始する</button>
+																<% end %>
+														<% end %>
+													</td>
+												</tr>
+											<% end %>
+										<% end %>
+									</tbody>
+							</table>
+						</div>
+			</div>
+		<% end %>
+		<div class="opac0 mt-25">
+			<div class=" fs-16 bdr-10 bgc-green pd-5 wid-20 ma-0 texralign-c">
 				<li>カウンセラー一覧</li>
 			</div>
 			<div class="mt-16 wd-100">
 				<table class="table table-hover" style="width: 100%;">
 					<thead style="width: 100%;">
 						<tr>
-							<th style="width: 9%;"></th>
-							<th style="width: 17%;">ユーザー名</th>
-							<th style="width: 20%;">性別</th>
-							<th style="width: 20%;">居住地域</th>
-							<th style="width: 20%;">学年</th>
-							<th style="width: 20%;">最終ログイン日時</th>
-							<th style="width: 20%;"></th>
+							<th style="width: 7%;"></th>
+							<th style="width: 14.5%;">ユーザー名</th>
+							<th style="width: 10.5%;">性別</th>
+							<th style="width: 11%;">居住地域</th>
+							<th style="width: 23%;">最終ログイン日時</th>
+							<th style="width: 11%;"></th>
+							<th style="width: 11%;"></th>
 						</tr>
 					</thead>
 						<tbody class="overflow">
 							<% @users.where(approved: 2).each do |user| %>
 								<tr>
-									<td style="width: 7.5%;">
+									<td style="width: 7%;">
 										<%= attachment_image_tag user.profile_image, :profile_image, class: "profile-thumb margin_icon bd-1sg bs ml-7 pa bdr-50", fallback: "/assets/no_image.jpg", size: "40x40" %>
 									</td>
-									<td style="width: 14%;"><%= user.name %></td>
-									<td style="width: 17%;"><%= user.sex_i18n %></td>
-									<td style="width: 16%;"><%= user.location_i18n %></td>
-									<td style="width: 15%;"><%= user.degree_i18n %></td>
-									<td style="width: 20%;"><%= user.current_sign_in_at %></td>
-									<td style="width: 20%;">
+									<td style="width: 15%;"><%= user.name %></td>
+									<td style="width: 11%;"><%= user.sex_i18n %></td>
+									<td style="width: 11%;"><%= user.location_i18n %></td>
+									<td style="width: 23%;"><%= user.current_sign_in_at %></td>
+									<td style="width: 11%;">
 										<%= link_to users_detail_path(user) do %>
 											<button class="btn btn-default">詳細ページへ</button>
+										<% end %>
+									</td>
+									<td style="width: 11%;">
+										<% if Friendship.find_by(friendstatus: 1, to_user_id: user.id, from_user_id: current_user.id) != nil %>
+												<%= link_to users_chatroom_path(id: current_user.chatroom_number(current_user, user), other_user_id: user.id) do %>
+													<button class="btn btn-default btn-sm">チャットを開始する</button>
+												<% end %>
 										<% end %>
 									</td>
 								</tr>
