@@ -42,7 +42,9 @@ group :development, :test do
   gem 'pry-byebug'
   # Rspecの導入
   gem 'rspec-rails'
-  gem 'factory_girl_rails'
+  #gem 'factory_girl_rails'
+  gem 'factory_bot_rails'
+  gem 'database_cleaner'
 end
 
 group :development do
@@ -93,6 +95,10 @@ gem 'dotenv-rails'
 
 # Paranoia
 gem 'paranoia'
+
+group :production do
+  gem 'mysql2'
+end
 
 
 

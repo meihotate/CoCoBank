@@ -21,7 +21,7 @@
 							<% @counselors.each do |user| %>
 								<tr>
 									<td style="width: 7%;">
-										<%= attachment_image_tag user.profile_image, :profile_image, class: "profile-thumb margin_icon bd-1sg bs ml-7 pa bdr-50", fallback: "/assets/no_image.jpg", size: "40x40" %>
+										<%= attachment_image_tag user.profile_image, :profile_image, class: "profile-thumb margin_icon bd-1sg bs ml-7 pa bdr-50", fallback: "/images/no_image.jpg", size: "40x40" %>
 									</td>
 									<td style="width: 15%;"><%= user.name %></td>
 									<td style="width: 11%;"><%= user.sex_i18n %></td>
