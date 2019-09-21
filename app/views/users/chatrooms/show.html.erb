@@ -5,7 +5,7 @@
 	<input type="hidden" name="chatuser_id" value="<%= current_user.id %>">
 	<div class="balloon6">
 		<div class="faceicon">
-			<%= attachment_image_tag @other_user.profile_image, :profile_image, class: "profile-thumb margin_icon bd-1sg bs ml-7 pa", fallback: "/assets/no_image.jpg", size: "200x200", id: "chatprofileimage" %>
+			<%= attachment_image_tag @other_user.profile_image, :profile_image, class: "profile-thumb margin_icon bd-1sg bs ml-7 pa", fallback: "/images/no_image.jpg", size: "200x200", id: "chatprofileimage" %>
 		</div>
 		<p class="ml-60 mt-10 fs-18"><strong><%= @other_user.name%>さんとのチャットルーム</strong></p>
 	</div>
@@ -15,7 +15,7 @@
 						<!--②左コメント始-->
 						  <div class="balloon6">
 						    <div class="faceicon">
-								<%= attachment_image_tag @other_user.profile_image, :profile_image, class: "profile-thumb margin_icon bd-1sg bs ml-7 pa", fallback: "/assets/no_image.jpg", size: "200x200" %>
+								<%= attachment_image_tag @other_user.profile_image, :profile_image, class: "profile-thumb margin_icon bd-1sg bs ml-7 pa", fallback: "/images/no_image.jpg", size: "200x200" %>
 						    </div>
 						    <div class="chatting">
 						      <div class="says">
