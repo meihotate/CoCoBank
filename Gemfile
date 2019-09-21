@@ -96,5 +96,9 @@ gem 'dotenv-rails'
 # Paranoia
 gem 'paranoia'
 
+group :production do
+  gem 'mysql2'
+end
+
 
 
