@@ -1,5 +1,5 @@
-FactoryGirl.define do
-  factory :watson_result do
+# FactoryBot.define do
+#   factory :watson_result do
     
-  end
-end
+#   end
+# end

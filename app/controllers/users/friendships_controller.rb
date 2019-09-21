@@ -14,6 +14,7 @@ class Users::FriendshipsController < ApplicationController
 	def update
 		@user = User.find(params[:from_user_id])
 		current_user.approve_friend(@user)
+		# binding.pry
 		@table_index = params[:table_index]
 
 		# チャットルームの生成
