@@ -120,36 +120,45 @@ var myChart;
 
 // userの退会
 window.onload = function () {
+	console.log("test0");
+	$(function() {
 	var leaveBank = document.getElementById('leaveBank');
-	var body = document.getElementById('hide');
-	var destroybody = document.getElementById('showdestroy');
+	var body1 = document.getElementById('hide');
+	var destroybody1 = document.getElementById('showdestroy');
 	var backToBank = document.getElementById('backToBank');
-		leaveBank.addEventListener('click', event => {
-			console.log("test");
-			body.style.display="none";
-		  	destroybody.style.display="block";
-		});
-		backToBank.addEventListener('click', event => {
-			console.log("test");
-			body.style.display="block";
-		  	destroybody.style.display="none";
-		});
-};
-// userを退会させる
-window.onload = function () {
-	var nolongerBank = document.getElementById('nolongerBank');
-	var body = document.getElementById('hidedetail');
-	var destroybody = document.getElementById('resigned');
-	var stopResign = document.getElementById('stopResign');
-		nolongerBank.addEventListener('click', event => {
-			console.log("test");
-			body.style.display="none";
-		  	destroybody.style.display="block";
-		  	console.log("aaa");
-		});
-		stopResign.addEventListener('click', event => {
-			console.log("test");
-			body.style.display="block";
-		  	destroybody.style.display="none";
-		});
+		if (leaveBank !== null) {
+			leaveBank.addEventListener('click', event => {
+				console.log("test1");
+				console.log(body1);
+				body1.style.display="none";
+			  	destroybody1.style.display="block";
+			});
+			backToBank.addEventListener('click', event => {
+				console.log("test2");
+				body1.style.display="block";
+			  	destroybody1.style.display="none";
+			});
+		}
+	});
+// };
+// // userを退会させる
+// window.onload = function () {
+	// console.log("test3");
+	// $(function() {
+	// var nolongerBank = document.getElementById('nolongerBank');
+	// var body = document.getElementById('hidedetail');
+	// var destroybody = document.getElementById('resigned');
+	// var stopResign = document.getElementById('stopResign');
+	// 	nolongerBank.addEventListener('click', event => {
+	// 		console.log("test");
+	// 		body.style.display="none";
+	// 	  	destroybody.style.display="block";
+	// 	  	console.log("aaa");
+	// 	});
+	// 	stopResign.addEventListener('click', event => {
+	// 		console.log("test");
+	// 		body.style.display="block";
+	// 	  	destroybody.style.display="none";
+	// 	});
+	// });
 };

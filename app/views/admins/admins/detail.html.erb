@@ -96,3 +96,26 @@
 		</div>
 </div>
 <%= render '/admins/admins/destroy' %>
+
+<script>
+window.onload = function () {
+	console.log("test3");
+	$(function() {
+	var nolongerBank = document.getElementById('nolongerBank');
+	var body = document.getElementById('hidedetail');
+	var destroybody = document.getElementById('resigned');
+	var stopResign = document.getElementById('stopResign');
+		nolongerBank.addEventListener('click', event => {
+			console.log("test");
+			body.style.display="none";
+		  	destroybody.style.display="block";
+		  	console.log("aaa");
+		});
+		stopResign.addEventListener('click', event => {
+			console.log("test");
+			body.style.display="block";
+		  	destroybody.style.display="none";
+		});
+	});
+}
+</script>
