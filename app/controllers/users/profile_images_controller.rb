@@ -13,7 +13,7 @@ class Users::ProfileImagesController < ApplicationController
 	      			format.js
 	    		end
 		      else
-		      	@image_src = '/assets/no_image.jpg'
+		      	@image_src = '/images/no_image.jpg'
 		      	@user = current_user
 		      	@users = User.where.not(id: current_user.id)
 				@friends1 = Friendship.where(friendstatus: 1, to_user_id: @user.id)

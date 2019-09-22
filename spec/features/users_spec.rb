@@ -30,5 +30,11 @@ RSpec.feature "Userに関するテスト", type: :feature do
 					expect(page).to have_current_path users_show_path(@user1)
 				end
 			end
+			feature "chatroom画面に行けるか" do
+				before do
+      				visit users_editing_path
+      				
+    			end
+			end
 	end
 end

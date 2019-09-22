@@ -50,5 +50,12 @@ Rails.application.routes.draw do
     resources :watson_reqs, only:[:show, :edit, :update, :new, :create, :index]
 
   end
+  # Refileが生成するRoutingはautomountではなく手動で設定する
+  # https://github.com/refile/refile#mounting
+  # https://qiita.com/yaqi/items/115e08e1c83243a87db7
+  # config/initializers/refile.rbを作ってautomountを無効にする（Refile.automount = false）
+  mount Refile::App.new, at: Refile.mount_point, as: :refile_app
+  # 未定義のroutingにいったらtopに飛ばす
+  get '*pages' => 'home#top'
 
 end
