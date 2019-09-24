@@ -1,6 +1,7 @@
 <div class="rgba-w-7 z-index bdr-10 row row-eq-height">
 	<%= render 'layouts/sidebar' %>
 	<div class="col-md-10 pdb-20">
+	<% if @users.where(approved: 2) %>
 		<% if current_user.approved != 2 %>
 			<div class="opac0 mt-16">
 						<div class=" fs-16 bdr-10 bgc-green pd-5 wid-20 ma-0 texralign-c">
@@ -95,5 +96,6 @@
 				</table>
 			</div>
 		</div>
+	<% end %>
 	</div>
 </div>

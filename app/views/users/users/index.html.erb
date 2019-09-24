@@ -16,7 +16,7 @@
 							<th style="width: 15%;">居住地域</th>
 							<th style="width: 15%;">学年</th>
 							<th style="width: 20%;">最終ログイン日時</th>
-							<!-- <th style="width: 20%;"></th> -->
+							<th style="width: 20%;"></th>
 						</tr>
 					</thead>
 						<tbody class="overflow">
@@ -29,7 +29,7 @@
 									<td style="width: 15%;"><%= user.sex_i18n %></td>
 									<td style="width: 15%;"><%= user.location_i18n %></td>
 									<td style="width: 15%;"><%= user.degree_i18n %></td>
-									<td style="width: 20%;"><%= user.current_sign_in_at %></td>
+									<td style="width: 20%;"><%= user.current_sign_in_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
 									<td style="width: 20%;">
 										<%= link_to users_detail_path(user) do %>
 											<button class="btn btn-default">詳細ページへ</button>
