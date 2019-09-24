@@ -50,15 +50,15 @@ class Admins::AdminsController < ApplicationController
 	end
 
 	def index
-		@users = User.where(approved: 0)
+		@users = User.with_deleted.where(approved: 0)
 	end
 
 	def counselor_index
-		@counselors = User.where(approved: 2)
+		@counselors = User.with_deleted.where(approved: 2)
 	end
 
 	def detail
-			@user = User.find(params[:user_id])
+			@user = User.with_deleted.find(params[:user_id])
 			@user.watson_chart(@user, gon)
 				if Chatmember.where(user_id: @user.id)
 					@chatrooms = Chatmember.where(user_id: @user.id).map() { |chatmember| chatmember.chatroom_id }

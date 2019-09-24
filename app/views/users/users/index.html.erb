@@ -7,30 +7,30 @@
 			</div>
 			<div class="mt-16 wd-100">
 				<div class="scroll-table">
-				<table class="table table-hover table-responsive" style="width: 100%;">
-					<thead style="width: 100%;">
+				<table class="table table-hover table-responsive">
+					<thead>
 						<tr>
-							<th style="width: 5%;"></th>
-							<th style="width: 15%;">ユーザー名</th>
-							<th style="width: 15%;">性別</th>
-							<th style="width: 15%;">居住地域</th>
-							<th style="width: 15%;">学年</th>
-							<th style="width: 20%;">最終ログイン日時</th>
-							<th style="width: 20%;"></th>
+							<th class="col-xs-1"></th>
+							<th class="col-xs-2">ユーザー名</th>
+							<th class="col-xs-1">性別</th>
+							<th class="col-xs-1">居住地域</th>
+							<th class="col-xs-1">学年</th>
+							<th class="col-xs-4">最終ログイン日時</th>
+							<th class="col-xs-2"></th>
 						</tr>
 					</thead>
 						<tbody class="overflow">
 							<% @users.where(approved: 0).each do |user| %>
 								<tr>
-									<td style="width: 5%;">
+									<td>
 										<%= attachment_image_tag user.profile_image, :profile_image, class: "profile-thumb margin_icon bd-1sg bs ml-7 pa bdr-50", fallback: "/images/no_image.jpg", size: "40x40" %>
 									</td>
-									<td style="width: 15%;"><%= user.name %></td>
-									<td style="width: 15%;"><%= user.sex_i18n %></td>
-									<td style="width: 15%;"><%= user.location_i18n %></td>
-									<td style="width: 15%;"><%= user.degree_i18n %></td>
-									<td style="width: 20%;"><%= user.current_sign_in_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
-									<td style="width: 20%;">
+									<td><%= user.name %></td>
+									<td><%= user.sex_i18n %></td>
+									<td><%= user.location_i18n %></td>
+									<td><%= user.degree_i18n %></td>
+									<td><%= user.current_sign_in_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
+									<td>
 										<%= link_to users_detail_path(user) do %>
 											<button class="btn btn-default">詳細ページへ</button>
 										<% end %>
