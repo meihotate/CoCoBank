@@ -81,14 +81,17 @@
 					<tbody>
 						<% if Chatmember.where(user_id: @user.id) %>
 							<% @chatrooms.each do |chatroom| %>
-								<tr>
-									<td><%= @chatmembers.find_by(chatroom_id: chatroom).user.name %>さん</td>
-									<td>
-										<%= link_to admins_adminschatroom_path(id: chatroom, user_id: @user.id, other_user_id: @chatmembers.find_by(chatroom_id: chatroom).user_id) do %>
-													<button type="button" class="btn btn-primary">チャット画面</button>
-										<% end %>
-									</td>
-								</tr>
+								<% if @chatmembers.find_by(chatroom_id: chatroom) != nil %>
+									<tr>
+										<%# binding.pry %>
+										<td><%= @chatmembers.find_by(chatroom_id: chatroom).user.name %>さん</td>
+										<td>
+											<%= link_to admins_adminschatroom_path(id: chatroom, user_id: @user.id, other_user_id: @chatmembers.find_by(chatroom_id: chatroom).user_id) do %>
+														<button type="button" class="btn btn-primary">チャット画面</button>
+											<% end %>
+										</td>
+									</tr>
+								<% end %>
 							<% end %>
 						<% end %>
 					</tbody>
