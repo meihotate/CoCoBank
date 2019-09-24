@@ -1,0 +1,3 @@
+$('#friend_table').append('<tr><td><%= @user.name%></td><td></td><td><%= link_to users_chatroom_path(id: current_user.chatroom_number(current_user, @user), other_user_id: @user.id) do %><button class="btn btn-default btn-sm">チャットを開始する</button><% end %></td></tr>');
+$('#reapproveFriend').remove();
+$('#friend_form').append('<%= link_to users_chatroom_path(id: current_user.chatroom_number(current_user, @user), other_user_id: @user.id) do %><button type="button" class="btn btn-primary">チャットを開始する</button><% end %>');

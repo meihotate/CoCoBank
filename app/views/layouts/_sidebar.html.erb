@@ -1,15 +1,16 @@
 <div class="col-md-2 rgba-w-7 z-index bdr-10">
-	<div class="sidebar">
+	<nav class="sidebar">
+		<div class="navbar-header">
 		<% if admin_signed_in? %>
-			<div>
-				<%= link_to "マイページ", admins_admin_path(current_admin) %>
-			</div>
-			<div>
-				<%= link_to "ユーザ一覧", admins_admins_path %>
-			</div>
-			<div>
-				<%= link_to "カウンセラー覧", admins_admin_counselor_path %>
-			</div>
+			<span class="navbar-brand wd-100">
+				<%= link_to "マイページ", admins_admin_path(current_admin), :style=>"color:#000000;" %>
+			</span>
+			<span class="navbar-brand">
+				<%= link_to "ユーザ一覧", admins_admins_path, :style=>"color:#000000;" %>
+			</span>
+			<span class="navbar-brand">
+				<%= link_to "カウンセラー覧", admins_admin_counselor_path, :style=>"color:#000000;" %>
+			</span>
 			<br>
 						<br>
 						<br>
@@ -40,30 +41,30 @@
 						<br>
 						<br>
 						<br>
-			<div>
-				<%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
-			</div>
+			<span class="navbar-brand">
+				<%= link_to "ログアウト", destroy_admin_session_path, method: :delete, :style=>"color:#000000;" %>
+			</span>
 		<% else %>
 				<% if user_signed_in? %>
-						<div>
-							<%= link_to "トップページ", root_path %>
-						</div>
-						<div>
-							<%= link_to "マイページ", users_show_path(current_user) %>
-						</div>
-						<div>
-							<%= link_to "ユーザ一覧", users_users_path %>
-						</div>
-						<div>
-							<%= link_to "カウンセラー覧", users_counselor_path %>
-						</div>
-						<div>
+						<span class="navbar-brand">
+							<%= link_to "トップページ", root_path, :style=>"color:#000000;" %>
+						</span>
+						<span class="navbar-brand">
+							<%= link_to "マイページ", users_show_path(current_user), :style=>"color:#000000;" %>
+						</span>
+						<span class="navbar-brand">
+							<%= link_to "ユーザ一覧", users_users_path, :style=>"color:#000000;" %>
+						</span>
+						<span class="navbar-brand">
+							<%= link_to "カウンセラー覧", users_counselor_path, :style=>"color:#000000;" %>
+						</span>
+						<span class="navbar-brand">
 							<% if current_user.watson_req %>
-								<%= link_to "性格診断", edit_users_watson_req_path(id: current_user.watson_req.id) %>
+								<%= link_to "性格診断", edit_users_watson_req_path(id: current_user.watson_req.id), :style=>"color:#000000;" %>
 							<% else %>
-								<%= link_to "性格診断", new_users_watson_req_path %>
+								<%= link_to "性格診断", new_users_watson_req_path, :style=>"color:#000000;" %>
 							<% end %>
-						</div>
+						</span>
 						<br>
 						<br>
 						<br>
@@ -89,28 +90,37 @@
 						<br>
 						<br>
 						<br>
-						<div>
-							<%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-						</div>
-						<div>
+						<br>
+						<br>
+						<br>
+						<br>
+						<span class="navbar-brand">
+							<%= link_to "ログアウト", destroy_user_session_path, method: :delete, :style=>"color:#000000;" %>
+						</span>
+						<span class="navbar-brand">
 							<button id="leaveBank", type="button">退会する</button>
-						</div>
+						</span>
+						<br>
+						<br>
 						<br>
 						<br>
 				<% else %>
+						<span class="navbar-brand">
+							<%= link_to "トップページ", root_path, :style=>"color:#000000;" %>
+						</span>
 						<div>
-							<p>トップページ</p>
-						</div>
-						<div>
-							<div>
-								<%= link_to "新規会員登録", new_user_registration_path %>
-							</div>
-							<div>
-								<%= link_to "ログイン", new_user_session_path %>
-								<p><small>カウンセラー申請の方もこちらから</small></p>
-							</div>
+							<span class="navbar-brand">
+								<%= link_to "新規会員登録", new_user_registration_path, :style=>"color:#000000;" %>
+								<div>
+									<p class="fs-10 pdb-20">カウンセラー申請の方もこちらから</p>
+								</div>
+							</span>
+							<span class="navbar-brand">
+								<%= link_to "ログイン", new_user_session_path, :style=>"color:#000000;" %>
+							</span>
 						</div>
 				<% end %>
 		<% end %>
-	</div>
+		</div>
+	</nav>
 </div>

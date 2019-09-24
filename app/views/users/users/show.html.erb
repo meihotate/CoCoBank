@@ -88,9 +88,9 @@
 					<%= link_to edit_users_watson_req_path(id: @user.watson_req.id) do %>
 						<button type="button" class="btn btn-primary">性格診断を更新する</button>
 					<% end %>
-					<button id="result_big5">５大個性</button>
-					<button id="result_need">12欲求</button>
-					<button id="result_value">５大価値観</button>
+					<button id="result_big5" class="btn btn-info btn-xs">５大個性</button>
+					<button id="result_need" class="btn btn-info btn-xs">12欲求</button>
+					<button id="result_value" class="btn btn-info btn-xs">５大価値観</button>
 					<div class="rgba-w-7 z-index bdr-10">
 						<canvas id="myChart" style=width:500; height:500;></canvas>
 						<script>draw_graph();</script>

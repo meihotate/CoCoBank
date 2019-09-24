@@ -6,27 +6,28 @@
 				<li>ユーザー一覧</li>
 			</div>
 			<div class="mt-16 wd-100">
-				<table class="table table-hover" style="width: 100%;">
+				<div class="scroll-table">
+				<table class="table table-hover table-responsive" style="width: 100%;">
 					<thead style="width: 100%;">
 						<tr>
-							<th style="width: 20%;"></th>
-							<th style="width: 20%;">ユーザー名</th>
-							<th style="width: 20%;">性別</th>
-							<th style="width: 20%;">居住地域</th>
-							<th style="width: 20%;">学年</th>
+							<th style="width: 5%;"></th>
+							<th style="width: 15%;">ユーザー名</th>
+							<th style="width: 15%;">性別</th>
+							<th style="width: 15%;">居住地域</th>
+							<th style="width: 15%;">学年</th>
 							<th style="width: 20%;">最終ログイン日時</th>
-							<th style="width: 20%;"></th>
+							<!-- <th style="width: 20%;"></th> -->
 						</tr>
 					</thead>
 						<tbody class="overflow">
 							<% @users.where(approved: 0).each do |user| %>
 								<tr>
-									<td style="width: 15%;">
+									<td style="width: 5%;">
 										<%= attachment_image_tag user.profile_image, :profile_image, class: "profile-thumb margin_icon bd-1sg bs ml-7 pa bdr-50", fallback: "/images/no_image.jpg", size: "40x40" %>
 									</td>
-									<td style="width: 18%;"><%= user.name %></td>
-									<td style="width: 17%;"><%= user.sex_i18n %></td>
-									<td style="width: 16%;"><%= user.location_i18n %></td>
+									<td style="width: 15%;"><%= user.name %></td>
+									<td style="width: 15%;"><%= user.sex_i18n %></td>
+									<td style="width: 15%;"><%= user.location_i18n %></td>
 									<td style="width: 15%;"><%= user.degree_i18n %></td>
 									<td style="width: 20%;"><%= user.current_sign_in_at %></td>
 									<td style="width: 20%;">
@@ -38,6 +39,7 @@
 							<% end %>
 						</tbody>
 				</table>
+				</div>
 			</div>
 		</div>
 	</div>

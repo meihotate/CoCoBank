@@ -9,20 +9,16 @@
 					<th style="width: 20%;"></th>
 				</tr>
 			</thead>
-			<% if friends1 %>
-				<% friends1.each do |friend| %>
-								<%# if (user.requested?(current_user) && (user.active_friendships.find_by(from_user_id: user.id, to_user_id: current_user.id).friendstatus == 1)) || (current_user.requested?(user) && (user.passive_friendships.find_by(from_user_id: current_user.id, to_user_id: user.id).friendstatus == 1)) %>
-					<% if friend.from_user != current_user && friend.from_user.approved != 2 %>
+			<tbody>
+				<% if @all_friends %>
+					<% @all_friends.each do |friend| %>
 						<tr>
 							<td style="width: 15%; padding-top: 12px;">
-								<div>
-									<%= friend.from_user.name %>
-									<!-- <input type="hidden" name="t1val" value="<%#= friends1.index(friend) %>"> -->
-								</div>
+								<%= friend.name %>
 							</td>
 							<td style="width: 15%; padding-top: 12px;">
 								<div class="texralign-c">
-									<% if Chatroom.unread?(current_user, friend.from_user) %>
+									<% if Chatroom.unread?(current_user, friend) %>
 										<p class="bgc-yellow bdr-10">新着メッセージ</p>
 									<% else %>
 										<p></p>
@@ -30,42 +26,72 @@
 								</div>
 							</td>
 							<td style="width: 15%;">
-								<%= link_to users_chatroom_path(id: current_user.chatroom_number(current_user, friend.from_user), other_user_id: friend.from_user.id) do %>
-									<button class="btn btn-default btn-sm">チャットを開始する</button>
+								<%= link_to users_chatroom_path(id: current_user.chatroom_number(current_user, friend), other_user_id: friend.id) do %>
+									<button class="btn btn-default btn-sm" value="chatroom">チャットを開始</button>
 								<% end %>
 							</td>
 						</tr>
 					<% end %>
 				<% end %>
-			<% end %>
-			<% if friends2 %>
-				<% friends2.each do |friend| %>
-					<% if friend.to_user != current_user && friend.to_user.approved != 2 %>
-						<tr>
-							<td style="width: 15%; padding-top: 12px;">
-								<div>
-									<%= friend.to_user.name %>
-									<!-- <input type="hidden" name="t1val" value="<%#= friends2.index(friend) %>"> -->
-								</div>
-							</td>
-							<td style="width: 15%; padding-top: 12px;">
-								<div class="texralign-c">
-									<% if Chatroom.unread?(current_user, friend.to_user) %>
-										<p class="bgc-yellow bdr-10">新着メッセージ</p>
-									<% else %>
-										<p></p>
-									<% end %>
-								</div>
-							</td>
-							<td style="width: 15%;">
-								<%= link_to users_chatroom_path(id: current_user.chatroom_number(current_user, friend.to_user), other_user_id: friend.to_user.id) do %>
-										<button class="btn btn-default btn-sm">チャットを開始する</button>
-								<% end %>
-							</td>
-						</tr>
-					<% end %>
-				<% end %>
-			<% end %>
+			</tbody>
 		</table>
 	</div>
 </div>
+
+<%# if friends1 %>
+				<%# friends1.each do |friend| %>
+								<%# if (user.requested?(current_user) && (user.active_friendships.find_by(from_user_id: user.id, to_user_id: current_user.id).friendstatus == 1)) || (current_user.requested?(user) && (user.passive_friendships.find_by(from_user_id: current_user.id, to_user_id: user.id).friendstatus == 1)) %>
+					<%# if friend.from_user != current_user && friend.from_user.approved != 2 %>
+						<!-- <tr> -->
+							<!-- <td style="width: 15%; padding-top: 12px;"> -->
+								<!-- <div> -->
+									<%#= friend.from_user.name %>
+									<!-- <input type="hidden" name="t1val" value="<%#= friends1.index(friend) %>"> -->
+								<!-- </div> -->
+							<!-- </td> -->
+							<!-- <td style="width: 15%; padding-top: 12px;"> -->
+								<!-- <div class="texralign-c"> -->
+									<%# if Chatroom.unread?(current_user, friend.from_user) %>
+										<!-- <p class="bgc-yellow bdr-10">新着メッセージ</p> -->
+									<%# else %>
+										<!-- <p></p> -->
+									<%# end %>
+								<!-- </div> -->
+							<!-- </td> -->
+							<!-- <td style="width: 15%;"> -->
+								<%#= link_to users_chatroom_path(id: current_user.chatroom_number(current_user, friend.from_user), other_user_id: friend.from_user.id) do %>
+									<!-- <button class="btn btn-default btn-sm" value="chatroom"></button> -->
+								<%# end %>
+							<!-- </td> -->
+						<!-- </tr> -->
+					<%# end %>
+				<%# end %>
+			<%# end %>
+			<%# if friends2 %>
+				<%# friends2.each do |friend| %>
+					<%# if friend.to_user != current_user && friend.to_user.approved != 2 %>
+						<!-- <tr> -->
+							<!-- <td style="width: 15%; padding-top: 12px;"> -->
+								<!-- <div> -->
+									<%#= friend.to_user.name %>
+									<!-- <input type="hidden" name="t1val" value="<%#= friends2.index(friend) %>"> -->
+								<!-- </div> -->
+							<!-- </td> -->
+							<!-- <td style="width: 15%; padding-top: 12px;"> -->
+								<!-- <div class="texralign-c"> -->
+									<%# if Chatroom.unread?(current_user, friend.to_user) %>
+										<!-- <p class="bgc-yellow bdr-10">新着メッセージ</p> -->
+									<%# else %>
+										<!-- <p></p> -->
+									<%# end %>
+								<!-- </div> -->
+							<!-- </td> -->
+							<!-- <td style="width: 15%;"> -->
+								<%#= link_to users_chatroom_path(id: current_user.chatroom_number(current_user, friend.to_user), other_user_id: friend.to_user.id) do %>
+										<!-- <button class="btn btn-default btn-sm"></button> -->
+								<%# end %>
+							<!-- </td> -->
+						<!-- </tr> -->
+					<%# end %>
+				<%# end %>
+			<%# end %>

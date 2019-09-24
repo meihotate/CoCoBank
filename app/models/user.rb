@@ -8,6 +8,11 @@ class User < ApplicationRecord
   has_one :watson_req, dependent: :destroy
   has_many :chatmembers, dependent: :destroy
 
+  validates :name, presence: true
+  validates :name, length: { maximum: 20 }
+  validates :name, length: { minimum: 2 }
+  validates :introduction, length: { maximum: 200 }
+
   # Paranoia
   acts_as_paranoid
 
@@ -73,6 +78,41 @@ class User < ApplicationRecord
   # ユーザーの友達申請を拒否する
   def reject_friend(other_user)
     passive_friendships.find_by(from_user_id: other_user.id).update(friendstatus: 2)
+  end
+
+  # current_userの友達を全員取得する
+  def all_friends(current_user)
+    @friends1 = Friendship.where(friendstatus: 1, to_user_id: current_user.id)
+    @friends2 = Friendship.where(friendstatus: 1, from_user_id: current_user.id)
+      if @friends2 != []
+        # binding.pry
+          active_friends = @friends2.map {|friend|
+                                    if friend.to_user.approved != 2
+                                      friend.to_user
+                                    end }
+          active_friends = active_friends.compact
+      end
+      if @friends1 != []
+        # binding.pry
+          passfriends = @friends1.map {|friend|
+                                    if friend.to_user.approved != 2
+                                      friend.from_user
+                                    end }
+          passfriends = passfriends.compact
+      end
+          if (passfriends == [nil] || passfriends == nil) && (active_friends == [nil] || active_friends == nil)
+            # binding.pry
+               return false
+          elsif (passfriends == [nil] || passfriends == nil) && (active_friends != [nil] || active_friends != nil)
+            # binding.pry
+               return active_friends
+          elsif (passfriends != [nil] || passfriends != nil) && (active_friends == [nil] || active_friends == nil)
+            # binding.pry
+               return passfriends
+          else
+            # binding.pry
+               return passfriends + active_friends
+          end
   end
 
   # 現在のユーザーがフォローしてたらtrueを返す

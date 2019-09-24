@@ -50,11 +50,16 @@
   list-style: none;
  }
  .overflow {
-  display: block;
-  height: 500px;
-  width: 1150px;
+  /*display: block;*/
+  /*height: 500px;*/
+  /*width: 1150px;*/
   /*overflow-x: hidden;*/
-  overflow-y: scroll;
+  /*overflow-y: scroll;*/
+  overflow: auto;
+ }
+ .scroll-table {
+  overflow: auto;
+  white-space: nowrap;
  }
  table {
   table-layout: fixed;
@@ -68,7 +73,7 @@
   flex-wrap: wrap;
  }
  .row.row-eq-height .col-md-10 {
-  width:83%;
+  width:83.2%;
  }
  .row.row-eq-height .col-md-6 {
   width:49%;
@@ -79,6 +84,13 @@
  input[type=checkbox] {
   transform: scale(1.4);
   margin: 0;
+ }
+ a { text-decoration: none;}
+ a:hover { text-decoration: none;}
+ .navbar-brand:hover {
+  width: 100%;
+  background: rgba(75, 209, 100, 0.7);
+  border-radius: 10px;
  }
 
 
@@ -198,7 +210,7 @@
 /*position absolute*/
 .posi_abu {
   position: absolute;
-  top: 10px; 
+  top: 10px;
   right: 25px;
 }
 
@@ -211,6 +223,9 @@
  }
  .bgc-yellow {
   background-color: yellow;
+ }
+ .bgc-blue {
+  background-color: #1F8CFF;
  }
 
  /*透明度*/
@@ -337,6 +352,9 @@
  }
  .fs-12 {
   font-size: 12px;
+ }
+ .fs-10 {
+  font-size: 10px;
  }
 
  /*font-color*/
