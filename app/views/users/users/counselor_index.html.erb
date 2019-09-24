@@ -1,7 +1,6 @@
 <div class="rgba-w-7 z-index bdr-10 row row-eq-height">
 	<%= render 'layouts/sidebar' %>
 	<div class="col-md-10 pdb-20">
-	<% if @users.where(approved: 2) %>
 		<% if current_user.approved != 2 %>
 			<div class="opac0 mt-16">
 						<div class=" fs-16 bdr-10 bgc-green pd-5 wid-20 ma-0 texralign-c">
@@ -30,7 +29,7 @@
 													<td style="width: 15%;"><%= user.name %></td>
 													<td style="width: 15%;"><%= user.sex_i18n %></td>
 													<td style="width: 15%;"><%= user.location_i18n %></td>
-													<td style="width: 20%;"><%= user.current_sign_in_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
+													<td style="width: 20%;"><%= user.current_sign_in_at.strftime("%Y年%m月%d日 %H時%M分") unless user.current_sign_in_at.nil?%></td>
 													<td>
 														<%= link_to users_detail_path(user) do %>
 															<button class="btn btn-default">詳細ページへ</button>
@@ -77,7 +76,7 @@
 									<td style="width: 15%;"><%= user.name %></td>
 									<td style="width: 15%;"><%= user.sex_i18n %></td>
 									<td style="width: 15%;"><%= user.location_i18n %></td>
-									<td style="width: 20%;"><%= user.current_sign_in_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
+									<td style="width: 20%;"><%= user.current_sign_in_at.strftime("%Y年%m月%d日 %H時%M分") unless user.current_sign_in_at.nil? %></td>
 									<td>
 										<%= link_to users_detail_path(user) do %>
 											<button class="btn btn-default">詳細ページへ</button>
@@ -96,6 +95,5 @@
 				</table>
 			</div>
 		</div>
-	<% end %>
 	</div>
 </div>
