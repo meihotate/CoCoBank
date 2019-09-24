@@ -40,4 +40,7 @@ FactoryBot.define do
     approved {2}
     password {"password"}
   end
+  trait :too_long_introduction do
+      introduction {Faker::Lorem.characters(number: 51)}
+  end
 end

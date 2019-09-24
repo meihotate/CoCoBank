@@ -46,6 +46,7 @@ Rails.application.routes.draw do
     post "friendship" => "friendships#create", as:"from_user"
     patch "friendship" => "friendships#update", as:"to_user"
     patch "friendship_reject" => "friendships#update_reject", as:"to_user_reject"
+    patch "/:id/:user_id/friendship_update" => "friendships#second_update", as:"second_update"
 
     resources :watson_reqs, only:[:show, :edit, :update, :new, :create, :index]
 

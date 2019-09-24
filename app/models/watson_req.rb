@@ -30,57 +30,71 @@ class WatsonReq < ApplicationRecord
 
 				data = text
 				req.body = data
-				res = http.request(req)
 
-				puts res.body
-				result = JSON.parse(res.body)
+				begin
+					res = http.request(req)
+					case res.code
 
-			    params[:watson_req][:big5_openness_name] = result['personality'][0]['name']
-				params[:watson_req][:big5_openness] = result['personality'][0]['percentile']
-				params[:watson_req][:big5_conscientiousness_name] = result['personality'][1]['name']
-				params[:watson_req][:big5_conscientiousness] = result['personality'][1]['percentile']
-				params[:watson_req][:big5_extraversion_name] = result['personality'][2]['name']
-				params[:watson_req][:big5_extraversion] = result['personality'][2]['percentile']
-				params[:watson_req][:big5_agreeableness_name] = result['personality'][3]['name']
-				params[:watson_req][:big5_agreeableness] = result['personality'][3]['percentile']
-				params[:watson_req][:big5_neuroticism_name] = result['personality'][4]['name']
-				params[:watson_req][:big5_neuroticism] = result['personality'][4]['percentile']
+					when '200'
+						puts res.body
+						puts res.code
+						result = JSON.parse(res.body)
 
-				params[:watson_req][:need_challenge_name] = result['needs'][0]['name']
-				params[:watson_req][:need_challenge] = result['needs'][0]['percentile']
-				params[:watson_req][:need_closeness_name] = result['needs'][1]['name']
-				params[:watson_req][:need_closeness] = result['needs'][1]['percentile']
-				params[:watson_req][:need_curiosity_name] = result['needs'][2]['name']
-				params[:watson_req][:need_curiosity] = result['needs'][2]['percentile']
-				params[:watson_req][:need_excitement_name] = result['needs'][3]['name']
-				params[:watson_req][:need_excitement] = result['needs'][3]['percentile']
-				params[:watson_req][:need_harmony_name] = result['needs'][4]['name']
-				params[:watson_req][:need_harmony] = result['needs'][4]['percentile']
-				params[:watson_req][:need_ideal_name] = result['needs'][5]['name']
-				params[:watson_req][:need_ideal] = result['needs'][5]['percentile']
-				params[:watson_req][:need_liberty_name] = result['needs'][6]['name']
-				params[:watson_req][:need_liberty] = result['needs'][6]['percentile']
-				params[:watson_req][:need_love_name] = result['needs'][7]['name']
-				params[:watson_req][:need_love] = result['needs'][7]['percentile']
-				params[:watson_req][:need_practicality_name] = result['needs'][8]['name']
-				params[:watson_req][:need_practicality] = result['needs'][8]['percentile']
-				params[:watson_req][:need_self_expression_name] = result['needs'][9]['name']
-				params[:watson_req][:need_self_expression] = result['needs'][9]['percentile']
-				params[:watson_req][:need_stability_name] = result['needs'][10]['name']
-				params[:watson_req][:need_stability] = result['needs'][10]['percentile']
-				params[:watson_req][:need_structure_name] = result['needs'][11]['name']
-				params[:watson_req][:need_structure] = result['needs'][11]['percentile']
+					    params[:watson_req][:big5_openness_name] = result['personality'][0]['name']
+						params[:watson_req][:big5_openness] = result['personality'][0]['percentile']
+						params[:watson_req][:big5_conscientiousness_name] = result['personality'][1]['name']
+						params[:watson_req][:big5_conscientiousness] = result['personality'][1]['percentile']
+						params[:watson_req][:big5_extraversion_name] = result['personality'][2]['name']
+						params[:watson_req][:big5_extraversion] = result['personality'][2]['percentile']
+						params[:watson_req][:big5_agreeableness_name] = result['personality'][3]['name']
+						params[:watson_req][:big5_agreeableness] = result['personality'][3]['percentile']
+						params[:watson_req][:big5_neuroticism_name] = result['personality'][4]['name']
+						params[:watson_req][:big5_neuroticism] = result['personality'][4]['percentile']
 
-				params[:watson_req][:value_conservation_name] = result['values'][0]['name']
-				params[:watson_req][:value_conservation] = result['values'][0]['percentile']
-				params[:watson_req][:value_openness_to_change_name] = result['values'][1]['name']
-				params[:watson_req][:value_openness_to_change] = result['values'][1]['percentile']
-				params[:watson_req][:value_hedonism_name] = result['values'][2]['name']
-				params[:watson_req][:value_hedonism] = result['values'][2]['percentile']
-				params[:watson_req][:value_self_enhancement_name] = result['values'][3]['name']
-				params[:watson_req][:value_self_enhancement] = result['values'][3]['percentile']
-				params[:watson_req][:value_self_transcendence_name] = result['values'][4]['name']
-				params[:watson_req][:value_self_transcendence] = result['values'][4]['percentile']
+						params[:watson_req][:need_challenge_name] = result['needs'][0]['name']
+						params[:watson_req][:need_challenge] = result['needs'][0]['percentile']
+						params[:watson_req][:need_closeness_name] = result['needs'][1]['name']
+						params[:watson_req][:need_closeness] = result['needs'][1]['percentile']
+						params[:watson_req][:need_curiosity_name] = result['needs'][2]['name']
+						params[:watson_req][:need_curiosity] = result['needs'][2]['percentile']
+						params[:watson_req][:need_excitement_name] = result['needs'][3]['name']
+						params[:watson_req][:need_excitement] = result['needs'][3]['percentile']
+						params[:watson_req][:need_harmony_name] = result['needs'][4]['name']
+						params[:watson_req][:need_harmony] = result['needs'][4]['percentile']
+						params[:watson_req][:need_ideal_name] = result['needs'][5]['name']
+						params[:watson_req][:need_ideal] = result['needs'][5]['percentile']
+						params[:watson_req][:need_liberty_name] = result['needs'][6]['name']
+						params[:watson_req][:need_liberty] = result['needs'][6]['percentile']
+						params[:watson_req][:need_love_name] = result['needs'][7]['name']
+						params[:watson_req][:need_love] = result['needs'][7]['percentile']
+						params[:watson_req][:need_practicality_name] = result['needs'][8]['name']
+						params[:watson_req][:need_practicality] = result['needs'][8]['percentile']
+						params[:watson_req][:need_self_expression_name] = result['needs'][9]['name']
+						params[:watson_req][:need_self_expression] = result['needs'][9]['percentile']
+						params[:watson_req][:need_stability_name] = result['needs'][10]['name']
+						params[:watson_req][:need_stability] = result['needs'][10]['percentile']
+						params[:watson_req][:need_structure_name] = result['needs'][11]['name']
+						params[:watson_req][:need_structure] = result['needs'][11]['percentile']
+
+						params[:watson_req][:value_conservation_name] = result['values'][0]['name']
+						params[:watson_req][:value_conservation] = result['values'][0]['percentile']
+						params[:watson_req][:value_openness_to_change_name] = result['values'][1]['name']
+						params[:watson_req][:value_openness_to_change] = result['values'][1]['percentile']
+						params[:watson_req][:value_hedonism_name] = result['values'][2]['name']
+						params[:watson_req][:value_hedonism] = result['values'][2]['percentile']
+						params[:watson_req][:value_self_enhancement_name] = result['values'][3]['name']
+						params[:watson_req][:value_self_enhancement] = result['values'][3]['percentile']
+						params[:watson_req][:value_self_transcendence_name] = result['values'][4]['name']
+						params[:watson_req][:value_self_transcendence] = result['values'][4]['percentile']
+						return '成功'
+					when '401'
+						puts res.code
+						return 'API-KEYが間違えています'
+					else
+						puts res.code
+						return 'Watsonとの通信に失敗しました'
+					end
+				end
 	end
 
 end

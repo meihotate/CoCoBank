@@ -4,7 +4,6 @@ class Users::ProfileImagesController < ApplicationController
 		@profile_image = ProfileImage.new(image_params)
 		@user = current_user
 		      if @profile_image.save
-		        flash[:notice] = "プロフィール画像は保存されました。"
 		        @image_src = Refile.attachment_url(@profile_image, :profile_image)
 		        # binding.pry
 		        # redirect_to users_show_path(params[:profile_image][:user_id])
@@ -30,7 +29,6 @@ class Users::ProfileImagesController < ApplicationController
 		@profile_image = ProfileImage.find_by(params[:profile_image][:user_id])
 		@oldimage_src = Refile.attachment_url(@profile_image, :profile_image)
 			if @profile_image.update(image_params)
-		        flash[:notice] = "プロフィール画像は更新されました。"
 		        @image_src = Refile.attachment_url(@profile_image, :profile_image)
 				# redirect_to users_show_path(params[:profile_image][:user_id])
 				respond_to do |format|
