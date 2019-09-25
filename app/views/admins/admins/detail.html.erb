@@ -5,9 +5,17 @@
 				<div class="fs-18 bdr-10 bgc-green pd-5 wid-60 ma-0 texralign-c mt-16 fl">
 					<li><%= "#{@user.name}さん紹介ページ" %></li>
 				</div>
-				<div class="fl mt-16 ml-20">
+				<% if @user.deleted_at == nil %>
+					<div class="fl mt-16 ml-20">
 						<button class="btn btn-primary" id="nolongerBank" value= "<%= @user.id %>">退会させる</button>
-				</div>
+					</div>
+				<% else %>
+					<div class="fl mt-16 ml-20">
+						<%= link_to admins_restore_path(user_id: @user.id), method: :patch do %>
+							<button class="btn btn-primary">再入会させる</button>
+						<% end %>
+					</div>
+				<% end %>
 			</div>
 			<div class="row">
 					<div class="col-sm-4 mt-16">
@@ -51,10 +59,11 @@
 						<div class="fs-18 mt-16">
 							<li><strong>性格診断</strong></li>
 						</div>
-							<% if @user.watson_req %>
-								<button id="result_big5">５大個性</button>
-								<button id="result_need">12欲求</button>
-								<button id="result_value">５大価値観</button>
+						<%# binding.pry %>
+							<% if WatsonReq.with_deleted.find_by(user_id: @user.id) != nil %>
+								<button id="result_big5" class="btn btn-info btn-xs">５大個性</button>
+								<button id="result_need" class="btn btn-info btn-xs">12欲求</button>
+								<button id="result_value" class="btn btn-info btn-xs">５大価値観</button>
 								<div class="rgba-w-7 z-index bdr-10">
 									<canvas id="myChart" style=width:500; height:500;></canvas>
 									<script>draw_graph();</script>
@@ -76,7 +85,7 @@
 						<tr>
 							<th>チャットメンバー名</th>
 							<th>チャットルーム</th>
-						</tr>
+						</tr> 
 					</thead>
 					<tbody>
 						<% if Chatmember.where(user_id: @user.id) %>
@@ -84,7 +93,7 @@
 								<% if @chatmembers.find_by(chatroom_id: chatroom) != nil %>
 									<tr>
 										<%# binding.pry %>
-										<td><%= @chatmembers.find_by(chatroom_id: chatroom).user.name %>さん</td>
+										<td><%= User.with_deleted.find_by(id: @chatmembers.find_by(chatroom_id: chatroom).user_id).name %>さん</td>
 										<td>
 											<%= link_to admins_adminschatroom_path(id: chatroom, user_id: @user.id, other_user_id: @chatmembers.find_by(chatroom_id: chatroom).user_id) do %>
 														<button type="button" class="btn btn-primary">チャット画面</button>

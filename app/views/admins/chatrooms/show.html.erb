@@ -15,7 +15,9 @@
 	</div>
 		<div class="line-bc">
 			<% @chatmessages.each do |message| %>
-				<% if message.chatmember.user_id == @other_user.id %>
+				<%# binding.pry %>
+				<% if @othermember_messages.include?(message) %>
+				<%# if message.chatmember.user_id == @other_user.id %>
 						<!--②左コメント始-->
 						  <div class="balloon6">
 						    <div class="faceicon">
@@ -28,7 +30,7 @@
 						    </div>
 						  </div>
 				  		<!--②/左コメント終-->
-				<% elsif message.chatmember.user_id == @member.id %>
+				<% elsif @thismember_messages.include?(message) %>
 						<!--③右コメント始-->
 						  <div class="balloon7">
 						  	<div class="faceicon">

@@ -45,7 +45,7 @@ class Admins::AdminsController < ApplicationController
 	    	else
 	    		@users = User.where(approved: 1)
 	    		flash[:notice] = "新しい情報を入力してください"
-	      		format.html { render "users/users/show" }
+	      		format.html { render "admins/admins/show" }
 			end
 	end
 
@@ -61,8 +61,8 @@ class Admins::AdminsController < ApplicationController
 			@user = User.with_deleted.find(params[:user_id])
 			@user.watson_chart(@user, gon)
 				if Chatmember.where(user_id: @user.id)
-					@chatrooms = Chatmember.where(user_id: @user.id).map() { |chatmember| chatmember.chatroom_id }
-					@chatmembers = Chatmember.where.not(user_id: @user.id)
+					@chatrooms = Chatmember.with_deleted.where(user_id: @user.id).map() { |chatmember| chatmember.chatroom_id }
+					@chatmembers = Chatmember.with_deleted.where.not(user_id: @user.id)
 				end
 	end
 
@@ -74,6 +74,27 @@ class Admins::AdminsController < ApplicationController
 		@user.destroy
 		flash[:notice] = "ユーザーを退会させました"
 		redirect_to root_path
+	end
+
+	def restore
+		@user = User.with_deleted.find(params[:user_id])
+		email = @user.email
+		binding.pry
+		if @user.restore(:recursive => true)
+		binding.pry
+			email.slice!(/\d\d\d\d[-]\d\d[-]\d\d[t]\d\d[:]\d\d[:]\d\d[+]\d\d[:]\d\d/)
+			@user.update(email: email)
+			flash[:notice] = "ユーザーを再入会させました"
+			redirect_to admins_admin_user_detail_path(@user)
+		else
+			@user.watson_chart(@user, gon)
+				if Chatmember.where(user_id: @user.id)
+					@chatrooms = Chatmember.with_deleted.where(user_id: @user.id).map() { |chatmember| chatmember.chatroom_id }
+					@chatmembers = Chatmember.with_deleted.where.not(user_id: @user.id)
+				end
+			flash[:notice] = "ユーザーの再入会プロセスに失敗しました"
+			render :detail
+		end
 	end
 
 	private
