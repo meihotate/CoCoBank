@@ -2,6 +2,9 @@ class WatsonReq < ApplicationRecord
 	belongs_to :user
 	has_one :watson_result, dependent: :destroy
 
+	# Paranoia
+  	acts_as_paranoid
+
 	validates :text1, presence: true
 	validates :text2, presence: true
 	validates :text3, presence: true

@@ -42,9 +42,14 @@ class Users::UsersController < ApplicationController
 		@user = current_user
 		email = @user.email
 		nowtime = DateTime.now.to_s
-		@user.update(email: email + nowtime)
-		@user.destroy
-		redirect_to root_path
+		if @user.update(email: email + nowtime)
+			@user.destroy
+			flash[:notice] = "退会しました"
+			redirect_to root_path
+		else
+			flash[:notice] = "通信に失敗しました"
+			render "/home/top"
+		end
 	end
 
 	def index

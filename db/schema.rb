@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_24_082429) do
+ActiveRecord::Schema.define(version: 2019_09_25_030223) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -35,6 +35,8 @@ ActiveRecord::Schema.define(version: 2019_09_24_082429) do
     t.integer "chatroom_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_chatmembers_on_deleted_at"
   end
 
   create_table "chatmessages", force: :cascade do |t|
@@ -43,6 +45,8 @@ ActiveRecord::Schema.define(version: 2019_09_24_082429) do
     t.integer "chatroom_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_chatmessages_on_deleted_at"
   end
 
   create_table "chatrooms", force: :cascade do |t|
@@ -58,6 +62,8 @@ ActiveRecord::Schema.define(version: 2019_09_24_082429) do
     t.integer "friendstatus", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_friendships_on_deleted_at"
     t.index ["from_user_id", "to_user_id"], name: "index_friendships_on_from_user_id_and_to_user_id", unique: true
     t.index ["from_user_id"], name: "index_friendships_on_from_user_id"
     t.index ["to_user_id"], name: "index_friendships_on_to_user_id"
@@ -165,6 +171,8 @@ ActiveRecord::Schema.define(version: 2019_09_24_082429) do
     t.float "value_self_enhancement"
     t.string "value_self_transcendence_name"
     t.float "value_self_transcendence"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_watson_reqs_on_deleted_at"
   end
 
   create_table "watson_results", force: :cascade do |t|

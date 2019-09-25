@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     get "users/:user_id/detail" => "admins#detail", as: "admin_user_detail"
     get "chatroom/:id/:user_id/:other_user_id" => "chatrooms#show", as: "adminschatroom"
     delete "/:user_id/destroy" => "admins#destroy", as: "destroy"
+    patch "/:user_id/restore" => "admins#restore", as: "restore"
 
   	resources :admins, only:[:index, :show, :edit, :update]
 
