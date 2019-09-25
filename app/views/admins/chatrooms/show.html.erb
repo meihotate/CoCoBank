@@ -4,13 +4,13 @@
 	<div class="col-md-8 pdb-20 row">
 	<div class="balloon6">
 		<div class="faceicon">
-			<%= attachment_image_tag @other_user.profile_image, :profile_image, class: "profile-thumb margin_icon bd-1sg bs ml-7 pa", fallback: "/assets/no_image.jpg", size: "200x200", id: "chatprofileimage" %>
+			<%= attachment_image_tag @other_user.profile_image, :profile_image, class: "profile-thumb margin_icon bd-1sg bs ml-7 pa", fallback: "/images/no_image.jpg", size: "200x200", id: "chatprofileimage" %>
 		</div>
 		<p class="ml-60 mt-10 fs-18"><strong><%= @other_user.name%>さんと<%= @member.name%>さんのチャットルーム</strong></p>
 	</div>
 	<div class="balloon7">
 		<div class="faceicon posi_abu">
-			<%= attachment_image_tag @member.profile_image, :profile_image, class: "profile-thumb margin_icon bd-1sg bs ml-7 pa", fallback: "/assets/no_image.jpg", size: "200x200", id: "chatprofileimage" %>
+			<%= attachment_image_tag @member.profile_image, :profile_image, class: "profile-thumb margin_icon bd-1sg bs ml-7 pa", fallback: "/images/no_image.jpg", size: "200x200", id: "chatprofileimage" %>
 		</div>
 	</div>
 		<div class="line-bc">
@@ -21,7 +21,7 @@
 						<!--②左コメント始-->
 						  <div class="balloon6">
 						    <div class="faceicon">
-								<%= attachment_image_tag @other_user.profile_image, :profile_image, class: "profile-thumb margin_icon bd-1sg bs ml-7 pa", fallback: "/assets/no_image.jpg", size: "200x200" %>
+								<%= attachment_image_tag @other_user.profile_image, :profile_image, class: "profile-thumb margin_icon bd-1sg bs ml-7 pa", fallback: "/images/no_image.jpg", size: "200x200" %>
 						    </div>
 						    <div class="chatting">
 						      <div class="says">
@@ -34,7 +34,7 @@
 						<!--③右コメント始-->
 						  <div class="balloon7">
 						  	<div class="faceicon">
-								<%= attachment_image_tag @member.profile_image, :profile_image, class: "profile-thumb margin_icon bd-1sg bs ml-7 pa", fallback: "/assets/no_image.jpg", size: "200x200" %>
+								<%= attachment_image_tag @member.profile_image, :profile_image, class: "profile-thumb margin_icon bd-1sg bs ml-7 pa", fallback: "/images/no_image.jpg", size: "200x200" %>
 						    </div>
 						  </div>
 						  <div class="hercomment">
