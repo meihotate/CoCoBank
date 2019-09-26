@@ -46,6 +46,7 @@
 			</span>
 		<% else %>
 				<% if user_signed_in? %>
+						<div data-name= <%= current_user.id %> id="login"></div>
 						<span class="navbar-brand">
 							<%= link_to "トップページ", root_path, :style=>"color:#000000;" %>
 						</span>
@@ -95,7 +96,9 @@
 						<br>
 						<br>
 						<span class="navbar-brand">
-							<%= link_to "ログアウト", destroy_user_session_path, method: :delete, :style=>"color:#000000;" %>
+							<%= link_to destroy_user_session_path, method: :delete, :style=>"color:#000000;" do %>
+								<button data-behavior="appear_away">ログアウト</button>
+							<% end %>
 						</span>
 						<span class="navbar-brand">
 							<button id="leaveBank", type="button">退会する</button>

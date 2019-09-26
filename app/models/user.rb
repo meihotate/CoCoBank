@@ -247,5 +247,17 @@ class User < ApplicationRecord
       end
   end
 
+  def appear(data)
+    puts data
+    User.find(data[:on]).update!(online: true)
+    # current_user.update(online: true)
+    ActionCable.server.broadcast 'appearance_channel', {event: 'appear', on: data[:on]}
+  end
+
+  def away(data)
+    User.find(data).update!(online: false)
+    puts User.find(data[:on])
+    ActionCable.server.broadcast "appearance_channel", {event: 'away', on: data[:on]}
+  end
 
 end
