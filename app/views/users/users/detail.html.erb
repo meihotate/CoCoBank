@@ -34,17 +34,17 @@
 		</div>
 		<div class="row">
 			<div class="col-sm-4 mt-16">
-				<% if current_user.approved != 2 %>
+				<%# if current_user.approved != 2 %>
 					<div id="friend_form" class="mt-16">
 						  		<% if current_user.requested?(@user) %>
 							  			<% if current_user.active_friendships.find_by(to_user_id: @user.id).friendstatus == 0 %>
-							  				<div class="bgc-blue bdr-10 fc-w pd-5 texralign-c">申請中</div>
+							  				<div class="bgc-blue bdr-10 fc-w pd-5 texralign-c">友達申請中</div>
 							  			<% elsif current_user.active_friendships.find_by(to_user_id: @user.id).friendstatus == 1 %>
 							  				<%= link_to users_chatroom_path(id: current_user.chatroom_number(current_user, @user), other_user_id: @user.id) do %>
 												<button type="button" class="btn btn-primary">チャットを開始する</button>
 											<% end %>
 							  			<% else %>
-							  				<button type="button" class="btn btn-primary">友達申請中</button>
+							  				<div class="bgc-blue bdr-10 fc-w pd-5 texralign-c">友達申請中</div>
 							  			<% end %>
 						  		<% elsif @user.requested?(current_user) %>
 							  			<% if @user.active_friendships.find_by(to_user_id: current_user.id).friendstatus == 0 %>
@@ -60,7 +60,7 @@
 						    		<%= render '/users/friendships/request_friend' %>
 						  		<% end %>
 					 </div>
-				 <% end %>
+				 <%# end %>
 			</div>
 			<div class="col-sm-8 mt-16">
 				<% if current_user.approved != 2 %>

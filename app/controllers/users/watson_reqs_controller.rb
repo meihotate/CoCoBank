@@ -55,8 +55,10 @@ class Users::WatsonReqsController < ApplicationController
 			message = WatsonReq.request_watson(text,params)
 			if message == '成功'
 				if @watsonreq.update(request_params)
+					flash[:notice] = "正常に性格診断を行いました"
 					redirect_to users_show_path(current_user)
 				else
+					flash[:notice] = "性格診断に失敗しました"
 					render :edit
 				end
 			else

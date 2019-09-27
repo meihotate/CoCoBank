@@ -15,7 +15,8 @@
 							<th class="col-xs-1">性別</th>
 							<th class="col-xs-1">居住地域</th>
 							<th class="col-xs-1">学年</th>
-							<th class="col-xs-4">最終ログイン日時</th>
+							<th class="col-xs-3">最終ログイン日時</th>
+							<th class="col-xs-1"></th>
 							<th class="col-xs-2"></th>
 						</tr>
 					</thead>
@@ -30,12 +31,17 @@
 									<td><%= user.location_i18n %></td>
 									<td><%= user.degree_i18n %></td>
 									<td><%= user.current_sign_in_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
+									<td id="login_<%= user.id %>">
+										<% if user.online %>
+											<p class="bgc-yellow bdr-10 texralign-c" id="logout_<%= user.id %>">ログイン中</p>
+										<% end %>
+									</td>
 									<td>
 										<%= link_to users_detail_path(user) do %>
 											<button class="btn btn-default">詳細ページへ</button>
 										<% end %>
 									</td>
-								</tr>
+								</tr> 
 							<% end %>
 						</tbody>
 				</table>
