@@ -29,7 +29,13 @@
 													<td><%= user.name %></td>
 													<td><%= user.sex_i18n %></td>
 													<td><%= user.location_i18n %></td>
-													<td><%= user.current_sign_in_at.strftime("%Y年%m月%d日 %H時%M分") unless user.current_sign_in_at.nil?%></td>
+													<td><%= user.current_sign_in_at.strftime("%Y年%m月%d日 %H時%M分") unless user.current_sign_in_at.nil?%>
+													</td>
+													<td id="login_<%= user.id %>">
+														<% if user.online %>
+															<p class="bgc-yellow bdr-10 texralign-c" id="logout_<%= user.id %>">ログイン中</p>
+														<% end %>
+													</td>
 													<td>
 														<%= link_to users_detail_path(user) do %>
 															<button class="btn btn-default">詳細ページへ</button>
@@ -69,27 +75,35 @@
 					</thead>
 						<tbody class="overflow">
 							<% @users.where(approved: 2).each do |user| %>
-								<tr>
-									<td>
-										<%= attachment_image_tag user.profile_image, :profile_image, class: "profile-thumb margin_icon bd-1sg bs ml-7 pa bdr-50", fallback: "/images/no_image.jpg", size: "40x40" %>
-									</td>
-									<td><%= user.name %></td>
-									<td><%= user.sex_i18n %></td>
-									<td><%= user.location_i18n %></td>
-									<td><%= user.current_sign_in_at.strftime("%Y年%m月%d日 %H時%M分") unless user.current_sign_in_at.nil? %></td>
-									<td>
-										<%= link_to users_detail_path(user) do %>
-											<button class="btn btn-default">詳細ページへ</button>
-										<% end %>
-									</td>
-									<% if Friendship.find_by(friendstatus: 1, to_user_id: user.id, from_user_id: current_user.id) != nil %>
+								<% unless current_user.following?(user) %>
+									<tr>
 										<td>
-												<%= link_to users_chatroom_path(id: current_user.chatroom_number(current_user, user), other_user_id: user.id) do %>
-													<button class="btn btn-default">チャットを開始する</button>
-												<% end %>
+											<%= attachment_image_tag user.profile_image, :profile_image, class: "profile-thumb margin_icon bd-1sg bs ml-7 pa bdr-50", fallback: "/images/no_image.jpg", size: "40x40" %>
 										</td>
-									<% end %>
-								</tr>
+										<td><%= user.name %></td>
+										<td><%= user.sex_i18n %></td>
+										<td><%= user.location_i18n %></td>
+										<td><%= user.current_sign_in_at.strftime("%Y年%m月%d日 %H時%M分") unless user.current_sign_in_at.nil? %>
+										</td>
+										<td id="login_<%= user.id %>">
+											<% if user.online %>
+												<p class="bgc-yellow bdr-10 texralign-c" id="logout_<%= user.id %>">ログイン中</p>
+											<% end %>
+										</td>
+										<td>
+											<%= link_to users_detail_path(user) do %>
+												<button class="btn btn-default">詳細ページへ</button>
+											<% end %>
+										</td>
+										<% if Friendship.find_by(friendstatus: 1, to_user_id: user.id, from_user_id: current_user.id) != nil %>
+											<td>
+													<%= link_to users_chatroom_path(id: current_user.chatroom_number(current_user, user), other_user_id: user.id) do %>
+														<button class="btn btn-default">チャットを開始する</button>
+													<% end %>
+											</td>
+										<% end %>
+									</tr>
+								<% end %>
 							<% end %>
 						</tbody>
 				</table>

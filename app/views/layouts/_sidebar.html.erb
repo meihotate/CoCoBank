@@ -96,12 +96,15 @@
 						<br>
 						<br>
 						<span class="navbar-brand">
-							<%= link_to destroy_user_session_path, method: :delete, :style=>"color:#000000;" do %>
-								<button data-behavior="appear_away">ログアウト</button>
-							<% end %>
+							<button data-behavior="appear_away" class="logoutbutton">ログアウト</button>
 						</span>
 						<span class="navbar-brand">
 							<button id="leaveBank", type="button">退会する</button>
+						</span>
+						<span class="navbar-brand">
+							<%= link_to destroy_user_session_path, method: :delete, :style=>"color:#000000;" do %>
+								<input type="hidden" name="deviselogout">
+							<% end %>
 						</span>
 						<br>
 						<br>

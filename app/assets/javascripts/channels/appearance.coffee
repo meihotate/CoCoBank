@@ -18,10 +18,11 @@ App.appearance = App.cable.subscriptions.create "AppearanceChannel",
     a = data['on']
     console.log data['event']
     if data['event'] == 'appear'
-      $('#login_' + a ).html('<p>ログイン中</p>');
+      $('#login_' + a ).html('<p class="bgc-yellow bdr-10 texralign-c">ログイン中</p>');
     else
+      $('#login_' + a ).html('<p></p>');
       console.log("ログアウトした？");
-      $('#logout_' + a ).html('<p></p>');
+
 
   appear: () ->
     console.log("test4")
@@ -42,12 +43,13 @@ App.appearance = App.cable.subscriptions.create "AppearanceChannel",
     console.log("test8")
     $(document).off(".appearance")
     $(window).off(".appearance")
-    $(buttonSelector).hide()
-    $('#logout_' + data['on'] ).html('<p></p>');
+    # $(buttonSelector).hide()
+    # $('#logout_' + data['on'] ).html('<p></p>');
 
   away: ->
     console.log("test5")
     @perform("away", "appearing_on": $("#login").data("name"))
+    $('input:hidden[name="deviselogout"]').click();
 
   buttonSelector = "[data-behavior~=appear_away]"
   console.log(buttonSelector)

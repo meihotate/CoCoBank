@@ -6,7 +6,6 @@ class AppearanceChannel < ApplicationCable::Channel
 
   def unsubscribed
     # Any cleanup needed when channel is unsubscribed
-    current_user.away(current_user.id)
   end
 
   def appear(data)
@@ -16,6 +15,6 @@ class AppearanceChannel < ApplicationCable::Channel
   end
 
   def away(data)
-    # current_user.away(on: data['appearing_on'])
+    current_user.away(on: data['appearing_on'])
   end
 end

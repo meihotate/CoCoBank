@@ -33,8 +33,7 @@
 									<td><%= user.current_sign_in_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
 									<td id="login_<%= user.id %>">
 										<% if user.online %>
-											<% binding.pry %>
-											<p class="bgc-yellow bdr-10" id="logout_<%= user.id %>">ログイン中</p>
+											<p class="bgc-yellow bdr-10 texralign-c" id="logout_<%= user.id %>">ログイン中</p>
 										<% end %>
 									</td>
 									<td>
@@ -42,7 +41,7 @@
 											<button class="btn btn-default">詳細ページへ</button>
 										<% end %>
 									</td>
-								</tr>
+								</tr> 
 							<% end %>
 						</tbody>
 				</table>
