@@ -43,8 +43,13 @@ class Users::WatsonReqsController < ApplicationController
 	end
 
 	def edit
-		@user = current_user
-		@watsonreq = WatsonReq.find(params[:id])
+		if WatsonReq.with_deleted.find_by(user_id: current_user.id).id.to_s == params[:id]
+			@user = current_user
+			@watsonreq = WatsonReq.find(params[:id])
+		else
+			flash[:notice] = "不正なアクセスです"
+			redirect_to users_show_path(current_user)
+		end
 	end
 
 	def update
