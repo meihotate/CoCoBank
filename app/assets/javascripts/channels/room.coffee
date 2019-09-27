@@ -7,15 +7,20 @@ App.room = App.cable.subscriptions.create "RoomChannel",
     # Called when the subscription has been terminated by the server
 
   received: (data) ->
-  	current_user_check = $('input:hidden[name="chatuser_id"]').val()
-  	console.log current_user_check
-  	console.log data['current_user_id']
-  	img = document.getElementById('chatprofileimage')
-  	imgsrc = img.getAttribute('src')
-  	if current_user_check == data['current_user_id']
-  		$('#chatmessages').append('<div class="mycomment"><p>' + data['message'] + '</p></div>');
-  	else
-  		$('#chatmessages').append('<div class="balloon6"><div class="faceicon">' + '<img src=' + imgsrc + '>' + '</div><div class="chatting"><div class="says"><p>' + data['message'] + '</p></div></div></div>');
+    current_user_check = $('input:hidden[name="chatuser_id"]').val()
+    console.log current_user_check
+    console.log "test"
+    console.log data['current_user_id']
+    console.log data['chatroom_id']
+    console.log $('input:hidden[name="chatroom_id"]').val()
+    img = document.getElementById('chatprofileimage')
+    imgsrc = img.getAttribute('src')
+    if data['chatroom_id'] == $('input:hidden[name="chatroom_id"]').val()
+      if current_user_check == data['current_user_id']
+        $('#chatmessages').append('<div class="mycomment"><p>' + data['message'] + '</p></div>');
+      else
+        $('#chatmessages').append('<div class="balloon6"><div class="faceicon">' + '<img src=' + imgsrc + '>' + '</div><div class="chatting"><div class="says"><p>' + data['message'] + '</p></div></div></div>');
+
 
   speak: (message, chatroom_id, chatmember_id, current_user_id) ->
     console.log "test"
