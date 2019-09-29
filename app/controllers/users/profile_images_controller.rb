@@ -26,7 +26,7 @@ class Users::ProfileImagesController < ApplicationController
 	end
 
 	def update
-		@profile_image = ProfileImage.find_by(params[:profile_image][:user_id])
+		@profile_image = ProfileImage.find_by(user_id: params[:profile_image][:user_id])
 		@oldimage_src = Refile.attachment_url(@profile_image, :profile_image)
 			if @profile_image.update(image_params)
 		        @image_src = Refile.attachment_url(@profile_image, :profile_image)
@@ -39,13 +39,16 @@ class Users::ProfileImagesController < ApplicationController
 				@image_src = Refile.attachment_url(@profile_image, :profile_image)
 				@user = current_user
 		      	@users = User.where.not(id: current_user.id)
+		      	@all_friends = current_user.all_friends(@user)
+		      	if @user.profile_image
+					@profile_image = ProfileImage.find_by(user_id: @user.id)
+				else
+					@profile_image = ProfileImage.new
+				end
+				@user.watson_chart(@user, gon)
 				@friends1 = Friendship.where(friendstatus: 1, to_user_id: @user.id)
 				@friends2 = Friendship.where(friendstatus: 1, from_user_id: @user.id)
-		      	# render "users/users/show"
-		  		respond_to do |format|
-	      			format.html { render "users/users/show" }
-	      			format.js
-	      		end
+	     	  	render "users/users/show"
 		    end
 	end
 
