@@ -23,8 +23,10 @@
 					<%= f.select :sex, User.sexes_i18n.keys.map{|k| [I18n.t("enums.user.sex.#{k}"), k]}, class:"form-control" %>
 				<li>居住地域</li>
             		<%= f.select :location, User.locations_i18n.keys.map{|k| [I18n.t("enums.user.location.#{k}"), k]}, class:"form-control" %>
+            	<% if @user.aprroved != 2 %>
 				<li>学年</li>
 					<%= f.select :degree, User.degrees_i18n.keys.map{|k| [I18n.t("enums.user.degree.#{k}"), k]}, class:"form-control" %>
+				<% end %>
 				<li>自己紹介文</li>
 					<%= f.text_area :introduction, autofocus: true, autocomplete: "ここに記入してください", class:"form-control" %>
 				<%= f.submit "登録内容を更新する", class:"btn btn-default mt-16" %>
