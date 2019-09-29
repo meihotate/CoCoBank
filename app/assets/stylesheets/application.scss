@@ -34,7 +34,7 @@
   background-attachment: scroll;
   background-repeat: repeat;
  }
- #profile_image_box img {
+ .show_profile_image > img {
   width: 115px;
   height: auto;
  }
@@ -135,7 +135,7 @@ span.navbar-brand:hover {
 }
 .balloon6 .faceicon img{
   width: 100%;
-  height: auto;
+  height: 45px;
   border-radius: 50%;
 }
 .balloon7 .faceicon {
@@ -145,7 +145,7 @@ span.navbar-brand:hover {
 }
 .balloon7 .faceicon img{
   width: 100%;
-  height: auto;
+  height: 45px;
   border-radius: 50%;
 }
 .balloon6 .chatting {
