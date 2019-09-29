@@ -28,28 +28,28 @@ class Users::ProfileImagesController < ApplicationController
 	def update
 		@profile_image = ProfileImage.find_by(user_id: params[:profile_image][:user_id])
 		@oldimage_src = Refile.attachment_url(@profile_image, :profile_image)
-			if @profile_image.update(image_params)
-		        @image_src = Refile.attachment_url(@profile_image, :profile_image)
+		if @profile_image.update(image_params)
+			@image_src = Refile.attachment_url(@profile_image, :profile_image)
 				# redirect_to users_show_path(params[:profile_image][:user_id])
-				respond_to do |format|
-	      			format.html { redirect_to users_show_path(params[:profile_image][:user_id]) }
-	      			format.js
-	    		end
+			respond_to do |format|
+	    		format.html { redirect_to users_show_path(params[:profile_image][:user_id]) }
+	    		format.js
+	    	end
+		else
+			@image_src = Refile.attachment_url(@profile_image, :profile_image)
+			@user = current_user
+		    @users = User.where.not(id: current_user.id)
+		    @all_friends = current_user.all_friends(@user)
+		    if @user.profile_image
+				@profile_image = ProfileImage.find_by(user_id: @user.id)
 			else
-				@image_src = Refile.attachment_url(@profile_image, :profile_image)
-				@user = current_user
-		      	@users = User.where.not(id: current_user.id)
-		      	@all_friends = current_user.all_friends(@user)
-		      	if @user.profile_image
-					@profile_image = ProfileImage.find_by(user_id: @user.id)
-				else
-					@profile_image = ProfileImage.new
-				end
-				@user.watson_chart(@user, gon)
-				@friends1 = Friendship.where(friendstatus: 1, to_user_id: @user.id)
-				@friends2 = Friendship.where(friendstatus: 1, from_user_id: @user.id)
-	     	  	render "users/users/show"
-		    end
+				@profile_image = ProfileImage.new
+			end
+			@user.watson_chart(@user, gon)
+			@friends1 = Friendship.where(friendstatus: 1, to_user_id: @user.id)
+			@friends2 = Friendship.where(friendstatus: 1, from_user_id: @user.id)
+	     	render "users/users/show"
+		end
 	end
 
 	private
