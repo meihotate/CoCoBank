@@ -22,8 +22,8 @@
 				<li>性別</li>
 					<%= f.select :sex, User.sexes_i18n.keys.map{|k| [I18n.t("enums.user.sex.#{k}"), k]}, class:"form-control" %>
 				<li>居住地域</li>
-            		<%= f.select :location, User.locations_i18n.keys.map{|k| [I18n.t("enums.user.location.#{k}"), k]}, class:"form-control" %>
-            	<% if @user.aprroved != 2 %>
+            		                <%= f.select :location, User.locations_i18n.keys.map{|k| [I18n.t("enums.user.location.#{k}"), k]}, class:"form-control" %>
+            	                <% if @user.approved != 2 %>
 				<li>学年</li>
 					<%= f.select :degree, User.degrees_i18n.keys.map{|k| [I18n.t("enums.user.degree.#{k}"), k]}, class:"form-control" %>
 				<% end %>
