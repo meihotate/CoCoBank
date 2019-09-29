@@ -19,7 +19,7 @@
 			</div>
 			<div class="row">
 					<div class="col-sm-4 mt-16">
-						<div class="pdl-60">
+						<div class="pdl-60 show_profile_image">
 							<%= attachment_image_tag @user.profile_image, :profile_image, class: "profile-thumb margin_icon bd-1sg bs ml-7 pa bdr-10", fallback: "/images/no_image.jpg", size: "115x115" %>
 						</div>
 					</div>
@@ -54,7 +54,7 @@
 							<p class="fs-16">まだ登録されていません</p>
 						<% end %>
 			</div>
-			<% if @user.approved != 2 %>
+			<%# if @user.approved != 2 %>
 					<div class="mt-16">
 						<div class="fs-18 mt-16">
 							<li><strong>性格診断</strong></li>
@@ -74,7 +74,7 @@
 								</div>
 							<% end %>
 					</div>
-			<% end %>
+			<%# end %>
 		</div>
 		<div class="col-md-4 mt-16">
 			  	<div class="fs-18">
