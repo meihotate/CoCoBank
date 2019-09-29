@@ -3,13 +3,13 @@ class UserMailer < ApplicationMailer
 
   def welcome_email
     @user = params[:user]
-    @url  = 'http://example.com/login'
+    @url  = 'http://www.cocobank.net'
     mail(to: @user.email, subject: 'CoCoBank_カウンセラー登録が完了しました')
   end
 
   def reject_email
     @user = params[:user]
-    @url  = 'http://example.com/login'
+    @url  = 'http://www.cocobank.net'
     mail(to: @user.email, subject: 'CoCoBank_カウンセラー登録結果通知')
   end
 
