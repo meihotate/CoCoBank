@@ -79,9 +79,7 @@ class Admins::AdminsController < ApplicationController
 	def restore
 		@user = User.with_deleted.find(params[:user_id])
 		email = @user.email
-		binding.pry
 		if @user.restore(:recursive => true)
-		binding.pry
 			email.slice!(/\d\d\d\d[-]\d\d[-]\d\d[t]\d\d[:]\d\d[:]\d\d[+]\d\d[:]\d\d/)
 			@user.update(email: email)
 			flash[:notice] = "ユーザーを再入会させました"
