@@ -1,24 +1,48 @@
-# README
+# Name
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+CoCoBank
 
-Things you may want to cover:
+CoCoBank is a chat application for Children who have been worried about human relationships.
+They can create friendships each other and chat in this app.
+They also can chat with counselors.
 
-* Ruby version
+# DEMO
 
-* System dependencies
+To be later
 
-* Configuration
+# Features
 
-* Database creation
+This app have
+	- login, logout, editing user profile information
+	- withdrawal from a group
+	- Real time chat (using Action Cable)
+	- Real time login notification (using Action Cable)
+	- Personality diagnosis (using Watson Personality Insights)
+	- Registration approval by the admin and approval notification to a counselor by action mailer.
 
-* Database initialization
+# Requirement
 
-* How to run the test suite
+* ruby '2.5.5'
+* rails '5.2.3'
+* mysql2
+* nginX
+* puma
 
-* Services (job queues, cache servers, search engines, etc.)
+# Gem
 
-* Deployment instructions
+devise
+bootstrap-sass -v 3.3.6
+jquery-rails
+refile, refile-mini_magick
+enum_help
+rails-i18n
+chart-js-rails
+gon
+paranoia
 
-* ...
+# AWS
+
+EC2
+RDS
+EIP
+Route53
