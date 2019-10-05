@@ -7,17 +7,17 @@
 			</div>
 			<div class="mt-16 wd-100">
 				<div class="scroll-table">
-				<table class="table table-hover table-responsive">
+				<table class="table table-hover">
 					<thead>
 						<tr>
-							<th class="col-xs-1"></th>
-							<th class="col-xs-2">ユーザー名</th>
-							<th class="col-xs-1">性別</th>
-							<th class="col-xs-1">居住地域</th>
-							<th class="col-xs-1">学年</th>
-							<th class="col-xs-3">最終ログイン日時</th>
-							<th class="col-xs-1"></th>
-							<th class="col-xs-2"></th>
+							<th class="col-md-1 col-xs-2 col-sm-2"></th>
+							<th class="col-md-2 col-xs-3 col-sm-2">ユーザー名</th>
+							<th class="col-md-1 col-xs-2 col-sm-2">性別</th>
+							<th class="col-md-1 table_responsive">居住地域</th>
+							<th class="col-md-1 col-xs-2 col-sm-2 table_responsive2">学年</th>
+							<th class="col-md-3 table_responsive">最終ログイン日時</th>
+							<th class="col-md-1 col-xs-3 col-sm-2"></th>
+							<th class="col-md-2 col-xs-2 col-sm-2"></th>
 						</tr>
 					</thead>
 						<tbody class="overflow">
@@ -28,9 +28,9 @@
 									</td>
 									<td><%= user.name %></td>
 									<td><%= user.sex_i18n %></td>
-									<td><%= user.location_i18n %></td>
-									<td><%= user.degree_i18n %></td>
-									<td><%= user.current_sign_in_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
+									<td class="table_responsive"><%= user.location_i18n %></td>
+									<td class="table_responsive2"><%= user.degree_i18n %></td>
+									<td class="table_responsive"><%= user.current_sign_in_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
 									<td id="login_<%= user.id %>">
 										<% if user.online %>
 											<p class="bgc-yellow bdr-10 texralign-c" id="logout_<%= user.id %>">ログイン中</p>

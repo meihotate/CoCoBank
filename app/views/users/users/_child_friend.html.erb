@@ -1,22 +1,22 @@
 <div>
 	<li><strong><%= current_user.name %>さん(自分)の友達</strong></li>
 	<div class="bdr-b">
-		<table class="table table-hover" style="width: 100%;" id="friend_table">
-			<thead style="width: 100%;">
+		<table class="table table-hover" id="friend_table">
+			<thead>
 				<tr>
-					<th style="width: 20%;">ユーザー名</th>
-					<th style="width: 20%;"></th>
-					<th style="width: 20%;"></th>
+					<th class="col-md-4 col-xs-4 col-sm-4">ユーザー名</th>
+					<th class="col-md-4 col-xs-4 col-sm-4"></th>
+					<th class="col-md-4 col-xs-4 col-sm-4"></th>
 				</tr>
 			</thead>
 			<tbody>
 				<% if @all_friends %>
 					<% @all_friends.each do |friend| %>
 						<tr>
-							<td style="width: 15%; padding-top: 12px;">
+							<td style="padding-top: 12px;">
 								<%= friend.name %>
 							</td>
-							<td style="width: 15%; padding-top: 12px;">
+							<td style="padding-top: 12px;">
 								<div class="texralign-c">
 									<% if Chatroom.unread?(current_user, friend) %>
 										<p class="bgc-yellow bdr-10">新着メッセージ</p>
@@ -25,9 +25,9 @@
 									<% end %>
 								</div>
 							</td>
-							<td style="width: 15%;">
+							<td>
 								<%= link_to users_chatroom_path(id: current_user.chatroom_number(current_user, friend), other_user_id: friend.id) do %>
-									<button class="btn btn-default btn-sm" value="chatroom">チャットを開始する</button>
+									<button class="btn btn-default btn-sm chatting" value="chatroom">チャットを開始する</button>
 								<% end %>
 							</td>
 						</tr>

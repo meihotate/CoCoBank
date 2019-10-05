@@ -123,12 +123,26 @@ window.onload = function () {
 	console.log("test0");
 	$(function() {
 	var leaveBank = document.getElementById('leaveBank');
+	var leaveBank2 = document.getElementById('leaveBank2');
 	var body1 = document.getElementById('hide');
 	var destroybody1 = document.getElementById('showdestroy');
 	var backToBank = document.getElementById('backToBank');
 		if (leaveBank !== null) {
 			leaveBank.addEventListener('click', event => {
 				console.log("test1");
+				console.log(body1);
+				body1.style.display="none";
+			  	destroybody1.style.display="block";
+			});
+			backToBank.addEventListener('click', event => {
+				console.log("test2");
+				body1.style.display="block";
+			  	destroybody1.style.display="none";
+			});
+		}
+		if (leaveBank2 !== null) {
+			leaveBank2.addEventListener('click', event => {
+				console.log("test2");
 				console.log(body1);
 				body1.style.display="none";
 			  	destroybody1.style.display="block";
@@ -162,3 +176,12 @@ window.onload = function () {
 	// 	});
 	// });
 };
+
+// ハンバーガーメニュー
+$(function() {
+  $('.menu-trigger').on('click', function() {
+    $(this).toggleClass('active');
+    $('#hamburger').fadeToggle();
+    return false;
+  });
+ });

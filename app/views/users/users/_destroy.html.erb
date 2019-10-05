@@ -1,7 +1,7 @@
 <div class ="container-fluid pdt-60" id="showdestroy">
 	<div class="z-index bdr-10 row row-eq-height">
 		<%#= render 'layouts/sidebar' %>
-		<div class="col-md-2 rgba-w-7 z-index bdr-10">
+		<div class="col-md-2 rgba-w-7 z-index bdr-10 table_responsive">
 			<div class="sidebar">
 			<div class="navbar-header">
 				<% if admin_signed_in? %>
@@ -70,9 +70,6 @@
 						<span class="navbar-brand">
 							<%= link_to "ログアウト", destroy_user_session_path, method: :delete, :style=>"color:#000000;" %>
 						</span>
-						<span class="navbar-brand">
-								<button id="backToBank", type="button">退会しない</button>
-						</span>
 						<br>
 						<br>
 					<% else %>
@@ -94,12 +91,15 @@
 			</div>
 		</div>
 		<% if user_signed_in? %>
-			<div class="col-md-10 pdb-20 rgba-b-5 bdr-10" style="height:700px">
+			<div class="col-md-10 pdb-20 rgba-b-5 bdr-10 col-sm-12 col-xs-12" style="height:700px">
 					<div class="mt-65">
 						<h3 class="fc-w">本当に退会しますか？？</h3>
 						<%= link_to users_destroy_path(current_user), method: :delete do %>
 							<button type="button" class="btn btn-default">退会する</button>
 						<% end %>
+					</div>
+					<div  class="mt-65">
+						<button id="backToBank", type="button", class="btn btn-primary">退会しない</button>
 					</div>
 			</div>
 		<% end %>

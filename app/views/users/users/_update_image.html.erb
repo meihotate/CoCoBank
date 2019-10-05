@@ -1,5 +1,5 @@
 <%= form_for @profile_image, url: users_profile_image_path, method: :patch, remote: true do |f| %>
-	<%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
+	<%= f.attachment_field :profile_image, placeholder: "プロフィール画像", class:"bgc-fff bdr-10" %>
 	<%= f.hidden_field :user_id, :value => @user.id %>
-	<%= f.submit "プロフィール画像を更新する"%>
+	<%= f.submit "プロフィール画像を更新する", class:"btn btn-default"%>
 <% end %>

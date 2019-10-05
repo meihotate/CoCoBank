@@ -1,13 +1,13 @@
 <div class="rgba-w-7 z-index bdr-10 row row-eq-height">
 		<%= render 'layouts/sidebar' %>
-		<div class="col-md-6 pdb-20">
+		<div class="pdb-20 col-md-6 col-sm-12 col-xs-12">
 			<div class="row">
-				<div class="col-md-3">
+				<div class="col-md-4 col-sm-4 col-xs-4">
 					<div class="fs-18 bdr-10 bgc-green pd-5 ma-0 texralign-c mt-16">
 							<li>マイページ</li>
 					</div>
 				</div>
-				<div class="col-md-9 mt-16">
+				<div class="col-md-8 col-sm-8 col-xs-8 mt-16">
 					<%= link_to users_editing_path do %>
 							<button type="button" class="btn btn-primary">登録情報を更新する</button>
 					<% end %>
@@ -23,33 +23,12 @@
 			  </div>
 			<% end %>
 			<div class="row">
-				<div class="col-sm-4 mt-16">
-					<div class="pdl-60 show_profile_image" id="profile_image_box">
+				<div class="col-md-4 col-sm-4 col-xs-4 mt-16">
+					<div class="show_profile_image" id="profile_image_box">
 						<%= attachment_image_tag @user.profile_image, :profile_image, class: "profile-thumb margin_icon bd-1sg bs ml-7 pa bdr-10 object_cover", id: "profile_image", fallback: "/images/no_image.jpg", size: "115x115" %>
 					</div>
-					<div class="mt-16">
-						<% if @user.profile_image %>
-							<div class="form-inline" id="imageform">
-								<%#= form_for @profile_image, url: users_profile_image_path do |f| %>
-									<%#= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
-									<%#= f.hidden_field :user_id, :value => @user.id %>
-									<%#= f.submit "プロフィール画像を更新する"%>
-								<%# end %>
-								<%= render '/users/users/update_image', user: @user, profile_image: @profile_image %>
-							</div>
-						<% else %>
-							<div class="form-inline" id="imageform">
-								<%#= form_for @profile_image, url: users_profile_images_path do |f| %>
-									<%#= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
-									<%#= f.hidden_field :user_id, :value => @user.id %>
-									<%#= f.submit "プロフィール画像を登録する", class:"irb" %>
-								<%# end %>
-								<%= render '/users/users/create_image', user: @user, profile_image: @profile_image %>
-							</div>
-						<% end %>
-					</div>
 				</div>
-				<div class="col-sm-8 mt-16">
+				<div class="col-md-8 col-sm-8 col-xs-8 mt-16">
 					<div>
 						<p class="irb wid-40"><strong>ユーザー名</strong></p>
 						<p class="irb"><%= @user.name %></p>
@@ -69,6 +48,27 @@
 						</div>
 					<% end %>
 				</div>
+			</div>
+			<div class="mt-16 image_responsive">
+						<% if @user.profile_image %>
+							<div class="form-inline" id="imageform">
+								<%#= form_for @profile_image, url: users_profile_image_path do |f| %>
+									<%#= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
+									<%#= f.hidden_field :user_id, :value => @user.id %>
+									<%#= f.submit "プロフィール画像を更新する"%>
+								<%# end %>
+								<%= render '/users/users/update_image', user: @user, profile_image: @profile_image %>
+							</div>
+						<% else %>
+							<div class="form-inline" id="imageform">
+								<%#= form_for @profile_image, url: users_profile_images_path do |f| %>
+									<%#= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
+									<%#= f.hidden_field :user_id, :value => @user.id %>
+									<%#= f.submit "プロフィール画像を登録する", class:"irb" %>
+								<%# end %>
+								<%= render '/users/users/create_image', user: @user, profile_image: @profile_image %>
+							</div>
+						<% end %>
 			</div>
 			<div class="mt-25">
 				<div class="fs-18">
@@ -90,9 +90,11 @@
 					<%= link_to edit_users_watson_req_path(id: @user.watson_req.id) do %>
 						<button type="button" class="btn btn-primary">性格診断を更新する</button>
 					<% end %>
-					<button id="result_big5" class="btn btn-info btn-xs">５大個性</button>
-					<button id="result_need" class="btn btn-info btn-xs">12欲求</button>
-					<button id="result_value" class="btn btn-info btn-xs">５大価値観</button>
+					<div class="button_responsive">
+						<button id="result_big5" class="btn btn-info btn-xs">５大個性</button>
+						<button id="result_need" class="btn btn-info btn-xs">12欲求</button>
+						<button id="result_value" class="btn btn-info btn-xs">５大価値観</button>
+					</div>
 					<div class="rgba-w-7 z-index bdr-10">
 						<canvas id="myChart" style=width:500; height:500;></canvas>
 						<script>draw_graph();</script>

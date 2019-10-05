@@ -1,17 +1,17 @@
 <div class="rgba-w-7 z-index bdr-10 row row-eq-height">
 	<%= render 'layouts/sidebar' %>
-	<div class="col-md-6 pdb-20 bdr-r">
-		<div class="fs-18 bdr-10 bgc-green pd-5 wid-60 ma-0 texralign-c mt-16">
+	<div class="col-md-6 pdb-20 bdr-r col-sm-12 col-xs-12">
+		<div class="fs-18 bdr-10 bgc-green pd-5 wid-60 ma-0 texralign-c mt-16 title_responsive">
 			<li><%= "#{@user.name}さん紹介ページ" %></li>
 		</div>
 		<div class="row">
-				<div class="col-sm-4 mt-16">
-					<div class="pdl-60 show_profile_image">
+				<div class="col-sm-4 mt-16 col-xs-4 col-sm-4">
+					<div class="show_profile_image">
 						<%= attachment_image_tag @user.profile_image, :profile_image, class: "profile-thumb margin_icon bd-1sg bs ml-7 pa bdr-10 object_cover", fallback: "/images/no_image.jpg", size: "115x115" %>
 
 					</div>
 				</div>
-				<div class="col-sm-8 mt-16">
+				<div class="col-sm-8 mt-16 col-xs-8 col-sm-8">
 					<div>
 						<p class="irb wid-20"><strong>ユーザー名</strong></p>
 						<p class="irb"><%= @user.name %></p>

@@ -1,6 +1,6 @@
 <div class="rgba-w-7 z-index bdr-10 row row-eq-height">
 		<%= render 'layouts/sidebar' %>
-	<div class="col-md-10 pdb-20">
+	<div class="col-md-10 pdb-20 col-sm-12 col-xs-12">
 		<% if @user.errors.any? %>
 		  <div id="error_explanation" class="alert alert-danger">
 		    <ul>
@@ -10,22 +10,22 @@
 		    </ul>
 		  </div>
 		<% end %>
-		<div class="fs-16 bdr-10 bgc-green pd-5 wid-40 ma-0 texralign-c mt-16">
+		<div class="fs-16 bdr-10 bgc-green pd-5 wid-40 ma-0 texralign-c mt-16 title_responsive">
 			<li>登録情報編集ページ</li>
 		</div>
 		<div class="mt-16">
 			<%= form_for @user, url: users_update_path do |f| %>
 				<li>e-mailアドレス</li>
-					<%= f.text_field :email, autofocus: true, autocomplete: "ここに記入してください", class:"form-control", style:"width:20%;" %>
+					<%= f.text_field :email, autofocus: true, autocomplete: "ここに記入してください", class:"form-control wid-40" %>
 				<li>ユーザー名</li>
-					<%= f.text_field :name, autofocus: true, autocomplete: "ここに記入してください", class:"form-control", style:"width:20%;" %>
+					<%= f.text_field :name, autofocus: true, autocomplete: "ここに記入してください", class:"form-control wid-40" %>
 				<li>性別</li>
-					<%= f.select :sex, User.sexes_i18n.keys.map{|k| [I18n.t("enums.user.sex.#{k}"), k]}, class:"form-control" %>
+					<%= f.select :sex, User.sexes_i18n.keys.map{|k| [I18n.t("enums.user.sex.#{k}"), k]}, class:"input-group-btn" %>
 				<li>居住地域</li>
-            		                <%= f.select :location, User.locations_i18n.keys.map{|k| [I18n.t("enums.user.location.#{k}"), k]}, class:"form-control" %>
+            		                <%= f.select :location, User.locations_i18n.keys.map{|k| [I18n.t("enums.user.location.#{k}"), k]}, class:"input-group-btn" %>
             	                <% if @user.approved != 2 %>
 				<li>学年</li>
-					<%= f.select :degree, User.degrees_i18n.keys.map{|k| [I18n.t("enums.user.degree.#{k}"), k]}, class:"form-control" %>
+					<%= f.select :degree, User.degrees_i18n.keys.map{|k| [I18n.t("enums.user.degree.#{k}"), k]}, class:"input-group-btn" %>
 				<% end %>
 				<li>自己紹介文</li>
 					<%= f.text_area :introduction, autofocus: true, autocomplete: "ここに記入してください", class:"form-control" %>
