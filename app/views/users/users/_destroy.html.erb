@@ -3,7 +3,6 @@
 		<%#= render 'layouts/sidebar' %>
 		<div class="col-md-2 rgba-w-7 z-index bdr-10 table_responsive">
 			<div class="sidebar">
-			<div class="navbar-header">
 				<% if admin_signed_in? %>
 					<span class="navbar-brand">
 						<%= link_to "マイページ", admins_admin_path(current_admin), :style=>"color:#000000;" %>
@@ -19,25 +18,37 @@
 					</span>
 				<% else %>
 					<% if user_signed_in? %>
-						<span class="navbar-brand">
-							<%= link_to "トップページ", root_path, :style=>"color:#000000;" %>
-						</span>
-						<span class="navbar-brand">
-							<%= link_to "マイページ", users_show_path(current_user), :style=>"color:#000000;" %>
-						</span>
-						<span class="navbar-brand">
-							<%= link_to "ユーザ一覧", users_users_path, :style=>"color:#000000;" %>
-						</span>
-						<span class="navbar-brand">
-							<%= link_to "カウンセラー覧", users_counselor_path, :style=>"color:#000000;" %>
-						</span>
-						<span class="navbar-brand">
-							<% if current_user.watson_req %>
-								<%= link_to "性格診断", edit_users_watson_req_path(id: current_user.watson_req.id), :style=>"color:#000000;" %>
-							<% else %>
-								<%= link_to "性格診断", new_users_watson_req_path, :style=>"color:#000000;" %>
-							<% end %>
-						</span>
+						<%= link_to root_path, :style=>"color:#000000;" do %>
+							<div class="nav wd-100 mt-25 texralign-c">
+								<p>トップページ</p>
+							</div>
+						<% end %>
+						<%= link_to users_show_path(current_user), :style=>"color:#000000;" do %>
+							<div class="nav wd-100 mt-25 texralign-c">
+								<p>マイページ</p>
+							</div>
+						<% end %>
+						<%= link_to users_users_path, :style=>"color:#000000;" do %>
+							<div class="nav wd-100 mt-25 texralign-c">
+								<p>ユーザ一覧</p>
+							</div>
+						<% end %>
+						<%= link_to users_counselor_path, :style=>"color:#000000;" do %>
+							<div class="nav wd-100 mt-25 texralign-c">
+								<p>カウンセラー覧</p>
+							</div>
+						<% end %>
+						<div class="nav wd-100 mt-25 texralign-c">
+								<% if current_user.watson_req %>
+									<%= link_to edit_users_watson_req_path(id: current_user.watson_req.id), :style=>"color:#000000;" do %>
+										<p>性格診断</p>
+									<% end %>
+								<% else %>
+									<%= link_to new_users_watson_req_path, :style=>"color:#000000;" do %>
+										<p>性格診断</p>
+									<% end %>
+								<% end %>
+						</div>
 						<br>
 						<br>
 						<br>
@@ -58,18 +69,9 @@
 						<br>
 						<br>
 						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<span class="navbar-brand">
-							<%= link_to "ログアウト", destroy_user_session_path, method: :delete, :style=>"color:#000000;" %>
-						</span>
+						<div class="nav wd-100 mt-25 texralign-c">
+							<%= link_to "ログアウト", destroy_user_session_path, method: :delete, :style=>"color:#000000;, width:100%;" %>
+						</div>
 						<br>
 						<br>
 					<% else %>
@@ -88,10 +90,9 @@
 					<% end %>
 				<% end %>
 			</div>
-			</div>
 		</div>
 		<% if user_signed_in? %>
-			<div class="col-md-10 pdb-20 rgba-b-5 bdr-10 col-sm-12 col-xs-12" style="height:700px">
+			<div class="col-md-10 pdb-20 rgba-b-5 bdr-10 col-sm-12 col-xs-12" style="min-height:500px;">
 					<div class="mt-65">
 						<h3 class="fc-w">本当に退会しますか？？</h3>
 						<%= link_to users_destroy_path(current_user), method: :delete do %>

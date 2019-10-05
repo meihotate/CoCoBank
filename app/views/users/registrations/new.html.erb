@@ -1,7 +1,8 @@
 
-<div class="container">
+<!-- <div class="container"> -->
   <div class="rgba-w-7 z-index bdr-10 row row-eq-height">
-    <div class="col-md-12">
+    <%= render 'layouts/sidebar' %>
+    <div class="col-md-10 col-sm-12 col-xs-12">
         <h2>新規会員登録</h2>
 
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -9,12 +10,12 @@
 
           <div class="field mt-16">
             <%= f.label "ユーザー名" %><br />
-            <%= f.text_field :name, autofocus: true, autocomplete: "ユーザー名", style:"width:30%" %>
+            <%= f.text_field :name, autofocus: true, autocomplete: "ユーザー名", class:"wid-20" %>
           </div>
 
           <div class="field mt-16">
             <%= f.label "メールアドレス" %><br />
-            <%= f.email_field :email, autofocus: true, autocomplete: "メールアドレス", style:"width:30%" %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "メールアドレス", class:"wid-20" %>
           </div>
 
           <div class="field mt-16">
@@ -30,6 +31,7 @@
           <div class="field mt-16">
             <%= f.label "カウンセラーとして申請しますか？", class:"margin0" %><br />
             <%= f.check_box :approved, {} , 1, 0 %>
+            <p class="irb">"はい"の方はチェック</p>
           </div>
 
           <div class="field mt-16">
@@ -37,16 +39,16 @@
             <% if @minimum_password_length %>
             <em>(<%= @minimum_password_length %> characters minimum)</em>
             <% end %><br />
-            <%= f.password_field :password, autocomplete: "new-password", class:"form-control" %>
+            <%= f.password_field :password, autocomplete: "new-password", class:"form-control", class:"wid-20" %>
           </div>
 
           <div class="field mt-16">
             <%= f.label :password_confirmation %><br />
-            <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control" %>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control", class:"wid-20" %>
           </div>
 
           <div class="actions mt-16">
-            <%= f.submit "新規会員登録", class:"form-control btn btn-default" %>
+            <%= f.submit "新規会員登録", class:"form-control btn btn-default wid-20" %>
           </div>
         <% end %>
         <br>
@@ -58,4 +60,4 @@
         <%= render "users/shared/links" %>
     </div>
   </div>
-</div>
+<!-- </div> -->

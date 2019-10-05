@@ -179,7 +179,9 @@ window.onload = function () {
 
 // ハンバーガーメニュー
 $(function() {
+	console.log("hum")
   $('.menu-trigger').on('click', function() {
+  	console.log(this)
     $(this).toggleClass('active');
     $('#hamburger').fadeToggle();
     return false;

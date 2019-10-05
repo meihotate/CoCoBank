@@ -1,0 +1,80 @@
+<div class="rgba-w-7 z-index bdr-10 row row-eq-height">
+	<%= render 'layouts/sidebar' %>
+	<div class="col-md-10 pdb-20 col-xs-12 col-sm-12">
+		<div class="opac0 mt-16">
+			<% unless user_signed_in? %>
+				<div class="fs-18 bdr-10 bgc-green pd-5 wid-40 ma-0 texralign-c">
+						<li><strong>CoCoBankのサービスを体験してみませんか？</strong></li>
+				</div>
+				<div class="fs-17 mt-16 wid-20 pdl-5">
+					<li><strong>CoCoBankの＜安心・安全＞</strong></li>
+				</div>
+				<div class="rgba-w-7 wd-100 pd-5 bdr-10 fs-12">
+					<p><strong>・サービスは完全無料です<strong></p>
+					<br>
+					<p><strong>・CoCoBankのカウンセラーにはCoCoBank社が認定した安心できる人たちだけが所属</strong></p>
+					<br>
+					<p><strong>・友達申請・承認をしない限り、チャットはできない仕組み</strong></p>
+					<br>
+					<p><strong>・本名ではなく、ニックネームで登録できるから、プライバシーも安全</strong></p>
+					<br>
+					<p><strong>・あなたのマイページにはあなた以外誰もアクセスできません。</strong></p>
+				</div>
+				<div class="fs-17 mt-16 wid-20 pdl-5">
+					<li><strong>CoCoBankの性格診断機能</strong></li>
+				</div>
+				<div class="rgba-w-7 wd-100 pd-5 bdr-10 fs-12">
+					<p><strong>・簡単な１０の質問に答えると、AIがあなたの性格を診断してくれます。<strong></p>
+					<br>
+					<p><strong>・他のサイトではなかなか受けられないサービスです</strong></p>
+					<br>
+					<p><strong>・性格診断は何回でも受け直すことができます。</strong></p>
+				</div>
+				<div class="fs-17 mt-16 pdl-5">
+					<li><strong>少しでも気になったら、まずはユーザー登録またはログイン</strong></li>
+				</div>
+				<%= link_to new_user_registration_path, :style=>"color:#000000;" do %>
+					<div class="wd-100 mt-25">
+						<button class="btn btn-primary">新規会員登録</button>
+						<div>
+							<p class="fs-10">カウンセラー申請の方もこちらから</p>
+						</div>
+					</div>
+				<% end %>
+				<%= link_to new_user_session_path, :style=>"color:#000000;" do %>
+					<div class="wd-100">
+						<button class="btn btn-primary">ログイン</button>
+					</div>
+				<% end %>
+			<% else %>
+				<div class="fs-18 bdr-10 bgc-green pd-5 wid-40 ma-0 texralign-c">
+						<li><strong>CoCoBankのサービス</strong></li>
+				</div>
+				<div class="fs-17 mt-16 wid-20 pdl-5">
+					<li><strong>CoCoBankの＜安心・安全＞</strong></li>
+				</div>
+				<div class="rgba-w-7 wd-100 pd-5 bdr-10 fs-12">
+					<p><strong>・サービスは完全無料です<strong></p>
+					<br>
+					<p><strong>・CoCoBankのカウンセラーにはCoCoBank社が認定した安心できる人たちだけが所属</strong></p>
+					<br>
+					<p><strong>・友達申請・承認をしない限り、チャットはできない仕組み</strong></p>
+					<br>
+					<p><strong>・本名ではなく、ニックネームで登録できるから、プライバシーも安全</strong></p>
+					<br>
+					<p><strong>・あなたのマイページにはあなた以外誰もアクセスできません。</strong></p>
+				</div>
+				<div class="fs-17 mt-16 wid-20 pdl-5">
+					<li><strong>CoCoBankの性格診断機能</strong></li>
+				</div>
+				<div class="rgba-w-7 wd-100 pd-5 bdr-10 fs-12">
+					<p><strong>・簡単な１０の質問に答えると、AIがあなたの性格を診断してくれます。<strong></p>
+					<br>
+					<p><strong>・他のサイトではなかなか受けられないサービスです</strong></p>
+					<br>
+					<p><strong>・性格診断は何回でも受け直すことができます。</strong></p>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>
