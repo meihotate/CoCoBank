@@ -42,48 +42,60 @@
 		<% else %>
 				<% if user_signed_in? %>
 						<div data-name= <%= current_user.id %> id="login"></div>
+						<%= link_to root_path, :style=>"color:#000000;" do %>
+							<div class="nav wd-100 mt-25 texralign-c">
+								<p>トップページ</p>
+							</div>
+						<% end %>
+						<%= link_to users_show_path(current_user), :style=>"color:#000000;" do %>
+							<div class="nav wd-100 mt-25 texralign-c">
+								<p>マイページ</p>
+							</div>
+						<% end %>
+						<%= link_to users_users_path, :style=>"color:#000000;" do %>
+							<div class="nav wd-100 mt-25 texralign-c">
+								<p>ユーザ一覧</p>
+							</div>
+						<% end %>
+						<%= link_to users_counselor_path, :style=>"color:#000000;" do %>
+							<div class="nav wd-100 mt-25 texralign-c">
+								<p>カウンセラー覧</p>
+							</div>
+						<% end %>
+						<div class="nav wd-100 mt-25 texralign-c">
+								<% if current_user.watson_req %>
+									<%= link_to edit_users_watson_req_path(id: current_user.watson_req.id), :style=>"color:#000000;" do %>
+										<p>性格診断</p>
+									<% end %>
+								<% else %>
+									<%= link_to new_users_watson_req_path, :style=>"color:#000000;" do %>
+										<p>性格診断</p>
+									<% end %>
+								<% end %>
+						</div>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
 						<div class="nav wd-100 mt-25">
-							<%= link_to "トップページ", root_path, :style=>"color:#000000;" %>
+							<button data-behavior="appear_away" class="logoutbutton", style="width: 100%">ログアウト</button>
 						</div>
 						<div class="nav wd-100 mt-25">
-							<%= link_to "マイページ", users_show_path(current_user), :style=>"color:#000000;" %>
-						</div>
-						<div class="nav wd-100 mt-25">
-							<%= link_to "ユーザ一覧", users_users_path, :style=>"color:#000000;" %>
-						</div>
-						<div class="nav wd-100 mt-25">
-							<%= link_to "カウンセラー覧", users_counselor_path, :style=>"color:#000000;" %>
-						</div>
-						<div class="nav wd-100 mt-25">
-							<% if current_user.watson_req %>
-								<%= link_to "性格診断", edit_users_watson_req_path(id: current_user.watson_req.id), :style=>"color:#000000;" %>
-							<% else %>
-								<%= link_to "性格診断", new_users_watson_req_path, :style=>"color:#000000;" %>
-							<% end %>
-						</div>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<div class="nav wd-100 mt-25">
-							<button data-behavior="appear_away" class="logoutbutton">ログアウト</button>
-						</div>
-						<div class="nav wd-100 mt-25">
-							<button id="leaveBank", type="button">退会する</button>
+							<button id="leaveBank", type="button", style="width: 100%">退会する</button>
 						</div>
 						<div class="nav wd-100 mt-25">
 							<%= link_to destroy_user_session_path, method: :delete, :style=>"color:#000000;" do %>
@@ -95,19 +107,25 @@
 						<br>
 						<br>
 				<% else %>
-						<div class="nav wd-100 mt-25">
-							<%= link_to "トップページ", root_path, :style=>"color:#000000;" %>
-						</div>
+						<%= link_to root_path, :style=>"color:#000000;" do %>
+							<div class="nav wd-100 mt-25">
+								<p>トップページ</p>
+							</div>
+						<% end %>
 						<div>
-							<div class="nav wd-100 mt-25">
-								<%= link_to "新規会員登録", new_user_registration_path, :style=>"color:#000000;" %>
-								<div>
-									<p class="fs-10 pdb-20">カウンセラー申請の方もこちらから</p>
+							<%= link_to new_user_registration_path, :style=>"color:#000000;" do %>
+								<div class="nav wd-100 mt-25">
+									<p>新規会員登録</p>
+									<div>
+										<p class="fs-10 pdb-20">カウンセラー申請の方もこちらから</p>
+									</div>
 								</div>
-							</div>
-							<div class="nav wd-100 mt-25">
-								<%= link_to "ログイン", new_user_session_path, :style=>"color:#000000;" %>
-							</div>
+							<% end %>
+							<%= link_to new_user_session_path, :style=>"color:#000000;" do %>
+								<div class="nav wd-100 mt-25">
+									<p>ログイン</p>
+								</div>
+							<% end %>
 						</div>
 				<% end %>
 		<% end %>
@@ -128,71 +146,48 @@
 			</span>
 			<br>
 						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
 			<span class="nav wd-100 mt-25 texralign-c">
 				<%= link_to "ログアウト", destroy_admin_session_path, method: :delete, :style=>"color:#000000;" %>
 			</span>
 		<% else %>
 				<% if user_signed_in? %>
 						<div data-name= <%= current_user.id %> id="login"></div>
-						<div class="nav wd-100 mt-80 texralign-c">
-							<%= link_to "トップページ", root_path, :style=>"color:#000000;" %>
+						<%= link_to root_path, :style=>"color:#000000;" do %>
+							<div class="nav wd-100 mt-80 texralign-c">
+								<p>トップページ</p>
+							</div>
+						<% end %>
+						<%= link_to users_show_path(current_user), :style=>"color:#000000;" do %>
+							<div class="nav wd-100 mt-25 texralign-c">
+								<p>マイページ</p>
+							</div>
+						<% end %>
+						<%= link_to users_users_path, :style=>"color:#000000;" do %>
+							<div class="nav wd-100 mt-25 texralign-c">
+								<p>ユーザ一覧</p>
+							</div>
+						<% end %>
+						<%= link_to users_counselor_path, :style=>"color:#000000;" do %>
+							<div class="nav wd-100 mt-25 texralign-c">
+								<p>カウンセラー覧</p>
+							</div>
+						<% end %>
+						<div class="nav wd-100 mt-25 texralign-c">
+								<% if current_user.watson_req %>
+									<%= link_to edit_users_watson_req_path(id: current_user.watson_req.id), :style=>"color:#000000;" do %>
+										<p>性格診断</p>
+									<% end %>
+								<% else %>
+									<%= link_to new_users_watson_req_path, :style=>"color:#000000;" do %>
+										<p>性格診断</p>
+									<% end %>
+								<% end %>
 						</div>
 						<div class="nav wd-100 mt-25 texralign-c">
-							<%= link_to "マイページ", users_show_path(current_user), :style=>"color:#000000;" %>
+							<button data-behavior="appear_away" class="logoutbutton", style="width: 100%">ログアウト</button>
 						</div>
 						<div class="nav wd-100 mt-25 texralign-c">
-							<%= link_to "ユーザ一覧", users_users_path, :style=>"color:#000000;" %>
-						</div>
-						<div class="nav wd-100 mt-25 texralign-c">
-							<%= link_to "カウンセラー覧", users_counselor_path, :style=>"color:#000000;" %>
-						</div>
-						<div class="nav wd-100 mt-25 texralign-c">
-							<% if current_user.watson_req %>
-								<%= link_to "性格診断", edit_users_watson_req_path(id: current_user.watson_req.id), :style=>"color:#000000;" %>
-							<% else %>
-								<%= link_to "性格診断", new_users_watson_req_path, :style=>"color:#000000;" %>
-							<% end %>
-						</div>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<div class="nav wd-100 mt-25 texralign-c">
-							<button data-behavior="appear_away" class="logoutbutton">ログアウト</button>
-						</div>
-						<div class="nav wd-100 mt-25 texralign-c">
-							<button id="leaveBank2", type="button">退会する</button>
+							<button id="leaveBank2", type="button", style="width: 100%">退会する</button>
 						</div>
 						<div class="nav wd-100 mt-25 texralign-c">
 							<%= link_to destroy_user_session_path, method: :delete, :style=>"color:#000000;" do %>
@@ -204,18 +199,26 @@
 						<br>
 						<br>
 				<% else %>
-						<div>
-							<div class="nav wd-100 mt-80 texralign-c">
-								<%= link_to "トップページ", root_path, :style=>"color:#000000;" %>
-							</div>
-							<div class="nav wd-100 mt-25 texralign-c">
-								<%= link_to "新規会員登録", new_user_registration_path, :style=>"color:#000000;" %>
-								<div>
-									<p class="fs-10 pdb-20">カウンセラー申請の方もこちらから</p>
+						<div class="wd-100 mt-80 texralign-c">
+							<%= link_to root_path, :style=>"color:#000000;" do %>
+								<div class="nav wd-100 mt-25">
+									<p>トップページ</p>
 								</div>
-							</div>
-							<div class="nav wd-100 mt-25 texralign-c">
-								<%= link_to "ログイン", new_user_session_path, :style=>"color:#000000;" %>
+							<% end %>
+							<div>
+								<%= link_to new_user_registration_path, :style=>"color:#000000;" do %>
+									<div class="nav wd-100 mt-25">
+										<p>新規会員登録</p>
+										<div>
+											<p class="fs-10 pdb-20">カウンセラー申請の方もこちらから</p>
+										</div>
+									</div>
+								<% end %>
+								<%= link_to new_user_session_path, :style=>"color:#000000;" do %>
+									<div class="nav wd-100 mt-25">
+										<p>ログイン</p>
+									</div>
+								<% end %>
 							</div>
 						</div>
 				<% end %>
