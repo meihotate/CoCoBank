@@ -27,12 +27,16 @@
   display: block;
   clear: both;
  }
+ body {
+  margin: 0 auto;
+ }
  .bgimage {
   background-image: url(/images/forest.jpg);
   background-size: cover; /* 縦横比を維持したまま背景の表示領域を覆うように表示 */
   /*background-position: center 40%;*/
   background-attachment: scroll;
   background-repeat: repeat;
+  width: 100%;
  }
  .object_cover {
   object-fit: cover;
@@ -70,6 +74,8 @@
  }
  table {
   table-layout: fixed;
+  word-break: break-all;
+　word-wrap: break-all;
  }
  body {
   word-break: break-all;
@@ -79,27 +85,18 @@
   display: flex;
   flex-wrap: wrap;
  }
- .row.row-eq-height .col-md-10 {
-  width:83.2%;
- }
- .row.row-eq-height .col-md-6 {
-  width:49%;
- }
- .row.row-eq-height .col-md-4 {
-  width:33%;
- }
  input[type=checkbox] {
   transform: scale(1.4);
   margin: 0;
  }
  a { text-decoration: none;}
  a:hover { text-decoration: none;}
- .navbar-brand:hover {
+ .nav:hover {
   width: 100%;
   background: rgba(75, 209, 100, 0.7);
   border-radius: 10px;
  }
-span.navbar-brand:hover {
+span.nav:hover {
     width: 100%;
     background: rgba(75, 209, 100, 0.7);
     border-radius: 10px;
@@ -112,7 +109,9 @@ span.navbar-brand:hover {
         padding: 0;
         appearance: none;
  }
-
+.chatting.btn {
+  white-space: normal;
+ }
 
  /*チャット画面*/
  /*以下、①背景色など*/
@@ -219,7 +218,7 @@ span.navbar-brand:hover {
 .hercomment p:after {
   content: "";
   position: absolute;
-  top: 3px; 
+  top: 3px;
   right: -19px;
   border: 8px solid transparent;
   border-left: 18px solid #30e852;
@@ -289,6 +288,9 @@ span.navbar-brand:hover {
  .pdl-5 {
   padding-left: 5px;
  }
+ .pdt-5 {
+  padding-top: 5px;
+ }
  .pdl-20 {
   padding-left: 20px;
  }
@@ -335,6 +337,9 @@ span.navbar-brand:hover {
  }
  .ml-20 {
   margin-left: 20px;
+ }
+ .ml-1 {
+  margin-left: 1px;
  }
  .mr-60 {
   margin-right: 60px;
@@ -434,11 +439,11 @@ span.navbar-brand:hover {
  }
 
  #backToBank {
-  background-color: transparent;
-  border: none;
+  /*background-color: transparent;*/
+  /*border: none;*/
   cursor: pointer;
   outline: none;
-  padding: 0;
+  /*padding: 0;*/
   appearance: none;
  }
 
@@ -449,3 +454,139 @@ span.navbar-brand:hover {
  #resigned {
   display: none;
  }
+
+ /*ハンバーガーメニュー*/
+ .hamburger {
+  display: none;
+ }
+ #hm-icon{
+  display: none;
+  position: fixed;
+  right: 20px;
+  top: 10px;
+  z-index: 10;
+}
+.menu-trigger,
+.menu-trigger span {
+  display: inline-block;
+  transition: all .4s;
+  box-sizing: border-box;
+}
+.menu-trigger {
+  position: relative;
+  width: 50px;
+  height: 44px;
+}
+.menu-trigger span {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: #000;
+  border-radius: 4px;
+}
+.menu-trigger span:nth-of-type(1) {
+  top: 0;
+}
+.menu-trigger span:nth-of-type(2) {
+  top: 20px;
+}
+.menu-trigger span:nth-of-type(3) {
+  bottom: 0;
+}
+.menu-trigger.active span:nth-of-type(1) {
+  -webkit-transform: translateY(20px) rotate(-45deg);
+  transform: translateY(20px) rotate(-45deg);
+  background-color: #000;
+}
+.menu-trigger.active span:nth-of-type(2) {
+  opacity: 0;
+}
+.menu-trigger.active span:nth-of-type(3) {
+  -webkit-transform: translateY(-20px) rotate(45deg);
+  transform: translateY(-20px) rotate(45deg);
+  background-color: #000;
+}
+#hamburger {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #fff;
+  color: #000;
+  width: 100%;
+  min-height: 100%;
+  display: none;
+  z-index: 150;
+}
+#hamburger li{
+  text-align: center;
+  margin-bottom: 30px;
+}
+.button_responsive {
+  display: inline-block;
+ }
+ .image_responsive {
+  width: 40%;
+ }
+
+@media screen and (min-width:992px) {
+ .row.row-eq-height .col-md-10 {
+  width:83.2%;
+ }
+ .row.row-eq-height .col-md-6 {
+  width:49%;
+ }
+ .row.row-eq-height .col-md-4 {
+  width:33%;
+ }
+}
+
+ @media screen and (max-width:991px) {
+ .wid-20 {
+  width: 100%;
+ }
+ .icon {
+  text-align: center;
+ }
+ #hm-icon {
+  display: block;
+ }
+ .table_responsive {
+  display: none;
+ }
+ table td[class*="col-"], table th[class*="col-"].table_responsive {
+  display: none;
+ }
+ /*input {
+  width: 100%;
+ }*/
+ /*[class*="col-"] {
+  padding-left: 0;
+  padding-right: 0;
+ }*/
+ /*.row-eq-height {
+  display: block;
+  flex-wrap: nowrap;
+ }*/
+ }
+
+ @media screen and (max-width:764px) {
+  table td[class*="col-"], table th[class*="col-"].table_responsive2 {
+  display: none;
+  }
+  .table_responsive2 {
+  display: none;
+  }
+ }
+
+ @media screen and (max-width:375px) {
+ .button_responsive {
+  display: block;
+ }
+ .image_responsive{
+  width: 100%;
+ }
+ .title_responsive {
+  width: 100%;
+ }
+}
