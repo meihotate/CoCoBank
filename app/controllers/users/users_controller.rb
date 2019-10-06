@@ -56,10 +56,17 @@ class Users::UsersController < ApplicationController
 
 	def index
 		@users = User.where.not(id: current_user.id)
+		@users.each do |user|
+			if user.timedout?(user.updated_at)
+				# binding.pry
+				user.update(online: false)
+			end
+		end
 	end
 
 	def counselor_index
 		@users = User.where.not(id: current_user.id)
+		@users.each {|user| user.update(online: false) if user.timedout?(user.updated_at)}
 	end
 
 	def detail
