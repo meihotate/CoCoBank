@@ -4,6 +4,6 @@ class ProfileImage < ApplicationRecord
 	attachment :profile_image
 	validates :user_id, uniqueness: true
 	validates :profile_image, presence: true
-	
+
 
 end

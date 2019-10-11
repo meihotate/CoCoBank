@@ -11,10 +11,8 @@ class Users::ChatmessagesController < ApplicationController
 	end
 
 	private
-    def message_params
-        # params.require(:product).permit(:artist, :category_id, :label_id, :title, :price, :stock, :status, product_images_attributes: :product_image)
-        # params.require(:product).permit(:artist, :category_id, :label_id, :title, :price, :stock, :status, songs_attributes: [:id, :name, :disc_number, :_destroy], product_images_product_images: [])
-        params.require(:chatmessage).permit(:message, :chatmember_id, :chatroom_id)
-    end
+	def message_params
+		params.require(:chatmessage).permit(:message, :chatmember_id, :chatroom_id)
+	end
 
 end

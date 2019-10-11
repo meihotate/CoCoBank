@@ -1,20 +1,17 @@
 class Users::FriendshipsController < ApplicationController
 
 	def create
-	    @user = User.find(params[:to_user_id])
-	    current_user.request(@user)
-	    # user.save
-	    # redirect_to users_detail_path(user)
-	    respond_to do |format|
-	      format.html { redirect_to users_detail_path(@user) }
-	      format.js
-	    end
-  	end
+		@user = User.find(params[:to_user_id])
+		current_user.request(@user)
+		respond_to do |format|
+			format.html { redirect_to users_detail_path(@user) }
+			format.js
+		end
+	end
 
 	def update
 		@user = User.find(params[:from_user_id])
 		current_user.approve_friend(@user)
-		# binding.pry
 		@table_index = params[:table_index]
 
 		# チャットルームの生成
@@ -25,9 +22,9 @@ class Users::FriendshipsController < ApplicationController
 
 		# redirect_to users_show_path(current_user)
 		respond_to do |format|
-	      format.html { redirect_to users_show_path(current_user) }
-	      format.js
-	    end
+			format.html { redirect_to users_show_path(current_user) }
+			format.js
+		end
 	end
 
 	def update_reject
@@ -37,9 +34,9 @@ class Users::FriendshipsController < ApplicationController
 		# binding.pry
 		# redirect_to users_show_path(current_user)
 		respond_to do |format|
-	      format.html { redirect_to users_show_path(current_user) }
-	      format.js
-	    end
+			format.html { redirect_to users_show_path(current_user) }
+			format.js
+		end
 	end
 
 	def second_update
@@ -52,9 +49,9 @@ class Users::FriendshipsController < ApplicationController
 		Chatmember.create(chatroom_id: room.id, user_id: @user.id)
 		# redirect_to users_show_path(current_user)
 		respond_to do |format|
-	      format.html { redirect_to users_detail_path(@user) }
-	      format.js
-	    end
+			format.html { redirect_to users_detail_path(@user) }
+			format.js
+		end
 	end
 
 end

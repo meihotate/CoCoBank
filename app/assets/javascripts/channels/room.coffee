@@ -8,11 +8,6 @@ App.room = App.cable.subscriptions.create "RoomChannel",
 
   received: (data) ->
     current_user_check = $('input:hidden[name="chatuser_id"]').val()
-    console.log current_user_check
-    console.log "test"
-    console.log data['current_user_id']
-    console.log data['chatroom_id']
-    console.log $('input:hidden[name="chatroom_id"]').val()
     img = document.getElementById('chatprofileimage')
     imgsrc = img.getAttribute('src')
     if data['chatroom_id'] == $('input:hidden[name="chatroom_id"]').val()
@@ -23,7 +18,6 @@ App.room = App.cable.subscriptions.create "RoomChannel",
 
 
   speak: (message, chatroom_id, chatmember_id, current_user_id) ->
-    console.log "test"
     @perform 'speak', "message": message, "chatroom_id": chatroom_id, "chatmember_id":chatmember_id, "current_user_id":current_user_id   # @ = thisなので、 this.perform("speak", "message": message)
 
 
