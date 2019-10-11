@@ -7,13 +7,13 @@ class Users::ChatroomsController < ApplicationController
             # binding.pry
             nowdate = DateTime.now
             chatroom.update(accesstime: nowdate)
-          	@member = Chatmember.with_deleted.find_by(user_id: current_user.id, chatroom_id: chatroom.id)
-          	@other_user = User.with_deleted.find(params[:other_user_id])
-          	@message = Chatmessage.new
+            @member = Chatmember.with_deleted.find_by(user_id: current_user.id, chatroom_id: chatroom.id)
+            @other_user = User.with_deleted.find(params[:other_user_id])
+            @message = Chatmessage.new
 
-          	if Chatmessage.with_deleted.where(chatroom_id: chatroom.id)
-          		@chatmessages = Chatmessage.with_deleted.where(chatroom_id: chatroom.id).order(created_at: :asc)
-          	end
+            if Chatmessage.with_deleted.where(chatroom_id: chatroom.id)
+              @chatmessages = Chatmessage.with_deleted.where(chatroom_id: chatroom.id).order(created_at: :asc)
+            end
         else
             flash[:notice] = "不正なアクセスです"
             redirect_to users_show_path(current_user)

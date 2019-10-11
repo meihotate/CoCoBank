@@ -29,47 +29,44 @@ var colorSet = {
 
 var myChart;
 
-		console.log("呼んだ？")
 		var title = gon.big5_title;
 		var label_result = gon.big5_labels;
 		var value_result = gon.big5_values;
 		var color_value = colorSet.red;
 
 		window.draw_graph = function() {
-		  console.log(myChart);
-		  var ctx;
-		  var color = Chart.helpers.color;
+			var ctx;
+			var color = Chart.helpers.color;
 
-		  ctx = document.getElementById("myChart").getContext('2d');
+			ctx = document.getElementById("myChart").getContext('2d');
 			if(myChart){
-				console.log("destroy")
- 				myChart.destroy();
- 			}
+				myChart.destroy();
+			}
 
-		  myChart = new Chart(ctx, {
-		    type: 'radar',
-		    data: {
-		      labels: label_result,
-		      datasets: [
-		        {
-					label: title,
-					backgroundColor: color(color_value).alpha(0.5).rgbString(),
-					borderColor: color_value,
-					pointBackgroundColor: color_value,
-					data: value_result
+			myChart = new Chart(ctx, {
+				type: 'radar',
+				data: {
+					labels: label_result,
+					datasets: [
+						{
+							label: title,
+							backgroundColor: color(color_value).alpha(0.5).rgbString(),
+							borderColor: color_value,
+							pointBackgroundColor: color_value,
+							data: value_result
+						}
+					]
+				},
+				options: {
+					scale: {
+						ticks: {
+							min: 0,              // 最大値
+							max: 100,            // 最大値
+							stepSize: 20
+						}
+					}
 				}
-		      ]
-		    },
-		    options: {
-		      scale: {
-		        ticks: {
-		              min: 0,              // 最大値
-		              max: 100,            // 最大値
-		              stepSize: 20
-		            }
-		      }
-		    }
-		  });
+			});
 		};
 
 	$(function() {
@@ -80,110 +77,66 @@ var myChart;
 			label_result = gon.big5_labels;
 			color_value = colorSet.red;
 			draw_graph();
-			console.log("test");
-			// event.stopPropagation();
-			// draw_graph().myChart.data.datasets[0].data = value_result;
-			// draw_graph().myChart.update();
 		});
 	});
 	$(function() {
 		$('#result_need').on('click', function(event){
-			console.log("test");
 			title = gon.need_title;
 			value_result = gon.need_values;
 			label_result = gon.need_labels;
 			color_value = colorSet.blue;
 			draw_graph();
-			// event.stopPropagation();
-			// draw_graph().myChart.data.datasets[0].data = value_result;
-			// draw_graph().myChart.data.datasets[0].label = title;
-			// draw_graph().myChart.data.datasets[0].backgroundColor = color(color_value).alpha(0.5).rgbString();
-			// draw_graph().myChart.data.datasets[0].borderColor = color_value;
-			// draw_graph().myChart.data.datasets[0].pointBackgroundColor = color_value;
-			// draw_graph().myChart.data.labels = label_result
-			// draw_graph().myChart.update();
 		});
 	});
 	$(function() {
 		$('#result_value').on('click', function(event){
-			console.log("test");
 			title = gon.value_title;
 			value_result = gon.value_values;
 			label_result = gon.value_labels;
 			color_value = colorSet.orange;
 			draw_graph();
-			// event.stopPropagation();
-			// draw_graph().myChart.datasets[0].data = value_result;
-			// draw_graph().myChart.update();
 		});
 	});
 
-// userの退会
+// userの退会しますか？画面の切り替え
 window.onload = function () {
-	console.log("test0");
 	$(function() {
+    // user側の画面切り替えID名
 	var leaveBank = document.getElementById('leaveBank');
+	// admin側の画面切り替えID名
 	var leaveBank2 = document.getElementById('leaveBank2');
+	// 退会しますか？画面の代わりに<body>内を非表示にするためのID取得
 	var body1 = document.getElementById('hide');
 	var destroybody1 = document.getElementById('showdestroy');
 	var backToBank = document.getElementById('backToBank');
 		if (leaveBank !== null) {
 			leaveBank.addEventListener('click', event => {
-				console.log("test1");
-				console.log(body1);
 				body1.style.display="none";
-			  	destroybody1.style.display="block";
+				destroybody1.style.display="block";
 			});
 			backToBank.addEventListener('click', event => {
-				console.log("test2");
 				body1.style.display="block";
-			  	destroybody1.style.display="none";
+				destroybody1.style.display="none";
 			});
 		}
 		if (leaveBank2 !== null) {
 			leaveBank2.addEventListener('click', event => {
-				console.log("test2");
-				console.log(body1);
 				body1.style.display="none";
-			  	destroybody1.style.display="block";
+				destroybody1.style.display="block";
 			});
 			backToBank.addEventListener('click', event => {
-				console.log("test2");
 				body1.style.display="block";
-			  	destroybody1.style.display="none";
+				destroybody1.style.display="none";
 			});
 		}
 	});
-// };
-// // userを退会させる
-// window.onload = function () {
-	// console.log("test3");
-	// $(function() {
-	// var nolongerBank = document.getElementById('nolongerBank');
-	// var body = document.getElementById('hidedetail');
-	// var destroybody = document.getElementById('resigned');
-	// var stopResign = document.getElementById('stopResign');
-	// 	nolongerBank.addEventListener('click', event => {
-	// 		console.log("test");
-	// 		body.style.display="none";
-	// 	  	destroybody.style.display="block";
-	// 	  	console.log("aaa");
-	// 	});
-	// 	stopResign.addEventListener('click', event => {
-	// 		console.log("test");
-	// 		body.style.display="block";
-	// 	  	destroybody.style.display="none";
-	// 	});
-	// });
 };
 
 // ハンバーガーメニュー
 $(function() {
-	console.log("hum")
-  $('.menu-trigger').on('click', function() {
-  	console.log(this)
-    $(this).toggleClass('active');
-    $('#hamburger').fadeToggle();
-    return false;
-  });
- });
+	$('.menu-trigger').on('click', function() {
+		$(this).toggleClass('active');
+		$('#hamburger').fadeToggle();
+		return false;
+	});
+});

@@ -5,26 +5,26 @@ class Admins::AdminsController < ApplicationController
 
 	def appro
 		@user = User.find(params[:user_id])
-	      if @user.update(approved: 2)
-	        # 保存後にUserMailerを使ってwelcomeメールを送信
-	        UserMailer.with(user: @user).welcome_email.deliver
-	        flash[:notice] = "承認メールを送信しました。"
-	        redirect_to admins_admin_path(current_admin)
-	      else
-	        redirect_to admins_admin_path(current_admin)
-	      end
+		if @user.update(approved: 2)
+			# 保存後にUserMailerを使ってwelcomeメールを送信
+			UserMailer.with(user: @user).welcome_email.deliver
+			flash[:notice] = "承認メールを送信しました。"
+			redirect_to admins_admin_path(current_admin)
+		else
+			redirect_to admins_admin_path(current_admin)
+		end
 	end
 
 	def reject
 		@user = User.find(params[:user_id])
-	      if @user.update(approved: 3)
-	        # 保存後にUserMailerを使ってwelcomeメールを送信
-	        UserMailer.with(user: @user).reject_email.deliver
-	        flash[:notice] = "不採用メールを送信しました。"
-	        redirect_to admins_admin_path(current_admin)
-	      else
-	        redirect_to admins_admin_path(current_admin)
-	      end
+		if @user.update(approved: 3)
+			# 保存後にUserMailerを使ってwelcomeメールを送信
+			UserMailer.with(user: @user).reject_email.deliver
+			flash[:notice] = "不採用メールを送信しました。"
+			redirect_to admins_admin_path(current_admin)
+		else
+			redirect_to admins_admin_path(current_admin)
+		end
 	end
 
 	def show
@@ -36,17 +36,17 @@ class Admins::AdminsController < ApplicationController
 	end
 
 	def update
-		@admin = current_admin
-			if @admin.update(admin_params)
-				respond_to do |format|
-	      			format.html { redirect_to admins_admin_path(current_admin) }
-	      			format.js
-	    		end
-	    	else
-	    		@users = User.where(approved: 1)
-	    		flash[:notice] = "新しい情報を入力してください"
-	      		format.html { render "admins/admins/show" }
-			end
+	@admin = current_admin
+	if @admin.update(admin_params)
+		respond_to do |format|
+			format.html { redirect_to admins_admin_path(current_admin) }
+			format.js
+		end
+	else
+		@users = User.where(approved: 1)
+		flash[:notice] = "新しい情報を入力してください"
+		format.html { render "admins/admins/show" }
+	end
 	end
 
 	def index
@@ -96,12 +96,12 @@ class Admins::AdminsController < ApplicationController
 	end
 
 	private
-    def user_params
-        params.require(:user).permit(:approved)
-    end
+	def user_params
+		params.require(:user).permit(:approved)
+	end
 
-    def admin_params
-        params.require(:admin).permit(:email, :name)
-    end
+	def admin_params
+		params.require(:admin).permit(:email, :name)
+	end
 
 end

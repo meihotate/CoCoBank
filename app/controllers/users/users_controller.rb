@@ -7,11 +7,7 @@ class Users::UsersController < ApplicationController
 		if current_user.id == params[:id].to_i
 			@user = current_user
 			@users = User.where.not(id: current_user.id)
-			# @friends1 = Friendship.where(friendstatus: 1, to_user_id: @user.id)
-			# @friends2 = Friendship.where(friendstatus: 1, from_user_id: @user.id)
 			@all_friends = current_user.all_friends(@user)
-			# @all_children = current_user.all_children(@user)
-			# binding.pry
 			if @user.profile_image
 				@profile_image = ProfileImage.find_by(user_id: @user.id)
 			else
@@ -57,8 +53,7 @@ class Users::UsersController < ApplicationController
 	def index
 		@users = User.where.not(id: current_user.id)
 		@users.each do |user|
-			if user.timedout?(user.updated_at)
-				# binding.pry
+			if user.timedout?(user.current_sign_in_at)
 				user.update(online: false)
 			end
 		end
@@ -66,13 +61,12 @@ class Users::UsersController < ApplicationController
 
 	def counselor_index
 		@users = User.where.not(id: current_user.id)
-		@users.each {|user| user.update(online: false) if user.timedout?(user.updated_at)}
+		@users.each {|user| user.update(online: false) if user.timedout?(user.current_sign_in_at)}
 	end
 
 	def detail
 		@user1 = current_user
 		@all_friends = current_user.all_friends(@user1)
-		# @all_children = current_user.all_children(@user1)
 		if User.find(params[:user_id])
 			@user = User.find(params[:user_id])
 			@current_user = current_user
@@ -85,8 +79,8 @@ class Users::UsersController < ApplicationController
 	end
 
 	private
-    def user_params
-        params.require(:user).permit(:email, :name, :sex, :location, :degree, :introduction)
-    end
+	def user_params
+	params.require(:user).permit(:email, :name, :sex, :location, :degree, :introduction)
+	end
 
 end

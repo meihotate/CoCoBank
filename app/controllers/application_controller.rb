@@ -13,40 +13,29 @@ class ApplicationController < ActionController::Base
   end
 
   def user_signed_in
-		if user_signed_in?
-			# binding.pry
-			flash[:notice] = "ユーザーでログインしています。一度ログアウトしてください"
-			redirect_to root_path
-		end
+    if user_signed_in?
+      flash[:notice] = "ユーザーでログインしています。一度ログアウトしてください"
+      redirect_to root_path
+    end
   end
 
   def admin_signed_in
-		if admin_signed_in?
-			# binding.pry
-			flash[:notice] = "管理者でログインしています。一度ログアウトしてください"
-			redirect_to root_path
-		end
+    if admin_signed_in?
+      flash[:notice] = "管理者でログインしています。一度ログアウトしてください"
+      redirect_to root_path
+    end
   end
-
-  # def correct_referer
-  # 	if request.referer.nil?
-  # 		binding.pry
-  # 		redirect_to root_path
-  # 	end
-  # end
 
   def set_request_from
     if session[:request_from]
-    	# binding.pry
       @request_from = session[:request_from]
     end
     # 現在のURLを保存しておく
-    # binding.pry
     session[:request_from] = request.original_url
   end
 
   def back
-  	redirect_to @request_from
+    redirect_to @request_from
   end
 
 

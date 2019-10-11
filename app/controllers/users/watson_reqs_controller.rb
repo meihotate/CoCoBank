@@ -83,20 +83,20 @@ class Users::WatsonReqsController < ApplicationController
 	end
 
 	private
-    def request_params
-        params.require(:watson_req).permit(
-        	:user_id, :text1, :text2, :text3, :text4, :text5, :text6, :text7, :text8, :text9,
-        	:text10, :big5_openness_name, :big5_openness, :big5_conscientiousness_name, :big5_conscientiousness, :big5_extraversion_name,
-        	:big5_extraversion, :big5_agreeableness_name, :big5_agreeableness, :big5_neuroticism_name, :big5_neuroticism,
-        	:need_challenge_name, :need_challenge, :need_closeness_name, :need_closeness, :need_curiosity_name, :need_curiosity,
-        	:need_excitement_name, :need_excitement, :need_harmony_name, :need_harmony, :need_ideal_name, :need_ideal,
-        	:need_liberty_name, :need_liberty, :need_love_name, :need_love, :need_practicality_name, :need_practicality, :need_self_expression_name,
-        	:need_self_expression, :need_stability_name, :need_stability, :need_structure_name, :need_structure,
-        	:value_conservation_name, :value_conservation, :value_openness_to_change_name, :value_openness_to_change,
-        	:value_hedonism_name, :value_hedonism, :value_self_enhancement_name, :value_self_enhancement, :value_self_transcendence_name,
-        	:value_self_transcendence
-        	)
-    end
+	def request_params
+		params.require(:watson_req).permit(
+			:user_id, :text1, :text2, :text3, :text4, :text5, :text6, :text7, :text8, :text9,
+			:text10, :big5_openness_name, :big5_openness, :big5_conscientiousness_name, :big5_conscientiousness, :big5_extraversion_name,
+			:big5_extraversion, :big5_agreeableness_name, :big5_agreeableness, :big5_neuroticism_name, :big5_neuroticism,
+			:need_challenge_name, :need_challenge, :need_closeness_name, :need_closeness, :need_curiosity_name, :need_curiosity,
+			:need_excitement_name, :need_excitement, :need_harmony_name, :need_harmony, :need_ideal_name, :need_ideal,
+			:need_liberty_name, :need_liberty, :need_love_name, :need_love, :need_practicality_name, :need_practicality, :need_self_expression_name,
+			:need_self_expression, :need_stability_name, :need_stability, :need_structure_name, :need_structure,
+			:value_conservation_name, :value_conservation, :value_openness_to_change_name, :value_openness_to_change,
+			:value_hedonism_name, :value_hedonism, :value_self_enhancement_name, :value_self_enhancement, :value_self_transcendence_name,
+			:value_self_transcendence
+			)
+	end
 
 
 end

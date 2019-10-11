@@ -46,13 +46,13 @@ class User < ApplicationRecord
   enum sex: {secret_sex: 0, male: 1, female: 2, LGBT: 3}
 
   # device カウンセラー申請したら承認がないとログインできない機能
-    def active_for_authentication?
-      super && approved != 1
-    end
+  def active_for_authentication?
+    super && approved != 1
+  end
 
-    def inactive_message
-      approved != 1 ? super : :not_approved
-    end
+  def inactive_message
+    approved != 1 ? super : :not_approved
+  end
 
   # ユーザーをフォローする
   def follow(other_user)
@@ -85,34 +85,24 @@ class User < ApplicationRecord
     @friends1 = Friendship.where(friendstatus: 1, to_user_id: current_user.id)
     @friends2 = Friendship.where(friendstatus: 1, from_user_id: current_user.id)
       if @friends2 != []
-        # binding.pry
           active_friends = @friends2.map {|friend|
-                                    # if friend.to_user.approved != 2
-                                      friend.to_user
-                                    # end
-                                  }
+                                          friend.to_user
+                                          }
           active_friends = active_friends.compact
       end
       if @friends1 != []
-        # binding.pry
           passfriends = @friends1.map {|friend|
-                                    # if friend.to_user.approved != 2
                                       friend.from_user
-                                    # end
-                                  }
+                                      }
           passfriends = passfriends.compact
       end
           if (passfriends == [nil] || passfriends == nil) && (active_friends == [nil] || active_friends == nil)
-            # binding.pry
                return false
           elsif (passfriends == [nil] || passfriends == nil) && (active_friends != [nil] || active_friends != nil)
-            # binding.pry
                return active_friends
           elsif (passfriends != [nil] || passfriends != nil) && (active_friends == [nil] || active_friends == nil)
-            # binding.pry
                return passfriends
           else
-            # binding.pry
                return passfriends + active_friends
           end
   end
@@ -264,7 +254,7 @@ class User < ApplicationRecord
             # @value_hedonism_name = user.watson_req.value_hedonism_name
             # @value_self_enhancement_name = user.watson_req.value_self_enhancement_name
             # @value_self_transcendence_name = user.watson_req.value_self_transcendence_name
-            
+
   # def all_children(current_user)
   #   @friends1 = Friendship.where(friendstatus: 1, to_user_id: current_user.id)
   #   @friends2 = Friendship.where(friendstatus: 1, from_user_id: current_user.id)
